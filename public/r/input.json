@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "Text input with focus ring and aria-invalid error styling from the token contract.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/input/input.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Input({ className, type, ...props }: React.ComponentProps<\"input\">) {\n  return (\n    <input\n      type={type}\n      data-slot=\"input\"\n      className={cn(\n        \"flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground shadow-xs transition-[color,box-shadow] duration-[var(--layout-duration-base)] ease-out outline-none\",\n        \"placeholder:text-muted-foreground\",\n        \"selection:bg-primary selection:text-primary-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"aria-invalid:border-destructive aria-invalid:ring-destructive/20\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Input };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Pair with Label via htmlFor/id. Signal errors with aria-invalid plus a text-destructive helper line beneath.",
+    "never": [
+      "Never use placeholder text as the only label",
+      "Never restyle the focus ring per instance; it comes from --layout-ring"
+    ],
+    "tokens": [
+      "--layout-input",
+      "--layout-ring",
+      "--layout-danger",
+      "--layout-muted-fg",
+      "--layout-radius"
+    ]
+  },
+  "type": "registry:ui"
+}

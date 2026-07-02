@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "Horizontal or vertical rule built on the Base UI Separator primitive.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/separator/separator.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Separator as BaseSeparator } from \"@base-ui/react/separator\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface SeparatorProps extends React.ComponentProps<typeof BaseSeparator> {\n  orientation?: \"horizontal\" | \"vertical\";\n  decorative?: boolean;\n}\n\nfunction Separator({\n  className,\n  orientation = \"horizontal\",\n  decorative = true,\n  ...props\n}: SeparatorProps) {\n  return (\n    <BaseSeparator\n      data-slot=\"separator\"\n      aria-orientation={decorative ? undefined : orientation}\n      role={decorative ? \"none\" : \"separator\"}\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 bg-border transition-colors duration-[var(--layout-duration-base)] ease-out\",\n        orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Separator, type SeparatorProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Divide groups of related content. Decorative by default; pass decorative={false} when it conveys structure to assistive tech.",
+    "never": [
+      "Never build dividers from bordered empty divs; use Separator so the token and semantics stay consistent"
+    ],
+    "tokens": [
+      "--layout-border"
+    ]
+  },
+  "type": "registry:ui"
+}

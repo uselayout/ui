@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "title": "Label",
+  "description": "Form label with peer-disabled handling.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/label/label.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return (\n    <label\n      data-slot=\"label\"\n      className={cn(\n        \"flex items-center gap-2 text-sm font-medium leading-none select-none\",\n        \"peer-disabled:cursor-not-allowed peer-disabled:opacity-50\",\n        \"group-data-[disabled=true]:cursor-not-allowed group-data-[disabled=true]:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Always associate with a field via htmlFor. Sits above the field with gap-2.",
+    "never": [
+      "Never use muted-foreground for labels; labels are primary text"
+    ],
+    "tokens": [
+      "--layout-fg"
+    ]
+  },
+  "type": "registry:ui"
+}

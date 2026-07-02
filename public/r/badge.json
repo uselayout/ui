@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "Status and metadata label with six variants including success and warning.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@layout/theme-layout"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/badge/badge.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium transition-colors duration-[var(--layout-duration-base)] ease-out [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-3 shrink-0\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border-transparent bg-primary text-primary-foreground\",\n        secondary:\n          \"border-transparent bg-secondary text-secondary-foreground\",\n        outline:\n          \"border-border bg-transparent text-foreground\",\n        destructive:\n          \"border-transparent bg-destructive text-destructive-foreground\",\n        success:\n          \"border-transparent bg-success text-success-foreground\",\n        warning:\n          \"border-transparent bg-warning text-warning-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\ninterface BadgeProps\n  extends React.ComponentProps<\"span\">,\n    VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <span\n      data-slot=\"badge\"\n      className={cn(badgeVariants({ variant, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Badge, badgeVariants, type BadgeProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Compact status indicators, counts, and metadata. Use success/warning/destructive to communicate state, secondary or outline for neutral metadata.",
+    "never": [
+      "Never use badges as interactive buttons; wrap actions in Button",
+      "Never rely on colour alone for status; keep the text meaningful"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-secondary",
+      "--layout-danger",
+      "--layout-success",
+      "--layout-warning",
+      "--layout-border"
+    ]
+  },
+  "type": "registry:ui"
+}

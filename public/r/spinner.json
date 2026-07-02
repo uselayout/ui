@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Indeterminate loading indicator (lucide Loader2).",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/spinner/spinner.tsx",
+      "content": "import * as React from \"react\";\nimport { Loader2 } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface SpinnerProps extends React.ComponentProps<\"svg\"> {\n  size?: number;\n}\n\nfunction Spinner({ className, size = 16, ...props }: SpinnerProps) {\n  return (\n    <Loader2\n      data-slot=\"spinner\"\n      aria-label=\"Loading\"\n      role=\"status\"\n      size={size}\n      className={cn(\"animate-spin text-muted-foreground shrink-0\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Spinner, type SpinnerProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Short, unknown-duration waits inside buttons or small regions. Inherits currentColor so it adopts the parent's text token.",
+    "never": [
+      "Never use a full-page spinner where a Skeleton preserves layout"
+    ],
+    "tokens": []
+  },
+  "type": "registry:ui"
+}

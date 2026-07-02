@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Inline callout with default, destructive, success and warning variants.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@layout/theme-layout"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/alert/alert.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst alertVariants = cva(\n  \"relative grid w-full grid-cols-[auto_1fr] items-start gap-x-3 gap-y-0.5 rounded-lg border bg-card px-4 py-3 text-sm transition-colors duration-[var(--layout-duration-base)] ease-out [&>svg]:mt-0.5 [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border-border text-foreground [&>svg]:text-foreground\",\n        destructive:\n          \"border-destructive/40 text-destructive [&>svg]:text-destructive dark:border-destructive/60\",\n        success:\n          \"border-success/40 text-success [&>svg]:text-success dark:border-success/60\",\n        warning:\n          \"border-warning/40 text-warning [&>svg]:text-warning dark:border-warning/60\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\ninterface AlertProps\n  extends React.ComponentProps<\"div\">,\n    VariantProps<typeof alertVariants> {}\n\nfunction Alert({ className, variant, ...props }: AlertProps) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(alertVariants({ variant, className }))}\n      {...props}\n    />\n  );\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\n        \"col-start-2 font-medium leading-none tracking-tight\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"col-start-2 text-sm leading-relaxed [&_p]:leading-relaxed\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Alert, AlertTitle, AlertDescription, alertVariants, type AlertProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Static inline messaging scoped to a page section. Lead with a lucide icon sized size-4. For transient feedback use a toast instead.",
+    "never": [
+      "Never stack more than two alerts in a row; consolidate the message",
+      "Never use destructive alerts for warnings; warning exists for that"
+    ],
+    "tokens": [
+      "--layout-surface",
+      "--layout-border",
+      "--layout-danger",
+      "--layout-success",
+      "--layout-warning",
+      "--layout-radius"
+    ]
+  },
+  "type": "registry:ui"
+}

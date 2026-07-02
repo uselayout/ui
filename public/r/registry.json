@@ -1,0 +1,256 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "layout-ui",
+  "homepage": "https://layout.design",
+  "items": [
+    {
+      "name": "theme-layout",
+      "type": "registry:theme",
+      "title": "Layout default theme",
+      "description": "The Layout UI default look: warm neutrals, near-black primary, 10px radius. Sets both shadcn-named variables and the extended --layout-* tokens (success, warning, shadows, motion).",
+      "cssVars": {
+        "theme": {
+          "color-success": "var(--layout-success)",
+          "color-success-foreground": "var(--layout-success-fg)",
+          "color-warning": "var(--layout-warning)",
+          "color-warning-foreground": "var(--layout-warning-fg)"
+        },
+        "light": {
+          "background": "oklch(0.99 0.002 95)",
+          "foreground": "oklch(0.21 0.006 95)",
+          "card": "oklch(1 0 0)",
+          "card-foreground": "oklch(0.21 0.006 95)",
+          "popover": "oklch(1 0 0)",
+          "popover-foreground": "oklch(0.21 0.006 95)",
+          "primary": "oklch(0.24 0.006 95)",
+          "primary-foreground": "oklch(0.99 0.002 95)",
+          "secondary": "oklch(0.955 0.004 95)",
+          "secondary-foreground": "oklch(0.24 0.006 95)",
+          "muted": "oklch(0.965 0.004 95)",
+          "muted-foreground": "oklch(0.52 0.008 95)",
+          "accent": "oklch(0.945 0.005 95)",
+          "accent-foreground": "oklch(0.24 0.006 95)",
+          "destructive": "oklch(0.55 0.2 27)",
+          "destructive-foreground": "oklch(0.99 0.002 95)",
+          "border": "oklch(0.91 0.004 95)",
+          "input": "oklch(0.89 0.004 95)",
+          "ring": "oklch(0.55 0.008 95)",
+          "radius": "0.625rem",
+          "layout-success": "oklch(0.55 0.13 155)",
+          "layout-success-fg": "oklch(0.99 0.002 95)",
+          "layout-warning": "oklch(0.6 0.13 75)",
+          "layout-warning-fg": "oklch(0.99 0.002 95)",
+          "layout-duration-fast": "100ms",
+          "layout-duration-base": "150ms",
+          "layout-duration-slow": "250ms"
+        },
+        "dark": {
+          "background": "oklch(0.17 0.004 95)",
+          "foreground": "oklch(0.93 0.004 95)",
+          "card": "oklch(0.2 0.004 95)",
+          "card-foreground": "oklch(0.93 0.004 95)",
+          "popover": "oklch(0.23 0.004 95)",
+          "popover-foreground": "oklch(0.93 0.004 95)",
+          "primary": "oklch(0.93 0.004 95)",
+          "primary-foreground": "oklch(0.19 0.004 95)",
+          "secondary": "oklch(0.26 0.004 95)",
+          "secondary-foreground": "oklch(0.93 0.004 95)",
+          "muted": "oklch(0.24 0.004 95)",
+          "muted-foreground": "oklch(0.68 0.006 95)",
+          "accent": "oklch(0.28 0.004 95)",
+          "accent-foreground": "oklch(0.93 0.004 95)",
+          "destructive": "oklch(0.62 0.19 27)",
+          "destructive-foreground": "oklch(0.98 0.005 27)",
+          "border": "oklch(1 0 0 / 0.1)",
+          "input": "oklch(1 0 0 / 0.14)",
+          "ring": "oklch(0.68 0.006 95)",
+          "layout-success": "oklch(0.64 0.13 155)",
+          "layout-success-fg": "oklch(0.16 0.02 155)",
+          "layout-warning": "oklch(0.72 0.13 75)",
+          "layout-warning-fg": "oklch(0.2 0.03 75)"
+        }
+      }
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Button with six intent variants and four sizes. Polymorphic via the Base UI render prop.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/button/button.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Primary actions use the default variant; one default button per view section. Secondary and outline are for supporting actions, ghost for toolbars and dense UI, destructive only for irreversible actions, link for inline navigation. Use render={<a href/>} to render as a link.",
+        "never": [
+          "Never hardcode colours; variants already map to intent tokens",
+          "Never place two default-variant buttons in the same action group",
+          "Never use destructive for cancel/dismiss actions",
+          "Never override border-radius directly; it derives from --layout-radius"
+        ],
+        "tokens": ["--layout-primary", "--layout-primary-fg", "--layout-secondary", "--layout-secondary-fg", "--layout-accent", "--layout-accent-fg", "--layout-danger", "--layout-danger-fg", "--layout-input", "--layout-ring", "--layout-radius", "--layout-shadow-xs", "--layout-duration-base"]
+      }
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status and metadata label with six variants including success and warning.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "@layout/theme-layout"],
+      "files": [{ "path": "registry/layout/badge/badge.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Compact status indicators, counts, and metadata. Use success/warning/destructive to communicate state, secondary or outline for neutral metadata.",
+        "never": [
+          "Never use badges as interactive buttons; wrap actions in Button",
+          "Never rely on colour alone for status; keep the text meaningful"
+        ],
+        "tokens": ["--layout-primary", "--layout-secondary", "--layout-danger", "--layout-success", "--layout-warning", "--layout-border"]
+      }
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input with focus ring and aria-invalid error styling from the token contract.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/input/input.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Pair with Label via htmlFor/id. Signal errors with aria-invalid plus a text-destructive helper line beneath.",
+        "never": [
+          "Never use placeholder text as the only label",
+          "Never restyle the focus ring per instance; it comes from --layout-ring"
+        ],
+        "tokens": ["--layout-input", "--layout-ring", "--layout-danger", "--layout-muted-fg", "--layout-radius"]
+      }
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line input sharing the Input field chrome.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/textarea/textarea.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Free-form text of more than one line. Same labelling and error conventions as Input.",
+        "never": ["Never fix the height with h-*; use rows or min-h so content can grow"],
+        "tokens": ["--layout-input", "--layout-ring", "--layout-danger", "--layout-radius"]
+      }
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Form label with peer-disabled handling.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/label/label.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Always associate with a field via htmlFor. Sits above the field with gap-2.",
+        "never": ["Never use muted-foreground for labels; labels are primary text"],
+        "tokens": ["--layout-fg"]
+      }
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Horizontal or vertical rule built on the Base UI Separator primitive.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/separator/separator.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Divide groups of related content. Decorative by default; pass decorative={false} when it conveys structure to assistive tech.",
+        "never": ["Never build dividers from bordered empty divs; use Separator so the token and semantics stay consistent"],
+        "tokens": ["--layout-border"]
+      }
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholder that mirrors the shape of incoming content.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/skeleton/skeleton.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Match the skeleton's dimensions to the content it stands in for. Prefer skeletons over spinners when layout is known.",
+        "never": ["Never show skeletons for over ~5 seconds without a fallback state"],
+        "tokens": ["--layout-accent", "--layout-radius"]
+      }
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Inline callout with default, destructive, success and warning variants.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "@layout/theme-layout"],
+      "files": [{ "path": "registry/layout/alert/alert.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Static inline messaging scoped to a page section. Lead with a lucide icon sized size-4. For transient feedback use a toast instead.",
+        "never": [
+          "Never stack more than two alerts in a row; consolidate the message",
+          "Never use destructive alerts for warnings; warning exists for that"
+        ],
+        "tokens": ["--layout-surface", "--layout-border", "--layout-danger", "--layout-success", "--layout-warning", "--layout-radius"]
+      }
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Presentational data table family with hover rows and caption support.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/table/table.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Static tabular data. TableHead cells are muted-foreground; numeric columns align right via className. For sorting/filtering/virtualisation compose with TanStack Table.",
+        "never": [
+          "Never use tables for page layout",
+          "Never put interactive rows without hover and focus states"
+        ],
+        "tokens": ["--layout-border", "--layout-muted", "--layout-muted-fg"]
+      }
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Indeterminate loading indicator (lucide Loader2).",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/spinner/spinner.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Short, unknown-duration waits inside buttons or small regions. Inherits currentColor so it adopts the parent's text token.",
+        "never": ["Never use a full-page spinner where a Skeleton preserves layout"],
+        "tokens": []
+      }
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard shortcut hint, with KbdGroup for sequences.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/kbd/kbd.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Display keyboard shortcuts in menus, tooltips and docs. Group combinations with KbdGroup.",
+        "never": ["Never fake kbd styling with Badge; Kbd uses the mono font token"],
+        "tokens": ["--layout-muted", "--layout-muted-fg", "--layout-font-mono"]
+      }
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Surface container family: header, title, description, action, content, footer.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "registry/layout/card/card.tsx", "type": "registry:ui" }],
+      "meta": {
+        "usage": "Group related content on a raised surface. CardAction slots into the header's top-right. Compose forms inside CardContent with CardFooter for actions.",
+        "never": [
+          "Never nest cards inside cards; use Separator to divide content",
+          "Never add custom box-shadows; elevation comes from the shadow tokens"
+        ],
+        "tokens": ["--layout-surface", "--layout-surface-fg", "--layout-border", "--layout-radius", "--layout-shadow-sm"]
+      }
+    }
+  ]
+}
