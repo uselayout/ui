@@ -9,7 +9,8 @@
     "lint": "eslint",
     "sync:kits": "node scripts/sync-kit-themes.mjs",
     "gen:demos": "node scripts/gen-demo-index.mjs",
-    "merge:registry": "node scripts/merge-registry.mjs"
+    "merge:registry": "node scripts/merge-registry.mjs",
+    "prebuild": "node scripts/sync-kit-themes.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

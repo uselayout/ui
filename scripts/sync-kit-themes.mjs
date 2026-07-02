@@ -12,7 +12,7 @@
 //   app/kit-themes.css      (generated, imported by globals.css)
 //   lib/docs/brands.json    (BrandSwitcher manifest)
 
-import { writeFileSync } from "node:fs";
+import { writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -166,7 +166,18 @@ async function getJson(url) {
   return res.json();
 }
 
-const { kits } = await getJson(`${API}/api/public/kits?limit=120`);
+let kits;
+try {
+  ({ kits } = await getJson(`${API}/api/public/kits?limit=120`));
+} catch (err) {
+  // Fail soft when the gallery API is unreachable (e.g. offline CI build):
+  // keep the previously generated themes rather than failing the build.
+  if (existsSync(join(root, "app/kit-themes.css"))) {
+    console.warn(`sync:kits skipped, gallery unreachable (${err.message}); keeping existing kit-themes.css`);
+    process.exit(0);
+  }
+  throw err;
+}
 console.log(`Gallery kits: ${kits.length} (from ${API})`);
 
 const blocks = [];
