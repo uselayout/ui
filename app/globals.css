@@ -1,26 +1,180 @@
 @import "tailwindcss";
+@import "./themes.css";
+
+/*
+ * Layout UI — token contract
+ * ==========================
+ * Canonical tokens live in the `--layout-*` namespace. Components only ever
+ * consume semantic tokens through the Tailwind utilities mapped in
+ * `@theme inline` below — never primitives, never hardcoded values.
+ *
+ * shadcn compatibility: every shared utility resolves through a fallback
+ * chain, e.g. `var(--background, var(--layout-bg))`. Drop these components
+ * into a project with a shadcn/tweakcn theme and that theme wins; without
+ * one, the Layout tokens drive everything. Kit themes from layout.design
+ * set `--layout-*` values (scoped globally or per `[data-brand]`).
+ */
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* -- Colour · surfaces ------------------------------------------------ */
+  --layout-bg: oklch(0.99 0.002 95);
+  --layout-fg: oklch(0.21 0.006 95);
+  --layout-surface: oklch(1 0 0);
+  --layout-surface-fg: oklch(0.21 0.006 95);
+  --layout-overlay: oklch(1 0 0);
+  --layout-overlay-fg: oklch(0.21 0.006 95);
+
+  /* -- Colour · intent -------------------------------------------------- */
+  --layout-primary: oklch(0.24 0.006 95);
+  --layout-primary-fg: oklch(0.99 0.002 95);
+  --layout-secondary: oklch(0.955 0.004 95);
+  --layout-secondary-fg: oklch(0.24 0.006 95);
+  --layout-muted: oklch(0.965 0.004 95);
+  --layout-muted-fg: oklch(0.52 0.008 95);
+  --layout-accent: oklch(0.945 0.005 95);
+  --layout-accent-fg: oklch(0.24 0.006 95);
+  --layout-danger: oklch(0.55 0.2 27);
+  --layout-danger-fg: oklch(0.99 0.002 95);
+  --layout-success: oklch(0.55 0.13 155);
+  --layout-success-fg: oklch(0.99 0.002 95);
+  --layout-warning: oklch(0.6 0.13 75);
+  --layout-warning-fg: oklch(0.99 0.002 95);
+
+  /* -- Colour · chrome --------------------------------------------------- */
+  --layout-border: oklch(0.91 0.004 95);
+  --layout-input: oklch(0.89 0.004 95);
+  --layout-ring: oklch(0.55 0.008 95);
+
+  /* -- Shape -------------------------------------------------------------- */
+  --layout-radius: 0.625rem;
+
+  /* -- Typography (composite families; sizes come from the type scale) --- */
+  --layout-font-sans: var(--font-geist-sans, ui-sans-serif), system-ui, sans-serif;
+  --layout-font-display: var(--layout-font-sans);
+  --layout-font-mono: var(--font-geist-mono, ui-monospace), "SF Mono", monospace;
+
+  /* -- Elevation ---------------------------------------------------------- */
+  --layout-shadow-xs: 0 1px 2px oklch(0.2 0.01 95 / 0.06);
+  --layout-shadow-sm: 0 1px 2px oklch(0.2 0.01 95 / 0.08), 0 1px 3px oklch(0.2 0.01 95 / 0.06);
+  --layout-shadow-md: 0 2px 4px oklch(0.2 0.01 95 / 0.06), 0 4px 8px oklch(0.2 0.01 95 / 0.06);
+  --layout-shadow-lg: 0 4px 8px oklch(0.2 0.01 95 / 0.06), 0 12px 24px oklch(0.2 0.01 95 / 0.08);
+  --layout-shadow-xl: 0 8px 16px oklch(0.2 0.01 95 / 0.08), 0 24px 48px oklch(0.2 0.01 95 / 0.1);
+
+  /* -- Motion ------------------------------------------------------------- */
+  --layout-duration-fast: 100ms;
+  --layout-duration-base: 150ms;
+  --layout-duration-slow: 250ms;
+  --layout-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --layout-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* -- Density (all Tailwind spacing utilities derive from this unit) ---- */
+  --layout-space-unit: 0.25rem;
+}
+
+.dark,
+[data-theme="dark"] {
+  --layout-bg: oklch(0.17 0.004 95);
+  --layout-fg: oklch(0.93 0.004 95);
+  --layout-surface: oklch(0.2 0.004 95);
+  --layout-surface-fg: oklch(0.93 0.004 95);
+  --layout-overlay: oklch(0.23 0.004 95);
+  --layout-overlay-fg: oklch(0.93 0.004 95);
+
+  --layout-primary: oklch(0.93 0.004 95);
+  --layout-primary-fg: oklch(0.19 0.004 95);
+  --layout-secondary: oklch(0.26 0.004 95);
+  --layout-secondary-fg: oklch(0.93 0.004 95);
+  --layout-muted: oklch(0.24 0.004 95);
+  --layout-muted-fg: oklch(0.68 0.006 95);
+  --layout-accent: oklch(0.28 0.004 95);
+  --layout-accent-fg: oklch(0.93 0.004 95);
+  --layout-danger: oklch(0.62 0.19 27);
+  --layout-danger-fg: oklch(0.98 0.005 27);
+  --layout-success: oklch(0.64 0.13 155);
+  --layout-success-fg: oklch(0.16 0.02 155);
+  --layout-warning: oklch(0.72 0.13 75);
+  --layout-warning-fg: oklch(0.2 0.03 75);
+
+  --layout-border: oklch(1 0 0 / 0.1);
+  --layout-input: oklch(1 0 0 / 0.14);
+  --layout-ring: oklch(0.68 0.006 95);
+
+  --layout-shadow-xs: 0 1px 2px oklch(0 0 0 / 0.2);
+  --layout-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.24), 0 1px 3px oklch(0 0 0 / 0.2);
+  --layout-shadow-md: 0 2px 4px oklch(0 0 0 / 0.2), 0 4px 8px oklch(0 0 0 / 0.2);
+  --layout-shadow-lg: 0 4px 8px oklch(0 0 0 / 0.2), 0 12px 24px oklch(0 0 0 / 0.24);
+  --layout-shadow-xl: 0 8px 16px oklch(0 0 0 / 0.24), 0 24px 48px oklch(0 0 0 / 0.28);
+}
+
+/* Density axis: compact tightens every spacing utility at runtime. */
+[data-density="compact"] {
+  --layout-space-unit: 0.215rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colour utilities — shadcn theme wins when present, Layout tokens otherwise */
+  --color-background: var(--background, var(--layout-bg));
+  --color-foreground: var(--foreground, var(--layout-fg));
+  --color-card: var(--card, var(--layout-surface));
+  --color-card-foreground: var(--card-foreground, var(--layout-surface-fg));
+  --color-popover: var(--popover, var(--layout-overlay));
+  --color-popover-foreground: var(--popover-foreground, var(--layout-overlay-fg));
+  --color-primary: var(--primary, var(--layout-primary));
+  --color-primary-foreground: var(--primary-foreground, var(--layout-primary-fg));
+  --color-secondary: var(--secondary, var(--layout-secondary));
+  --color-secondary-foreground: var(--secondary-foreground, var(--layout-secondary-fg));
+  --color-muted: var(--muted, var(--layout-muted));
+  --color-muted-foreground: var(--muted-foreground, var(--layout-muted-fg));
+  --color-accent: var(--accent, var(--layout-accent));
+  --color-accent-foreground: var(--accent-foreground, var(--layout-accent-fg));
+  --color-destructive: var(--destructive, var(--layout-danger));
+  --color-destructive-foreground: var(--destructive-foreground, var(--layout-danger-fg));
+  --color-success: var(--layout-success);
+  --color-success-foreground: var(--layout-success-fg);
+  --color-warning: var(--layout-warning);
+  --color-warning-foreground: var(--layout-warning-fg);
+  --color-border: var(--border, var(--layout-border));
+  --color-input: var(--input, var(--layout-input));
+  --color-ring: var(--ring, var(--layout-ring));
+
+  /* Shape — single base radius, derived steps (shadcn-identical maths) */
+  --radius-xs: calc(var(--radius, var(--layout-radius)) - 6px);
+  --radius-sm: calc(var(--radius, var(--layout-radius)) - 4px);
+  --radius-md: calc(var(--radius, var(--layout-radius)) - 2px);
+  --radius-lg: var(--radius, var(--layout-radius));
+  --radius-xl: calc(var(--radius, var(--layout-radius)) + 4px);
+  --radius-2xl: calc(var(--radius, var(--layout-radius)) + 8px);
+
+  /* Typography */
+  --font-sans: var(--layout-font-sans);
+  --font-display: var(--layout-font-display);
+  --font-mono: var(--layout-font-mono);
+
+  /* Elevation */
+  --shadow-xs: var(--layout-shadow-xs);
+  --shadow-sm: var(--layout-shadow-sm);
+  --shadow-md: var(--layout-shadow-md);
+  --shadow-lg: var(--layout-shadow-lg);
+  --shadow-xl: var(--layout-shadow-xl);
+
+  /* Motion */
+  --ease-out: var(--layout-ease-out);
+  --ease-in-out: var(--layout-ease-in-out);
+
+  /* Density — every spacing utility computes from this unit */
+  --spacing: var(--layout-space-unit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border, var(--layout-border));
+    outline-color: color-mix(in oklab, var(--ring, var(--layout-ring)) 50%, transparent);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background: var(--background, var(--layout-bg));
+    color: var(--foreground, var(--layout-fg));
+    font-family: var(--layout-font-sans);
+  }
 }

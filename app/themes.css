@@ -1,0 +1,131 @@
+/*
+ * Layout UI — brand themes
+ * ========================
+ * Each brand is a token-values block, nothing more. Apply with
+ * `data-brand="<name>"` on <html> (whole app) or any wrapper (scoped).
+ * These three are hand-derived from Layout gallery kits; in production
+ * they are compiled from layout.design kits (tokens.json + style profile).
+ */
+
+/* -- Stripe (light, sharp, purple accent, real shadows) ------------------ */
+[data-brand="stripe"] {
+  --layout-bg: #f6f9fc;
+  --layout-fg: #1a1f36;
+  --layout-surface: #ffffff;
+  --layout-surface-fg: #1a1f36;
+  --layout-overlay: #ffffff;
+  --layout-overlay-fg: #1a1f36;
+
+  --layout-primary: #635bff;
+  --layout-primary-fg: #ffffff;
+  --layout-secondary: #eff2f5;
+  --layout-secondary-fg: #3c4257;
+  --layout-muted: #f6f9fc;
+  --layout-muted-fg: #697386;
+  --layout-accent: rgba(99, 91, 255, 0.08);
+  --layout-accent-fg: #635bff;
+  --layout-danger: #c0123c;
+  --layout-danger-fg: #ffffff;
+  --layout-success: #09825d;
+  --layout-success-fg: #ffffff;
+  --layout-warning: #8d6a00;
+  --layout-warning-fg: #ffffff;
+
+  --layout-border: #e3e8ee;
+  --layout-input: #c1c9d2;
+  --layout-ring: #635bff;
+
+  --layout-radius: 0.375rem;
+
+  --layout-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --layout-font-display: var(--layout-font-sans);
+  --layout-font-mono: "SF Mono", "Fira Code", monospace;
+
+  --layout-shadow-xs: 0 1px 1px rgba(0, 0, 0, 0.04);
+  --layout-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --layout-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --layout-shadow-lg: 0 7px 14px rgba(60, 66, 87, 0.08), 0 3px 6px rgba(0, 0, 0, 0.08);
+  --layout-shadow-xl: 0 15px 35px rgba(60, 66, 87, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* -- Linear (dark-first, dusky indigo, hairline borders) ----------------- */
+[data-brand="linear"] {
+  --layout-bg: #0a0a0f;
+  --layout-fg: #e8e8ed;
+  --layout-surface: #12121a;
+  --layout-surface-fg: #e8e8ed;
+  --layout-overlay: #1a1a25;
+  --layout-overlay-fg: #e8e8ed;
+
+  --layout-primary: #5e6ad2;
+  --layout-primary-fg: #ffffff;
+  --layout-secondary: #22222f;
+  --layout-secondary-fg: #e8e8ed;
+  --layout-muted: #1a1a25;
+  --layout-muted-fg: rgba(232, 232, 237, 0.65);
+  --layout-accent: rgba(94, 106, 210, 0.15);
+  --layout-accent-fg: #8b93e8;
+  --layout-danger: #eb5757;
+  --layout-danger-fg: #ffffff;
+  --layout-success: #4cb782;
+  --layout-success-fg: #0a0a0f;
+  --layout-warning: #f2c94c;
+  --layout-warning-fg: #0a0a0f;
+
+  --layout-border: rgba(255, 255, 255, 0.08);
+  --layout-input: rgba(255, 255, 255, 0.15);
+  --layout-ring: #5e6ad2;
+
+  --layout-radius: 0.375rem;
+
+  --layout-font-sans: "Inter", -apple-system, sans-serif;
+  --layout-font-display: var(--layout-font-sans);
+  --layout-font-mono: "JetBrains Mono", monospace;
+
+  --layout-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --layout-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --layout-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --layout-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --layout-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+/* -- Notion (paper white, warm greys, small radii, blue accent) ---------- */
+[data-brand="notion"] {
+  --layout-bg: #ffffff;
+  --layout-fg: #37352f;
+  --layout-surface: #f7f6f3;
+  --layout-surface-fg: #37352f;
+  --layout-overlay: #ffffff;
+  --layout-overlay-fg: #37352f;
+
+  --layout-primary: #2383e2;
+  --layout-primary-fg: #ffffff;
+  --layout-secondary: #eeeee9;
+  --layout-secondary-fg: #37352f;
+  --layout-muted: #f7f6f3;
+  --layout-muted-fg: #787774;
+  --layout-accent: rgba(35, 131, 226, 0.1);
+  --layout-accent-fg: #2383e2;
+  --layout-danger: #eb5757;
+  --layout-danger-fg: #ffffff;
+  --layout-success: #0f7b6c;
+  --layout-success-fg: #ffffff;
+  --layout-warning: #cb912f;
+  --layout-warning-fg: #ffffff;
+
+  --layout-border: rgba(55, 53, 47, 0.09);
+  --layout-input: rgba(55, 53, 47, 0.18);
+  --layout-ring: #2383e2;
+
+  --layout-radius: 0.25rem;
+
+  --layout-font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --layout-font-display: var(--layout-font-sans);
+  --layout-font-mono: "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --layout-shadow-xs: 0 1px 2px rgba(15, 15, 15, 0.05);
+  --layout-shadow-sm: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+  --layout-shadow-md: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px;
+  --layout-shadow-lg: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 5px 10px, rgba(15, 15, 15, 0.2) 0px 15px 40px;
+  --layout-shadow-xl: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 9px 24px, rgba(15, 15, 15, 0.2) 0px 25px 60px;
+}
