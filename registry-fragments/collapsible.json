@@ -1,0 +1,24 @@
+{
+  "name": "collapsible",
+  "type": "registry:ui",
+  "title": "Collapsible",
+  "description": "A single show/hide panel built on Base UI Collapsible. Lower-level than Accordion; use when you need one independent collapsible section without the header/item structure.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/collapsible/collapsible.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for sidebar nav sections, advanced filter panels, or repo-style expandable lists. Pair CollapsibleTrigger with asChild to use a Button or custom element as the toggle. Use open and onOpenChange for controlled mode.",
+    "never": [
+      "Never use Collapsible when you need multiple accordion-style sections; use Accordion",
+      "Never render CollapsibleContent without CollapsibleTrigger in the same Collapsible root",
+      "Never hardcode the open/close animation; rely on data-[starting-style] and data-[ending-style] selectors"
+    ],
+    "tokens": [
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  }
+}

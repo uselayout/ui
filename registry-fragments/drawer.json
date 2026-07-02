@@ -1,0 +1,27 @@
+{
+  "name": "drawer",
+  "type": "registry:ui",
+  "title": "Drawer",
+  "description": "Bottom sheet with native drag-to-dismiss. Built on Base UI Drawer. Includes a drag handle bar and swipe gesture support.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/drawer/drawer.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use for mobile-first action sheets, contextual menus, and bottom panels where touch swipe-to-dismiss is important. On desktop, prefer Sheet for side panels or Dialog for centred modals. Mount DrawerContent inside Drawer; the drag handle is rendered automatically inside DrawerContent.",
+    "never": [
+      "Never use Drawer for full-page flows on desktop — use Dialog or Sheet",
+      "Never use Drawer for critical destructive confirmations — use AlertDialog",
+      "Never hide the drag handle unless the interaction is purely button-driven",
+      "Never set a fixed height taller than 90dvh; content should scroll within DrawerContent"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-slow",
+      "--layout-muted-fg"
+    ]
+  }
+}

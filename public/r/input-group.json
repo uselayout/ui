@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "title": "Input Group",
+  "description": "Compound input with leading and trailing addons inside a single bordered shell. Supports text labels, icons, and action buttons at any edge.",
+  "registryDependencies": [
+    "utils",
+    "@layout/button"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/input-group/input-group.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * Wraps an input (or textarea) with leading/trailing addons inside a single\n * bordered shell. Attach `InputGroupAddon` with the appropriate `align` prop\n * to place content at any edge of the field.\n */\nfunction InputGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-group\"\n      className={cn(\n        \"flex w-full items-stretch rounded-md border border-input bg-transparent shadow-xs\",\n        \"focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/40\",\n        \"has-[input[aria-invalid]]:border-destructive has-[input[aria-invalid]]:ring-destructive/20\",\n        \"has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-50\",\n        \"transition-[color,box-shadow] duration-[var(--layout-duration-base)] ease-out\",\n        className\n      )}\n    >\n      {props.children}\n    </div>\n  );\n}\n\ninterface InputGroupAddonProps extends React.ComponentProps<\"div\"> {\n  /**\n   * Which edge of the field shell this addon occupies.\n   * `inline-start` = left, `inline-end` = right, `block-start` = top,\n   * `block-end` = bottom (use with InputGroupTextarea).\n   */\n  align?: \"inline-start\" | \"inline-end\" | \"block-start\" | \"block-end\";\n}\n\nfunction InputGroupAddon({\n  className,\n  align = \"inline-start\",\n  ...props\n}: InputGroupAddonProps) {\n  return (\n    <div\n      data-slot=\"input-group-addon\"\n      data-align={align}\n      className={cn(\n        \"flex shrink-0 items-center\",\n        (align === \"inline-start\" || align === \"block-start\") && \"order-first\",\n        (align === \"inline-end\" || align === \"block-end\") && \"order-last\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction InputGroupText({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"input-group-text\"\n      className={cn(\n        \"inline-flex items-center px-3 text-sm text-muted-foreground select-none\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction InputGroupButton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-group-button\"\n      className={cn(\n        \"flex shrink-0 items-center [&>button]:rounded-none [&>button]:shadow-none [&>button]:border-0\",\n        // Restore end-cap radii on whichever side this sits\n        \"first:[&>button]:rounded-l-[calc(var(--radius-md)-1px)]\",\n        \"last:[&>button]:rounded-r-[calc(var(--radius-md)-1px)]\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction InputGroupInput({ className, ...props }: React.ComponentProps<\"input\">) {\n  return (\n    <input\n      data-slot=\"input-group-input\"\n      className={cn(\n        \"flex h-9 min-w-0 flex-1 bg-transparent px-3 py-1 text-sm text-foreground outline-none\",\n        \"placeholder:text-muted-foreground\",\n        \"selection:bg-primary selection:text-primary-foreground\",\n        \"disabled:cursor-not-allowed\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction InputGroupTextarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"input-group-textarea\"\n      className={cn(\n        \"min-h-16 min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-foreground outline-none\",\n        \"placeholder:text-muted-foreground\",\n        \"selection:bg-primary selection:text-primary-foreground\",\n        \"disabled:cursor-not-allowed\",\n        \"field-sizing-content resize-none\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use InputGroup as the shell. Place InputGroupAddon with align=\"inline-start\" for leading content and align=\"inline-end\" for trailing content. Inside an addon, use InputGroupText for static labels/icons or InputGroupButton for interactive controls. Place InputGroupInput or InputGroupTextarea in the centre for the editable field. The shell handles the focus ring, so do not add focus styles to inner elements.",
+    "never": [
+      "Never place a bare Input inside InputGroup; use InputGroupInput instead so the border and ring are inherited from the shell",
+      "Never add border or ring to InputGroupButton children; the outer shell already provides the focus ring",
+      "Never use InputGroupAddon without InputGroupText or InputGroupButton inside; the addon is a structural wrapper, not a visual element",
+      "Never stack more than one InputGroupInput inside a single InputGroup; create a separate InputGroup for each field"
+    ],
+    "tokens": [
+      "--layout-input",
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-muted-fg",
+      "--layout-danger",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "context-menu",
+  "type": "registry:ui",
+  "title": "Context Menu",
+  "description": "A menu triggered by right-click or long-press on a target area, built on Base UI ContextMenu. Shares the same item family as DropdownMenu.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/context-menu/context-menu.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for secondary actions on an element that the user already has focus on (file list rows, canvas objects, code editor). Wrap the target in ContextMenuTrigger. Mirror the same item structure as DropdownMenu for consistency.",
+    "never": [
+      "Never use ContextMenu as the only way to reach critical actions; it must complement visible controls",
+      "Never use ContextMenu instead of DropdownMenu for button-triggered menus",
+      "Never place more than eight items at the top level; group into sections with separators",
+      "Never hardcode colours; use the variant prop for destructive actions"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-danger",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-shadow-md",
+      "--layout-duration-base"
+    ]
+  }
+}

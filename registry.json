@@ -72,13 +72,253 @@
       }
     },
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Vertically stacked collapsible sections built on Base UI Accordion. The chevron rotates on open via data-[panel-open]. Supports single or multiple open items via the openMultiple prop.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/accordion/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for FAQ sections, settings groups, or sidebar navigation trees. Use openMultiple on the root to allow several panels open simultaneously. Each AccordionItem must have a unique value prop.",
+        "never": [
+          "Never use accordion for tab-like switching between mutually exclusive views; use Tabs",
+          "Never put accordions inside accordions more than two levels deep",
+          "Never hardcode the chevron rotation angle; rely on the data-[panel-open] selector in AccordionTrigger",
+          "Never remove AccordionHeader; it is required for the correct heading hierarchy and accessibility tree"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-fg",
+          "--layout-muted-fg",
+          "--layout-ring",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Inline callout with default, destructive, success and warning variants.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/theme-layout"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/alert/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Static inline messaging scoped to a page section. Lead with a lucide icon sized size-4. For transient feedback use a toast instead.",
+        "never": [
+          "Never stack more than two alerts in a row; consolidate the message",
+          "Never use destructive alerts for warnings; warning exists for that"
+        ],
+        "tokens": [
+          "--layout-surface",
+          "--layout-border",
+          "--layout-danger",
+          "--layout-success",
+          "--layout-warning",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Interruption dialog for irreversible or high-stakes actions. Built on Base UI AlertDialog with ARIA alertdialog role. Action button styled as default, cancel as outline.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/button"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/alert-dialog/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use exclusively for destructive or irreversible actions such as deletion, account termination, or data loss. Always name the action button with the exact action (e.g. 'Delete project') not a generic 'OK'. Cancel always goes on the left, action on the right. For non-destructive confirmations use Dialog instead.",
+        "never": [
+          "Never use AlertDialog for non-destructive confirmations — use Dialog",
+          "Never label the action button 'OK' or 'Confirm' — use the specific action verb",
+          "Never omit AlertDialogCancel; the user must always have a safe exit",
+          "Never use AlertDialog for contextual or anchored content — use Popover"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-lg",
+          "--layout-radius",
+          "--layout-duration-base",
+          "--layout-danger",
+          "--layout-danger-fg"
+        ]
+      }
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Pure CSS aspect-ratio wrapper. Server-compatible with no client JavaScript required.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/aspect-ratio/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pass a ratio prop (e.g. 16/9, 4/3, 1) and place content inside that fills size-full. Wrap in a container with overflow-hidden and a border-radius to clip the content to the box. Suitable for images, iframes, and video embeds.",
+        "never": [
+          "Never set an explicit height on AspectRatio; the aspect-ratio CSS property derives height from width automatically",
+          "Never use AspectRatio for non-media content that has a natural height; it is for enforcing visual proportions only",
+          "Never rely on padding-top percentage hacks; this component uses the native CSS aspect-ratio property supported in all modern browsers"
+        ],
+        "tokens": []
+      }
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "User avatar with image, fallback initials, and graceful error handling. Built on Base UI Avatar.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/avatar/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap AvatarImage and AvatarFallback inside Avatar. AvatarFallback renders automatically when the image fails to load or no src is provided. Use initials (one or two characters) as the fallback child. Stack avatars with -space-x-* and ring-background to create groups.",
+        "never": [
+          "Never display an avatar without AvatarFallback; image loading failures must not produce a blank circle",
+          "Never hardcode background colours on AvatarFallback; it inherits bg-muted from the token contract",
+          "Never scale Avatar below size-6; initials become illegible at smaller sizes",
+          "Never use Avatar to display generic icons that are not user identity; use a Badge or Icon component instead"
+        ],
+        "tokens": [
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status and metadata label with six variants including success and warning.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/theme-layout"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/badge/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Compact status indicators, counts, and metadata. Use success/warning/destructive to communicate state, secondary or outline for neutral metadata.",
+        "never": [
+          "Never use badges as interactive buttons; wrap actions in Button",
+          "Never rely on colour alone for status; keep the text meaningful"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-secondary",
+          "--layout-danger",
+          "--layout-success",
+          "--layout-warning",
+          "--layout-border"
+        ]
+      }
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "A server-compatible breadcrumb trail showing the user's location within a hierarchy. BreadcrumbSeparator accepts a custom icon child; BreadcrumbEllipsis collapses long paths.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/breadcrumb/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Place at the top of content areas to help users navigate back. Use BreadcrumbPage (not BreadcrumbLink) for the final segment. Use BreadcrumbEllipsis with a DropdownMenu to reveal hidden intermediate crumbs on mobile.",
+        "never": [
+          "Never mark the current page with BreadcrumbLink; always use BreadcrumbPage",
+          "Never use breadcrumbs for flat or single-level navigation",
+          "Never hardcode colours; text colours resolve through text-foreground and text-muted-foreground",
+          "Never add interactive elements inside BreadcrumbPage; it is aria-disabled"
+        ],
+        "tokens": [
+          "--layout-fg",
+          "--layout-muted-fg",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
       "description": "Button with six intent variants and four sizes. Polymorphic via the Base UI render prop.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/button/button.tsx", "type": "registry:ui" }],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/button/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "meta": {
         "usage": "Primary actions use the default variant; one default button per view section. Secondary and outline are for supporting actions, ghost for toolbars and dense UI, destructive only for irreversible actions, link for inline navigation. Use render={<a href/>} to render as a link.",
         "never": [
@@ -87,153 +327,88 @@
           "Never use destructive for cancel/dismiss actions",
           "Never override border-radius directly; it derives from --layout-radius"
         ],
-        "tokens": ["--layout-primary", "--layout-primary-fg", "--layout-secondary", "--layout-secondary-fg", "--layout-accent", "--layout-accent-fg", "--layout-danger", "--layout-danger-fg", "--layout-input", "--layout-ring", "--layout-radius", "--layout-shadow-xs", "--layout-duration-base"]
+        "tokens": [
+          "--layout-primary",
+          "--layout-primary-fg",
+          "--layout-secondary",
+          "--layout-secondary-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-danger",
+          "--layout-danger-fg",
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-shadow-xs",
+          "--layout-duration-base"
+        ]
       }
     },
     {
-      "name": "badge",
+      "name": "button-group",
       "type": "registry:ui",
-      "title": "Badge",
-      "description": "Status and metadata label with six variants including success and warning.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils", "@layout/theme-layout"],
-      "files": [{ "path": "registry/layout/badge/badge.tsx", "type": "registry:ui" }],
+      "title": "Button Group",
+      "description": "Wrapper that visually fuses adjacent Button children into a single segmented control, collapsing inner borders and radii. Server-compatible.",
+      "registryDependencies": [
+        "utils",
+        "@layout/button"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/button-group/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "meta": {
-        "usage": "Compact status indicators, counts, and metadata. Use success/warning/destructive to communicate state, secondary or outline for neutral metadata.",
+        "usage": "Place two or more Button components as direct children. Orientation defaults to horizontal; pass orientation=\"vertical\" for a stacked group. All buttons in the group should share the same variant so the fused appearance is consistent. ButtonGroup only adjusts radius and border-margin; all other button styling comes from the Button component itself.",
         "never": [
-          "Never use badges as interactive buttons; wrap actions in Button",
-          "Never rely on colour alone for status; keep the text meaningful"
+          "Never mix Button variants within the same ButtonGroup; use a single variant across all children",
+          "Never use ButtonGroup for navigation tabs; use a Tabs component instead",
+          "Never place non-Button elements as direct children; the [&>*] selectors target sibling elements and may break non-button markup",
+          "Never add margin between buttons manually; ButtonGroup handles negative margin to collapse borders"
         ],
-        "tokens": ["--layout-primary", "--layout-secondary", "--layout-danger", "--layout-success", "--layout-warning", "--layout-border"]
+        "tokens": [
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
       }
     },
     {
-      "name": "input",
+      "name": "calendar",
       "type": "registry:ui",
-      "title": "Input",
-      "description": "Text input with focus ring and aria-invalid error styling from the token contract.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/input/input.tsx", "type": "registry:ui" }],
+      "title": "Calendar",
+      "description": "Date-picker calendar built on react-day-picker v10, styled with semantic tokens. Supports single, multiple, and range selection modes.",
+      "dependencies": [
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/button"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/calendar/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "meta": {
-        "usage": "Pair with Label via htmlFor/id. Signal errors with aria-invalid plus a text-destructive helper line beneath.",
+        "usage": "Use mode=\"single\" for a standalone date picker, mode=\"range\" for booking flows or date-range filters. Wrap in a Popover for inline-trigger UX. Always pass showOutsideDays (defaults true) to keep the grid size stable.",
         "never": [
-          "Never use placeholder text as the only label",
-          "Never restyle the focus ring per instance; it comes from --layout-ring"
+          "Never import react-day-picker styles directly; all styling is handled via classNames prop using semantic tokens",
+          "Never hardcode colour values for selected, today, or outside states; use bg-primary, bg-accent, and muted-foreground",
+          "Never set a fixed width on the Calendar root; let the day grid dictate size",
+          "Never use mode=\"multiple\" for date ranges; use mode=\"range\" instead"
         ],
-        "tokens": ["--layout-input", "--layout-ring", "--layout-danger", "--layout-muted-fg", "--layout-radius"]
-      }
-    },
-    {
-      "name": "textarea",
-      "type": "registry:ui",
-      "title": "Textarea",
-      "description": "Multi-line input sharing the Input field chrome.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/textarea/textarea.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Free-form text of more than one line. Same labelling and error conventions as Input.",
-        "never": ["Never fix the height with h-*; use rows or min-h so content can grow"],
-        "tokens": ["--layout-input", "--layout-ring", "--layout-danger", "--layout-radius"]
-      }
-    },
-    {
-      "name": "label",
-      "type": "registry:ui",
-      "title": "Label",
-      "description": "Form label with peer-disabled handling.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/label/label.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Always associate with a field via htmlFor. Sits above the field with gap-2.",
-        "never": ["Never use muted-foreground for labels; labels are primary text"],
-        "tokens": ["--layout-fg"]
-      }
-    },
-    {
-      "name": "separator",
-      "type": "registry:ui",
-      "title": "Separator",
-      "description": "Horizontal or vertical rule built on the Base UI Separator primitive.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/separator/separator.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Divide groups of related content. Decorative by default; pass decorative={false} when it conveys structure to assistive tech.",
-        "never": ["Never build dividers from bordered empty divs; use Separator so the token and semantics stay consistent"],
-        "tokens": ["--layout-border"]
-      }
-    },
-    {
-      "name": "skeleton",
-      "type": "registry:ui",
-      "title": "Skeleton",
-      "description": "Loading placeholder that mirrors the shape of incoming content.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/skeleton/skeleton.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Match the skeleton's dimensions to the content it stands in for. Prefer skeletons over spinners when layout is known.",
-        "never": ["Never show skeletons for over ~5 seconds without a fallback state"],
-        "tokens": ["--layout-accent", "--layout-radius"]
-      }
-    },
-    {
-      "name": "alert",
-      "type": "registry:ui",
-      "title": "Alert",
-      "description": "Inline callout with default, destructive, success and warning variants.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils", "@layout/theme-layout"],
-      "files": [{ "path": "registry/layout/alert/alert.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Static inline messaging scoped to a page section. Lead with a lucide icon sized size-4. For transient feedback use a toast instead.",
-        "never": [
-          "Never stack more than two alerts in a row; consolidate the message",
-          "Never use destructive alerts for warnings; warning exists for that"
-        ],
-        "tokens": ["--layout-surface", "--layout-border", "--layout-danger", "--layout-success", "--layout-warning", "--layout-radius"]
-      }
-    },
-    {
-      "name": "table",
-      "type": "registry:ui",
-      "title": "Table",
-      "description": "Presentational data table family with hover rows and caption support.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/table/table.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Static tabular data. TableHead cells are muted-foreground; numeric columns align right via className. For sorting/filtering/virtualisation compose with TanStack Table.",
-        "never": [
-          "Never use tables for page layout",
-          "Never put interactive rows without hover and focus states"
-        ],
-        "tokens": ["--layout-border", "--layout-muted", "--layout-muted-fg"]
-      }
-    },
-    {
-      "name": "spinner",
-      "type": "registry:ui",
-      "title": "Spinner",
-      "description": "Indeterminate loading indicator (lucide Loader2).",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/spinner/spinner.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Short, unknown-duration waits inside buttons or small regions. Inherits currentColor so it adopts the parent's text token.",
-        "never": ["Never use a full-page spinner where a Skeleton preserves layout"],
-        "tokens": []
-      }
-    },
-    {
-      "name": "kbd",
-      "type": "registry:ui",
-      "title": "Kbd",
-      "description": "Keyboard shortcut hint, with KbdGroup for sequences.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/kbd/kbd.tsx", "type": "registry:ui" }],
-      "meta": {
-        "usage": "Display keyboard shortcuts in menus, tooltips and docs. Group combinations with KbdGroup.",
-        "never": ["Never fake kbd styling with Badge; Kbd uses the mono font token"],
-        "tokens": ["--layout-muted", "--layout-muted-fg", "--layout-font-mono"]
+        "tokens": [
+          "--layout-primary",
+          "--layout-primary-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-muted-fg",
+          "--layout-border",
+          "--layout-ring",
+          "--layout-radius"
+        ]
       }
     },
     {
@@ -241,15 +416,1501 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Surface container family: header, title, description, action, content, footer.",
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "registry/layout/card/card.tsx", "type": "registry:ui" }],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/card/card.tsx",
+          "type": "registry:ui"
+        }
+      ],
       "meta": {
         "usage": "Group related content on a raised surface. CardAction slots into the header's top-right. Compose forms inside CardContent with CardFooter for actions.",
         "never": [
           "Never nest cards inside cards; use Separator to divide content",
           "Never add custom box-shadows; elevation comes from the shadow tokens"
         ],
-        "tokens": ["--layout-surface", "--layout-surface-fg", "--layout-border", "--layout-radius", "--layout-shadow-sm"]
+        "tokens": [
+          "--layout-surface",
+          "--layout-surface-fg",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-shadow-sm"
+        ]
+      }
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Accessible carousel built on Embla Carousel with keyboard arrow-key navigation. Exports Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, and the useCarousel context hook.",
+      "dependencies": [
+        "embla-carousel-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/carousel/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap slides in CarouselItem inside CarouselContent. Set orientation=\"vertical\" and a fixed height on CarouselContent for vertical layouts. Pass opts to forwarded Embla options (loop, align, slidesToScroll). Use useCarousel() inside a child component to access the Embla API imperatively.",
+        "never": [
+          "Never place CarouselPrevious or CarouselNext outside a Carousel; they depend on context",
+          "Never set overflow-hidden on CarouselItem; that breaks the slide reveal animation",
+          "Never hardcode button colours on CarouselPrevious/CarouselNext; they inherit from buttonVariants outline",
+          "Never use CarouselContent without its parent Carousel; the embla ref will be undefined"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-ring",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "shadcn-style chart kit built on Recharts. ChartContainer scopes series colours as --color-<key> CSS custom properties. ChartTooltip and ChartTooltipContent render token-styled tooltips. ChartLegend and ChartLegendContent render colour-dotted legend rows. Pair with any Recharts chart type.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/chart/chart.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap any Recharts chart in ChartContainer with a config map (keys match Recharts dataKey values, each entry has label and color). Reference colours in Recharts props as var(--color-<key>). Pass ChartTooltipContent to Recharts Tooltip's content prop and ChartLegendContent to Legend's content prop, passing the same config to both so labels and colours stay consistent.",
+        "never": [
+          "Never hardcode hex or rgb colours in config entries; always use a var(--layout-*) token reference",
+          "Never use the same --color-<key> name across two ChartContainers on the same page unless the colours are intentionally identical",
+          "Never pass config keys that do not match the Recharts dataKey values; colours will not resolve",
+          "Never render ChartContainer without a ResponsiveContainer child; without it the chart will not adapt to its parent width"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-success",
+          "--layout-warning",
+          "--layout-danger",
+          "--layout-muted-fg",
+          "--layout-border",
+          "--layout-surface",
+          "--layout-overlay",
+          "--layout-fg",
+          "--layout-radius",
+          "--layout-shadow-md"
+        ]
+      }
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Accessible checkbox with checked, unchecked and indeterminate states. Built on Base UI Checkbox with a Lucide Check indicator.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/checkbox/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pair with a Label via htmlFor/id. Use inside a form or with Field for validation. The indeterminate prop shows a minus icon for parent checkboxes that represent a partial selection.",
+        "never": [
+          "Never use as a toggle for immediate actions; use Switch instead",
+          "Never omit an associated label — pass aria-label if no visible label is present",
+          "Never override the checked background colour; it derives from --layout-primary",
+          "Never rely on colour alone to convey state"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-primary-fg",
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "A single show/hide panel built on Base UI Collapsible. Lower-level than Accordion; use when you need one independent collapsible section without the header/item structure.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/collapsible/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for sidebar nav sections, advanced filter panels, or repo-style expandable lists. Pair CollapsibleTrigger with asChild to use a Button or custom element as the toggle. Use open and onOpenChange for controlled mode.",
+        "never": [
+          "Never use Collapsible when you need multiple accordion-style sections; use Accordion",
+          "Never render CollapsibleContent without CollapsibleTrigger in the same Collapsible root",
+          "Never hardcode the open/close animation; rely on data-[starting-style] and data-[ending-style] selectors"
+        ],
+        "tokens": [
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Searchable select built on Base UI Combobox. Type to filter a fixed list; shows an empty state when no items match. Check indicator on selected item.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/combobox/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use Combobox when users need to search or filter a fixed list of options by typing. Pass the full items array to the Combobox root so Base UI can handle filtering automatically. Use ComboboxTrigger as the input trigger (contains ComboboxInput internally). ComboboxContent wraps ComboboxList and ComboboxEmpty. Use Select instead when the list is short (under ~15 items) and filtering is unnecessary. Use a native <datalist> for minimal-dependency autocomplete on plain HTML forms.",
+        "never": [
+          "Never use Combobox for free-form text entry where any value is valid; use Input instead",
+          "Never omit the items prop on the Combobox root; filtering will not work without it",
+          "Never wrap ComboboxContent in a custom portal; it already renders inside Base UI Portal",
+          "Never use Combobox for multi-select without setting multiple={true} on the root; single-mode selection will clear previous choices"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-popover",
+          "--layout-popover-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-border",
+          "--layout-muted-fg",
+          "--layout-radius",
+          "--layout-shadow-md",
+          "--layout-duration-base",
+          "--layout-duration-fast"
+        ]
+      }
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "A menu triggered by right-click or long-press on a target area, built on Base UI ContextMenu. Shares the same item family as DropdownMenu.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/context-menu/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for secondary actions on an element that the user already has focus on (file list rows, canvas objects, code editor). Wrap the target in ContextMenuTrigger. Mirror the same item structure as DropdownMenu for consistency.",
+        "never": [
+          "Never use ContextMenu as the only way to reach critical actions; it must complement visible controls",
+          "Never use ContextMenu instead of DropdownMenu for button-triggered menus",
+          "Never place more than eight items at the top level; group into sections with separators",
+          "Never hardcode colours; use the variant prop for destructive actions"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-danger",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-shadow-md",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "Full-featured data table built on TanStack Table v8: sortable columns, column filter input, row selection with checkboxes, and Previous/Next pagination. Composed from the Table family, Input, Button, and Checkbox primitives.",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/table",
+        "@layout/button",
+        "@layout/input",
+        "@layout/checkbox"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/data-table/data-table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Define columns with ColumnDef<TData> and pass them with your data array. Use createSelectColumn<TData>() as the first column to get a select-all header checkbox and per-row checkboxes. Set filterColumn to the accessorKey you want the filter input to search. For static read-only tables use the Table family directly instead.",
+        "never": [
+          "Never use DataTable for read-only presentational tables; use the Table primitive instead",
+          "Never hardcode colours in cell renderers; use token-backed Badge or text-muted-foreground",
+          "Never pass an unsorted data array and expect stable row order under selection; TanStack Table reorders under sorting",
+          "Never use filterColumn with a column that has no string or number values; filtering only works on primitive cell values"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-primary",
+          "--layout-primary-fg",
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Composed date-picker pattern: a Popover-wrapped Button trigger with a Calendar inside. Exports DatePicker (single) and DateRangePicker (range). Not a primitive — installs Calendar, Popover, and Button as dependencies.",
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/button",
+        "@layout/popover",
+        "@layout/calendar"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/date-picker/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use DatePicker for single date inputs (booking, scheduling). Use DateRangePicker for filtering or reporting windows. Control state externally via date/onDateChange or dateRange/onDateRangeChange props. Set numberOfMonths={2} on DateRangePicker for wide viewports.",
+        "never": [
+          "Never import date-fns format separately when the component already formats the label",
+          "Never fix the popover width with w-* on PopoverContent; use w-auto so the calendar dictates size",
+          "Never use this pattern as an uncontrolled component; always lift date state up"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-muted-fg",
+          "--layout-border",
+          "--layout-ring",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog with backdrop, centred popup, header, footer, and close button. Built on Base UI Dialog.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/dialog/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for tasks that require focused user attention and cannot be performed inline — forms, confirmations needing context, and detail views. Trigger with DialogTrigger using the render prop pattern. Always include a DialogTitle for accessibility. Use DialogClose inside DialogFooter for explicit dismiss actions.",
+        "never": [
+          "Never use Dialog for destructive confirmations — use AlertDialog instead so screen readers announce the alert role",
+          "Never use Dialog for contextual information anchored to a trigger — use Popover or HoverCard instead",
+          "Never use Dialog for mobile-first slide-up panels — use Sheet (side bottom) or Drawer instead",
+          "Never nest interactive dialogs; open a second dialog only after the first is closed"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-lg",
+          "--layout-radius",
+          "--layout-duration-base",
+          "--layout-ring"
+        ]
+      }
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Bottom sheet with native drag-to-dismiss. Built on Base UI Drawer. Includes a drag handle bar and swipe gesture support.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/drawer/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for mobile-first action sheets, contextual menus, and bottom panels where touch swipe-to-dismiss is important. On desktop, prefer Sheet for side panels or Dialog for centred modals. Mount DrawerContent inside Drawer; the drag handle is rendered automatically inside DrawerContent.",
+        "never": [
+          "Never use Drawer for full-page flows on desktop — use Dialog or Sheet",
+          "Never use Drawer for critical destructive confirmations — use AlertDialog",
+          "Never hide the drag handle unless the interaction is purely button-driven",
+          "Never set a fixed height taller than 90dvh; content should scroll within DrawerContent"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-lg",
+          "--layout-radius",
+          "--layout-duration-slow",
+          "--layout-muted-fg"
+        ]
+      }
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "A menu anchored to a trigger button, built on Base UI Menu. Supports groups, labels, separators, keyboard shortcuts, checkboxes, radio groups, sub-menus, and a destructive item variant.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/dropdown-menu/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for actions triggered by a single button (e.g. account menu, row actions, sort options). Wrap items in DropdownMenuGroup and add DropdownMenuLabel for semantic sections. Apply variant=\"destructive\" on irreversible items like sign out or delete.",
+        "never": [
+          "Never use DropdownMenu for navigation between pages; use NavigationMenu or plain links instead",
+          "Never open a dropdown on right-click; use ContextMenu for that pattern",
+          "Never put more than two levels of sub-menus; flatten or move to a dedicated page",
+          "Never hardcode colours on items; use the variant prop and token utilities only"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-danger",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-shadow-md",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty state component family with icon media, title, description, and CTA slot. Server-compatible plain markup.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/empty/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use Empty as the outer wrapper. EmptyHeader groups the media, title, and description. EmptyMedia wraps a lucide icon (size-6) in a square bg-muted rounded container. EmptyContent holds action buttons below the header. Always include EmptyDescription to explain the empty state and guide the user's next action.",
+        "never": [
+          "Never show Empty during initial loading; use Skeleton instead and only render Empty once the data fetch confirms zero results",
+          "Never place EmptyContent outside of Empty; it relies on the parent's flex-col layout",
+          "Never use EmptyMedia for decorative images that do not represent the missing entity type",
+          "Never omit EmptyTitle; a blank media icon alone does not convey enough information"
+        ],
+        "tokens": [
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Form field wrapper with automatic label association, description, and validation error display. Built on Base UI Field. Works without react-hook-form.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/field/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap any field control in Field. FieldLabel auto-associates with the control via Field.Root context — no htmlFor needed unless the control is outside Field. FieldError renders only when the field is invalid. Pass a validate function to Field for custom rules.",
+        "never": [
+          "Never use plain <label> inside Field — always use FieldLabel for correct association",
+          "Never hardcode error colours; they derive from --layout-danger",
+          "Never skip FieldError when using the validate prop",
+          "Never nest Field components"
+        ],
+        "tokens": [
+          "--layout-fg",
+          "--layout-muted-fg",
+          "--layout-danger",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Rich preview card that appears on hover. Built on Base UI PreviewCard. Use for user profiles, repository previews, and link context. Dismissed when the pointer leaves.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/hover-card/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use to show a rich preview of a linked resource — user profile, repository, document, or URL — when the pointer rests on a trigger link. Content is read-only; for interactive controls use Popover. Trigger should be a link or button with meaningful text so the hover card supplements rather than replaces accessible copy.",
+        "never": [
+          "Never put interactive controls (forms, buttons) inside HoverCardContent — use Popover",
+          "Never use HoverCard for single-line labels — use Tooltip",
+          "Never rely on HoverCard for touch-only users; it requires hover; pair with an accessible tap alternative",
+          "Never use HoverCard for confirmation or blocking UI — use Dialog or AlertDialog"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-md",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input with focus ring and aria-invalid error styling from the token contract.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/input/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pair with Label via htmlFor/id. Signal errors with aria-invalid plus a text-destructive helper line beneath.",
+        "never": [
+          "Never use placeholder text as the only label",
+          "Never restyle the focus ring per instance; it comes from --layout-ring"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-danger",
+          "--layout-muted-fg",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Compound input with leading and trailing addons inside a single bordered shell. Supports text labels, icons, and action buttons at any edge.",
+      "registryDependencies": [
+        "utils",
+        "@layout/button"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/input-group/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use InputGroup as the shell. Place InputGroupAddon with align=\"inline-start\" for leading content and align=\"inline-end\" for trailing content. Inside an addon, use InputGroupText for static labels/icons or InputGroupButton for interactive controls. Place InputGroupInput or InputGroupTextarea in the centre for the editable field. The shell handles the focus ring, so do not add focus styles to inner elements.",
+        "never": [
+          "Never place a bare Input inside InputGroup; use InputGroupInput instead so the border and ring are inherited from the shell",
+          "Never add border or ring to InputGroupButton children; the outer shell already provides the focus ring",
+          "Never use InputGroupAddon without InputGroupText or InputGroupButton inside; the addon is a structural wrapper, not a visual element",
+          "Never stack more than one InputGroupInput inside a single InputGroup; create a separate InputGroup for each field"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-muted-fg",
+          "--layout-danger",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "One-time password input with individual character slots, grouping, and separator support. Built on Base UI OTPField.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/input-otp/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Always set length on InputOTP equal to the total number of InputOTPSlot elements. Pass index (0-based) to each slot so Base UI knows which character to render. Wrap related slots in InputOTPGroup for connected borders. Use InputOTPSeparator between groups.",
+        "never": [
+          "Never render more InputOTPSlot elements than the length prop on InputOTP",
+          "Never omit the index prop on InputOTPSlot",
+          "Never use for general text input — use Input instead",
+          "Never hardcode slot border colour; it derives from --layout-input"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-fg",
+          "--layout-muted-fg",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "Flexible list item family with media, content, and actions slots. Three variants: default, outline, and muted. Server-compatible plain markup.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/item/item.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Compose Item with ItemMedia (icon container), ItemContent wrapping ItemTitle and ItemDescription, and ItemActions for trailing buttons or badges. Group related items inside ItemGroup and divide sections with ItemSeparator. Use the outline variant for standalone items that need visible containment, muted for secondary items in a dense list.",
+        "never": [
+          "Never use Item as an interactive element without wrapping it in a button or anchor; it is a display primitive",
+          "Never nest ItemGroup inside ItemGroup; use ItemSeparator to separate sections within a single group",
+          "Never place more than one ItemActions child that triggers navigation; keep trailing actions supplementary",
+          "Never hardcode padding inside Item children; the component's gap and padding tokens already space them correctly"
+        ],
+        "tokens": [
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard shortcut hint, with KbdGroup for sequences.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/kbd/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Display keyboard shortcuts in menus, tooltips and docs. Group combinations with KbdGroup.",
+        "never": [
+          "Never fake kbd styling with Badge; Kbd uses the mono font token"
+        ],
+        "tokens": [
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-font-mono"
+        ]
+      }
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Form label with peer-disabled handling.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/label/label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Always associate with a field via htmlFor. Sits above the field with gap-2.",
+        "never": [
+          "Never use muted-foreground for labels; labels are primary text"
+        ],
+        "tokens": [
+          "--layout-fg"
+        ]
+      }
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "A horizontal bar of menus typical of desktop-style application toolbars, built on Base UI Menubar and Menu. Supports multiple top-level menus each with full dropdown content including checkboxes, radio groups, and sub-menus.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/menubar/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for application-level navigation in text editors, IDEs, or admin tools where File / Edit / View menus are a familiar convention. Each MenubarMenu is a separate root; wrap them all in a single Menubar.",
+        "never": [
+          "Never use Menubar for site navigation; use NavigationMenu for marketing or app-shell nav",
+          "Never use Menubar for a single menu; DropdownMenu is simpler and more appropriate",
+          "Never mix Menubar triggers with DropdownMenu triggers in the same toolbar",
+          "Never hardcode colours; use the variant prop on MenubarItem for destructive actions"
+        ],
+        "tokens": [
+          "--layout-bg",
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-shadow-xs",
+          "--layout-shadow-md",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "A styled native <select> with a Chevron indicator. Same field chrome as Input. Use when a custom dropdown is unnecessary.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/native-select/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for simple option lists where the native select UX is acceptable — particularly on mobile, where native pickers have better ergonomics. Pair with Label via htmlFor/id. For searchable or complex option lists, use the Combobox or Select component instead.",
+        "never": [
+          "Never hardcode the chevron colour; it derives from --layout-muted-fg",
+          "Never attempt to style the option elements — they are rendered by the OS",
+          "Never use for more than ~15 options without a search; switch to Combobox",
+          "Never remove appearance-none — it hides the OS chevron so the custom one shows"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-fg",
+          "--layout-muted-fg",
+          "--layout-danger",
+          "--layout-radius",
+          "--layout-shadow-xs",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "A horizontal navigation bar with hover-triggered popover panels for rich content areas, built on Base UI NavigationMenu. Exports navigationMenuTriggerStyle for styling standalone link items consistently.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/navigation-menu/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for top-level site navigation with rich content panels (feature grids, doc links, hero cards). Use NavigationMenuLink with navigationMenuTriggerStyle() for simple link items without a dropdown. NavigationMenuContent is placed inside NavigationMenuItem alongside the trigger.",
+        "never": [
+          "Never use NavigationMenu for application toolbar actions; use Menubar instead",
+          "Never use NavigationMenu for a context or row action; use ContextMenu or DropdownMenu",
+          "Never omit the NavigationMenuViewport; it is required for the panel animation container",
+          "Never hardcode colours; all surfaces must resolve through token utilities"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-shadow-md",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Server-compatible pagination controls. Page links use buttonVariants for consistent sizing and hover states. PaginationEllipsis handles collapsed page ranges.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/button"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/pagination/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Render as anchor tags with href pointing to the page URL (e.g. /posts?page=3) for server-side navigation. Mark the current page with isActive. Use PaginationEllipsis between non-adjacent page numbers.",
+        "never": [
+          "Never use onClick-only pagination without href; it breaks browser history and deep linking",
+          "Never mark more than one page link as isActive",
+          "Never put pagination inside the main content scroll area; keep it below or above",
+          "Never hardcode colours on page links; they inherit from buttonVariants token utilities"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Anchored floating panel for contextual controls and forms. Built on Base UI Popover with automatic collision detection. Accepts side and align props.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/popover/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for anchored, interactive panels such as filter controls, date pickers, colour swatches, and form fields that appear relative to a trigger element. Dismissed by clicking outside. Use side and align props to control placement. For read-only hover previews use HoverCard; for single-line labels use Tooltip.",
+        "never": [
+          "Never use Popover for read-only hover previews — use HoverCard",
+          "Never use Popover for single-line labels on icon buttons — use Tooltip",
+          "Never put destructive confirmation in a Popover — use AlertDialog",
+          "Never hardcode width; use the default w-72 or override via className only"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-md",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Determinate and indeterminate progress bar built on Base UI Progress. Accessible with ARIA role=progressbar.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/progress/progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pass a numeric value (0-100) for a determinate bar, or null for indeterminate. Pair with a visible label above or beside the bar so users know what is being measured. The indicator animates via CSS transition; initialise value at 0 then update to trigger the motion.",
+        "never": [
+          "Never use Progress for binary states; use a Spinner for loading without a known percentage",
+          "Never omit an accessible label; Base UI forwards value to aria-valuenow but users still need context",
+          "Never hardcode the indicator colour; it maps to bg-primary from the token contract",
+          "Never fix the width of the Progress root in a way that breaks responsive layouts; use w-full on the parent"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-radius",
+          "--layout-duration-slow"
+        ]
+      }
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A set of mutually exclusive radio buttons. Built on Base UI Radio Group and Radio with a filled circle indicator.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/radio-group/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap RadioGroupItem elements in RadioGroup. Each item needs a unique value. Pair each item with a Label via htmlFor/id. Use vertical layout (default) for most forms; switch to flex-row for short inline choices.",
+        "never": [
+          "Never use RadioGroup for multiple selections; use Checkbox instead",
+          "Never omit value on RadioGroupItem",
+          "Never skip labelling each item — aria-label or htmlFor required",
+          "Never hardcode the indicator colour; it derives from --layout-primary"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Drag-to-resize panels built on react-resizable-panels. Exports ResizablePanelGroup (orientation, layout), ResizablePanel (defaultSize, minSize, collapsible), and ResizableHandle (optional withHandle grip icon).",
+      "dependencies": [
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/resizable/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Set orientation on ResizablePanelGroup (horizontal or vertical). Each ResizablePanel takes a defaultSize as a percentage (0-100); all panels in a group must sum to 100. Add withHandle to ResizableHandle to show the grip icon. Nest ResizablePanelGroups inside ResizablePanel for complex layouts.",
+        "never": [
+          "Never set flex or width directly on ResizablePanel; sizing is controlled by defaultSize percentage",
+          "Never omit defaultSize on panels; the group will not know how to distribute space",
+          "Never use ResizableHandle outside ResizablePanelGroup; it requires the panel group context",
+          "Never hardcode the grip colour; it derives from bg-border and border-border tokens"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-ring",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Custom-styled scrollable container with thin border-coloured scrollbar. Built on Base UI Scroll Area.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/scroll-area/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Set a fixed height (e.g. h-64) on ScrollArea so the viewport can overflow. Use orientation=\"horizontal\" or \"both\" for horizontal or bidirectional scrolling. ScrollBar is exported separately so you can control its placement precisely when the orientation is set on ScrollArea.",
+        "never": [
+          "Never use ScrollArea without a constrained height on the root; it will not scroll if the parent grows unbounded",
+          "Never apply overflow-* on the ScrollArea root or viewport; Base UI manages overflow internally",
+          "Never style the scrollbar thumb with a specific colour; use bg-border so it stays consistent with the token contract",
+          "Never nest ScrollArea inside another ScrollArea on the same axis; competing scroll contexts confuse pointer events"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Accessible single-value select built on Base UI Select. Trigger styled like Input with chevron icon; popup with group labels, separators, and check indicators.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/select/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use Select when the list of options is fixed and known up front, with no need to type-filter. Pass defaultValue or value+onValueChange for controlled use. Group related options with SelectGroup and SelectLabel; divide sections with SelectSeparator. Use Combobox when the list is long and users need to filter by typing. Use a native <select> for forms where browser-native UX is preferred or file-size budget is tight.",
+        "never": [
+          "Never use Select for lists longer than ~50 items where filtering would help; use Combobox instead",
+          "Never use Select for boolean choices; use a Switch or Checkbox which are more semantically appropriate",
+          "Never mix SelectGroup items with un-grouped items in the same popup; all items should be grouped or none should be",
+          "Never place SelectContent outside of a Select.Root; it relies on context provided by the root"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-popover",
+          "--layout-popover-fg",
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-border",
+          "--layout-radius",
+          "--layout-shadow-md",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Horizontal or vertical rule built on the Base UI Separator primitive.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/separator/separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Divide groups of related content. Decorative by default; pass decorative={false} when it conveys structure to assistive tech.",
+        "never": [
+          "Never build dividers from bordered empty divs; use Separator so the token and semantics stay consistent"
+        ],
+        "tokens": [
+          "--layout-border"
+        ]
+      }
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Slide-in panel from any screen edge. Built on Base UI Dialog with directional slide animations. Supports top, right, bottom, and left sides.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/sheet/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for secondary panels, settings, navigation drawers, and filter sidebars that extend or supplement the main view without interrupting the full workflow. Right is the default side for settings and detail panels; left for navigation; bottom for mobile-optimised action lists (prefer Drawer for touch swipe-to-dismiss); top is rarely used.",
+        "never": [
+          "Never use Sheet for critical confirmations — use AlertDialog",
+          "Never use Sheet for focused task flows requiring full attention — use Dialog",
+          "Never render a Sheet wider than half the viewport on desktop; content should remain scannable",
+          "Never omit SheetTitle; it is the accessible name of the dialog region"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-lg",
+          "--layout-radius",
+          "--layout-duration-slow",
+          "--layout-ring"
+        ]
+      }
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholder that mirrors the shape of incoming content.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/skeleton/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Match the skeleton's dimensions to the content it stands in for. Prefer skeletons over spinners when layout is known.",
+        "never": [
+          "Never show skeletons for over ~5 seconds without a fallback state"
+        ],
+        "tokens": [
+          "--layout-accent",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A draggable range slider. Supports single values and multi-thumb ranges. Built on Base UI Slider.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/slider/slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Pass a single number for a single thumb or a readonly array for a range. Always set min and max explicitly. Provide an aria-label or associate with a visible label for accessibility. Show the current value nearby for precision inputs.",
+        "never": [
+          "Never set step to 0",
+          "Never hardcode the track or range colour; they derive from --layout-muted and --layout-primary",
+          "Never place a Slider in a narrow container without setting a sensible max-w",
+          "Never omit aria-label on the thumb for screen readers"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-muted",
+          "--layout-bg",
+          "--layout-ring",
+          "--layout-duration-fast",
+          "--layout-shadow-sm"
+        ]
+      }
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Indeterminate loading indicator (lucide Loader2).",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/spinner/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Short, unknown-duration waits inside buttons or small regions. Inherits currentColor so it adopts the parent's text token.",
+        "never": [
+          "Never use a full-page spinner where a Skeleton preserves layout"
+        ],
+        "tokens": []
+      }
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A pill-shaped toggle for binary on/off settings. Built on Base UI Switch with a sliding thumb.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/switch/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for settings that take immediate effect without a save action. Pair with a Label for accessibility. Prefer Switch over Checkbox when the outcome is immediate; prefer Checkbox for form submissions.",
+        "never": [
+          "Never use Switch for form checkboxes that need a submit action; use Checkbox instead",
+          "Never omit a label — associate via htmlFor or pass aria-label",
+          "Never override the track or thumb colours directly; they derive from --layout-input and --layout-primary",
+          "Never use inside a RadioGroup or CheckboxGroup"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-input",
+          "--layout-bg",
+          "--layout-ring",
+          "--layout-duration-base",
+          "--layout-shadow-xs"
+        ]
+      }
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Presentational data table family with hover rows and caption support.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/table/table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Static tabular data. TableHead cells are muted-foreground; numeric columns align right via className. For sorting/filtering/virtualisation compose with TanStack Table.",
+        "never": [
+          "Never use tables for page layout",
+          "Never put interactive rows without hover and focus states"
+        ],
+        "tokens": [
+          "--layout-border",
+          "--layout-muted",
+          "--layout-muted-fg"
+        ]
+      }
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Accessible tab interface built on Base UI Tabs. The list has a muted pill background; the active trigger lifts to background with a shadow. Supports controlled and uncontrolled modes.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/tabs/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Each TabsContent value must match the corresponding TabsTrigger value. Use defaultValue for uncontrolled tabs; pair value and onValueChange for controlled. Grid the TabsList with grid-cols-N to make triggers equal width.",
+        "never": [
+          "Never use tabs for wizard/step flows; use a stepper pattern instead",
+          "Never place tabs inside tabs; flatten the hierarchy",
+          "Never rely on tab order for critical information; the inactive panel is hidden from the DOM by default",
+          "Never hardcode tab indicator colours; the active state resolves through bg-background and shadow-xs"
+        ],
+        "tokens": [
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-bg",
+          "--layout-fg",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-shadow-xs",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line input sharing the Input field chrome.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/textarea/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Free-form text of more than one line. Same labelling and error conventions as Input.",
+        "never": [
+          "Never fix the height with h-*; use rows or min-h so content can grow"
+        ],
+        "tokens": [
+          "--layout-input",
+          "--layout-ring",
+          "--layout-danger",
+          "--layout-radius"
+        ]
+      }
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Imperative notification system using Base UI Toast. Exports Toaster (mount once) and toast() (call anywhere). Supports default, success, warning, and destructive variants with optional action buttons.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/toast/toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Mount <Toaster /> once in your root layout. Then call toast() imperatively from any client component or event handler. Use toast.success / toast.warning / toast.destructive for intent-specific variants. Provide an action for reversible operations (e.g. undo archive). Use toast.dismiss(id) for manual programmatic dismissal. Toasts auto-dismiss after 5 seconds by default; pass duration in ms to override.",
+        "never": [
+          "Never use toast for errors that require user input or decisions — use Dialog or AlertDialog",
+          "Never stack more than 3 toasts; the queue hides older ones automatically",
+          "Never mount Toaster more than once in the same React tree",
+          "Never use toast as the sole feedback for a destructive action; show AlertDialog first, toast after"
+        ],
+        "tokens": [
+          "--layout-overlay",
+          "--layout-overlay-fg",
+          "--layout-border",
+          "--layout-shadow-md",
+          "--layout-radius",
+          "--layout-duration-base",
+          "--layout-success",
+          "--layout-warning",
+          "--layout-danger"
+        ]
+      }
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "A two-state button that switches between pressed and unpressed. Built on Base UI Toggle with default and outline variants.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/toggle/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for toolbar actions that can be on or off (bold, italic, grid view). Always provide aria-label for icon-only toggles. Use ToggleGroup when multiple toggles are mutually related.",
+        "never": [
+          "Never use Toggle as a navigation link; use Button with variant link instead",
+          "Never hardcode the pressed background; it derives from --layout-accent",
+          "Never mix default and outline variants within the same toolbar",
+          "Never omit aria-label on icon-only toggles"
+        ],
+        "tokens": [
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-muted",
+          "--layout-muted-fg",
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A group of related toggles sharing variant and size context. Built on Base UI ToggleGroup. Uses toggleVariants from the Toggle component.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@layout/toggle"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/toggle-group/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Wrap ToggleGroupItem elements inside ToggleGroup. Set variant and size on ToggleGroup and they propagate automatically to all items. Use multiple prop for multi-select formatting bars. Always pass aria-label on the group.",
+        "never": [
+          "Never mix variants on ToggleGroupItem when the group already sets one — override only for exceptions",
+          "Never use ToggleGroup for navigation; use Tabs instead",
+          "Never omit aria-label on the ToggleGroup",
+          "Never nest ToggleGroups"
+        ],
+        "tokens": [
+          "--layout-accent",
+          "--layout-accent-fg",
+          "--layout-muted",
+          "--layout-input",
+          "--layout-ring",
+          "--layout-radius",
+          "--layout-duration-base"
+        ]
+      }
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Short label that appears on hover or focus. Built on Base UI Tooltip. Styled with bg-primary/text-primary-foreground for high contrast. Wrap usage in TooltipProvider.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/layout/tooltip/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "meta": {
+        "usage": "Use for brief, supplementary labels on icon buttons, truncated text, and keyboard shortcut hints. Wrap all Tooltip instances in a single TooltipProvider at the layout level (or per section) to share delay settings. TooltipTrigger uses the render prop — pass the trigger element via render={}.",
+        "never": [
+          "Never put interactive content (buttons, links) inside TooltipContent — use Popover instead",
+          "Never use Tooltip as the sole label for an icon button; always include aria-label on the trigger",
+          "Never use Tooltip for rich content or multi-line descriptions — use HoverCard or Popover",
+          "Never render Tooltip without TooltipProvider; the delay behaviour will be undefined"
+        ],
+        "tokens": [
+          "--layout-primary",
+          "--layout-primary-fg",
+          "--layout-radius",
+          "--layout-duration-fast"
+        ]
       }
     }
   ]

@@ -1,0 +1,30 @@
+{
+  "name": "navigation-menu",
+  "type": "registry:ui",
+  "title": "Navigation Menu",
+  "description": "A horizontal navigation bar with hover-triggered popover panels for rich content areas, built on Base UI NavigationMenu. Exports navigationMenuTriggerStyle for styling standalone link items consistently.",
+  "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/navigation-menu/navigation-menu.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for top-level site navigation with rich content panels (feature grids, doc links, hero cards). Use NavigationMenuLink with navigationMenuTriggerStyle() for simple link items without a dropdown. NavigationMenuContent is placed inside NavigationMenuItem alongside the trigger.",
+    "never": [
+      "Never use NavigationMenu for application toolbar actions; use Menubar instead",
+      "Never use NavigationMenu for a context or row action; use ContextMenu or DropdownMenu",
+      "Never omit the NavigationMenuViewport; it is required for the panel animation container",
+      "Never hardcode colours; all surfaces must resolve through token utilities"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-shadow-md",
+      "--layout-duration-base"
+    ]
+  }
+}

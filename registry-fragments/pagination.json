@@ -1,0 +1,27 @@
+{
+  "name": "pagination",
+  "type": "registry:ui",
+  "title": "Pagination",
+  "description": "Server-compatible pagination controls. Page links use buttonVariants for consistent sizing and hover states. PaginationEllipsis handles collapsed page ranges.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "@layout/button"],
+  "files": [
+    { "path": "registry/layout/pagination/pagination.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Render as anchor tags with href pointing to the page URL (e.g. /posts?page=3) for server-side navigation. Mark the current page with isActive. Use PaginationEllipsis between non-adjacent page numbers.",
+    "never": [
+      "Never use onClick-only pagination without href; it breaks browser history and deep linking",
+      "Never mark more than one page link as isActive",
+      "Never put pagination inside the main content scroll area; keep it below or above",
+      "Never hardcode colours on page links; they inherit from buttonVariants token utilities"
+    ],
+    "tokens": [
+      "--layout-border",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  }
+}

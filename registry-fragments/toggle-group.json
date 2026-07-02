@@ -1,0 +1,21 @@
+{
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "title": "Toggle Group",
+  "description": "A group of related toggles sharing variant and size context. Built on Base UI ToggleGroup. Uses toggleVariants from the Toggle component.",
+  "dependencies": ["@base-ui/react", "class-variance-authority"],
+  "registryDependencies": ["utils", "@layout/toggle"],
+  "files": [
+    { "path": "registry/layout/toggle-group/toggle-group.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Wrap ToggleGroupItem elements inside ToggleGroup. Set variant and size on ToggleGroup and they propagate automatically to all items. Use multiple prop for multi-select formatting bars. Always pass aria-label on the group.",
+    "never": [
+      "Never mix variants on ToggleGroupItem when the group already sets one — override only for exceptions",
+      "Never use ToggleGroup for navigation; use Tabs instead",
+      "Never omit aria-label on the ToggleGroup",
+      "Never nest ToggleGroups"
+    ],
+    "tokens": ["--layout-accent", "--layout-accent-fg", "--layout-muted", "--layout-input", "--layout-ring", "--layout-radius", "--layout-duration-base"]
+  }
+}

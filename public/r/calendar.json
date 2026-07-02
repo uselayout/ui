@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "title": "Calendar",
+  "description": "Date-picker calendar built on react-day-picker v10, styled with semantic tokens. Supports single, multiple, and range selection modes.",
+  "dependencies": [
+    "react-day-picker"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@layout/button"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/calendar/calendar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { DayPicker } from \"react-day-picker\";\nimport { ChevronLeft, ChevronRight } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { buttonVariants } from \"@/registry/layout/button/button\";\n\nexport type CalendarProps = React.ComponentProps<typeof DayPicker>;\n\nfunction Calendar({\n  className,\n  classNames,\n  showOutsideDays = true,\n  ...props\n}: CalendarProps) {\n  return (\n    <DayPicker\n      showOutsideDays={showOutsideDays}\n      className={cn(\"p-3\", className)}\n      classNames={{\n        months: \"flex flex-col sm:flex-row gap-y-4 sm:gap-x-4 sm:gap-y-0\",\n        month: \"flex flex-col gap-y-4\",\n        month_caption: \"flex justify-center pt-1 relative items-center\",\n        caption_label: \"text-sm font-medium\",\n        nav: \"flex items-center gap-1\",\n        button_previous: cn(\n          buttonVariants({ variant: \"outline\", size: \"icon\" }),\n          \"absolute left-1 top-0 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100\"\n        ),\n        button_next: cn(\n          buttonVariants({ variant: \"outline\", size: \"icon\" }),\n          \"absolute right-1 top-0 h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100\"\n        ),\n        month_grid: \"w-full border-collapse space-y-1\",\n        weekdays: \"flex\",\n        weekday:\n          \"text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]\",\n        week: \"flex w-full mt-2\",\n        day: \"h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20\",\n        day_button: cn(\n          buttonVariants({ variant: \"ghost\", size: \"icon\" }),\n          \"h-9 w-9 p-0 font-normal aria-selected:opacity-100\"\n        ),\n        range_start: \"day-range-start\",\n        range_end: \"day-range-end\",\n        selected:\n          \"bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rounded-md\",\n        today: \"bg-accent text-accent-foreground rounded-md\",\n        outside:\n          \"day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30\",\n        disabled: \"text-muted-foreground opacity-50\",\n        range_middle:\n          \"aria-selected:bg-accent aria-selected:text-accent-foreground rounded-none\",\n        hidden: \"invisible\",\n        ...classNames,\n      }}\n      components={{\n        Chevron: ({ orientation, ...iconProps }) => {\n          if (orientation === \"left\") {\n            return <ChevronLeft className=\"size-4\" {...iconProps} />;\n          }\n          return <ChevronRight className=\"size-4\" {...iconProps} />;\n        },\n      }}\n      {...props}\n    />\n  );\n}\n\nexport { Calendar };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use mode=\"single\" for a standalone date picker, mode=\"range\" for booking flows or date-range filters. Wrap in a Popover for inline-trigger UX. Always pass showOutsideDays (defaults true) to keep the grid size stable.",
+    "never": [
+      "Never import react-day-picker styles directly; all styling is handled via classNames prop using semantic tokens",
+      "Never hardcode colour values for selected, today, or outside states; use bg-primary, bg-accent, and muted-foreground",
+      "Never set a fixed width on the Calendar root; let the day grid dictate size",
+      "Never use mode=\"multiple\" for date ranges; use mode=\"range\" instead"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-primary-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-muted-fg",
+      "--layout-border",
+      "--layout-ring",
+      "--layout-radius"
+    ]
+  },
+  "type": "registry:ui"
+}

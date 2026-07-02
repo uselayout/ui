@@ -1,0 +1,19 @@
+{
+  "name": "combobox",
+  "type": "registry:ui",
+  "title": "Combobox",
+  "description": "Searchable select built on Base UI Combobox. Type to filter a fixed list; shows an empty state when no items match. Check indicator on selected item.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/combobox/combobox.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use Combobox when users need to search or filter a fixed list of options by typing. Pass the full items array to the Combobox root so Base UI can handle filtering automatically. Use ComboboxTrigger as the input trigger (contains ComboboxInput internally). ComboboxContent wraps ComboboxList and ComboboxEmpty. Use Select instead when the list is short (under ~15 items) and filtering is unnecessary. Use a native <datalist> for minimal-dependency autocomplete on plain HTML forms.",
+    "never": [
+      "Never use Combobox for free-form text entry where any value is valid; use Input instead",
+      "Never omit the items prop on the Combobox root; filtering will not work without it",
+      "Never wrap ComboboxContent in a custom portal; it already renders inside Base UI Portal",
+      "Never use Combobox for multi-select without setting multiple={true} on the root; single-mode selection will clear previous choices"
+    ],
+    "tokens": ["--layout-input", "--layout-ring", "--layout-popover", "--layout-popover-fg", "--layout-accent", "--layout-accent-fg", "--layout-border", "--layout-muted-fg", "--layout-radius", "--layout-shadow-md", "--layout-duration-base", "--layout-duration-fast"]
+  }
+}

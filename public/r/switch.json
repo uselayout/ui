@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "description": "A pill-shaped toggle for binary on/off settings. Built on Base UI Switch with a sliding thumb.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/switch/switch.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Switch as BaseSwitch } from \"@base-ui/react/switch\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface SwitchProps\n  extends React.ComponentPropsWithoutRef<typeof BaseSwitch.Root> {\n  className?: string;\n}\n\nfunction Switch({ className, ...props }: SwitchProps) {\n  return (\n    <BaseSwitch.Root\n      data-slot=\"switch\"\n      className={cn(\n        \"peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent\",\n        \"bg-input transition-[background-color,box-shadow] duration-[var(--layout-duration-base)] ease-out\",\n        \"outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:border-ring\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"data-[checked]:bg-primary\",\n        className\n      )}\n      {...props}\n    >\n      <BaseSwitch.Thumb\n        data-slot=\"switch-thumb\"\n        className={cn(\n          \"pointer-events-none block size-4 rounded-full bg-background shadow-xs\",\n          \"transition-transform duration-[var(--layout-duration-base)] ease-out\",\n          \"translate-x-0 data-[checked]:translate-x-4\"\n        )}\n      />\n    </BaseSwitch.Root>\n  );\n}\n\nexport { Switch, type SwitchProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use for settings that take immediate effect without a save action. Pair with a Label for accessibility. Prefer Switch over Checkbox when the outcome is immediate; prefer Checkbox for form submissions.",
+    "never": [
+      "Never use Switch for form checkboxes that need a submit action; use Checkbox instead",
+      "Never omit a label — associate via htmlFor or pass aria-label",
+      "Never override the track or thumb colours directly; they derive from --layout-input and --layout-primary",
+      "Never use inside a RadioGroup or CheckboxGroup"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-input",
+      "--layout-bg",
+      "--layout-ring",
+      "--layout-duration-base",
+      "--layout-shadow-xs"
+    ]
+  },
+  "type": "registry:ui"
+}

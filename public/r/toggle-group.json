@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "title": "Toggle Group",
+  "description": "A group of related toggles sharing variant and size context. Built on Base UI ToggleGroup. Uses toggleVariants from the Toggle component.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@layout/toggle"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/toggle-group/toggle-group.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ToggleGroup as BaseToggleGroup } from \"@base-ui/react/toggle-group\";\nimport { Toggle as BaseToggle } from \"@base-ui/react/toggle\";\nimport { type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\nimport { toggleVariants } from \"@/registry/layout/toggle/toggle\";\n\ntype ToggleGroupContextValue = VariantProps<typeof toggleVariants>;\n\nconst ToggleGroupContext = React.createContext<ToggleGroupContextValue>({\n  variant: \"default\",\n  size: \"default\",\n});\n\ninterface ToggleGroupProps\n  extends React.ComponentPropsWithoutRef<typeof BaseToggleGroup>,\n    VariantProps<typeof toggleVariants> {\n  className?: string;\n}\n\nfunction ToggleGroup({\n  className,\n  variant,\n  size,\n  children,\n  ...props\n}: ToggleGroupProps) {\n  return (\n    <ToggleGroupContext.Provider value={{ variant, size }}>\n      <BaseToggleGroup\n        data-slot=\"toggle-group\"\n        className={cn(\n          \"flex items-center justify-center gap-1\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </BaseToggleGroup>\n    </ToggleGroupContext.Provider>\n  );\n}\n\ninterface ToggleGroupItemProps\n  extends React.ComponentPropsWithoutRef<typeof BaseToggle>,\n    VariantProps<typeof toggleVariants> {\n  className?: string;\n}\n\nfunction ToggleGroupItem({\n  className,\n  variant,\n  size,\n  ...props\n}: ToggleGroupItemProps) {\n  const context = React.useContext(ToggleGroupContext);\n  const resolvedVariant = variant ?? context.variant;\n  const resolvedSize = size ?? context.size;\n\n  return (\n    <BaseToggle\n      data-slot=\"toggle-group-item\"\n      className={cn(\n        toggleVariants({ variant: resolvedVariant, size: resolvedSize }),\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport {\n  ToggleGroup,\n  ToggleGroupItem,\n  type ToggleGroupProps,\n  type ToggleGroupItemProps,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Wrap ToggleGroupItem elements inside ToggleGroup. Set variant and size on ToggleGroup and they propagate automatically to all items. Use multiple prop for multi-select formatting bars. Always pass aria-label on the group.",
+    "never": [
+      "Never mix variants on ToggleGroupItem when the group already sets one — override only for exceptions",
+      "Never use ToggleGroup for navigation; use Tabs instead",
+      "Never omit aria-label on the ToggleGroup",
+      "Never nest ToggleGroups"
+    ],
+    "tokens": [
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-muted",
+      "--layout-input",
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

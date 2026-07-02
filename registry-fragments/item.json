@@ -1,0 +1,19 @@
+{
+  "name": "item",
+  "type": "registry:ui",
+  "title": "Item",
+  "description": "Flexible list item family with media, content, and actions slots. Three variants: default, outline, and muted. Server-compatible plain markup.",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/item/item.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Compose Item with ItemMedia (icon container), ItemContent wrapping ItemTitle and ItemDescription, and ItemActions for trailing buttons or badges. Group related items inside ItemGroup and divide sections with ItemSeparator. Use the outline variant for standalone items that need visible containment, muted for secondary items in a dense list.",
+    "never": [
+      "Never use Item as an interactive element without wrapping it in a button or anchor; it is a display primitive",
+      "Never nest ItemGroup inside ItemGroup; use ItemSeparator to separate sections within a single group",
+      "Never place more than one ItemActions child that triggers navigation; keep trailing actions supplementary",
+      "Never hardcode padding inside Item children; the component's gap and padding tokens already space them correctly"
+    ],
+    "tokens": ["--layout-accent", "--layout-accent-fg", "--layout-muted", "--layout-muted-fg", "--layout-border", "--layout-radius", "--layout-duration-base"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "calendar",
+  "type": "registry:ui",
+  "title": "Calendar",
+  "description": "Date-picker calendar built on react-day-picker v10, styled with semantic tokens. Supports single, multiple, and range selection modes.",
+  "dependencies": ["react-day-picker"],
+  "registryDependencies": ["utils", "@layout/button"],
+  "files": [{ "path": "registry/layout/calendar/calendar.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use mode=\"single\" for a standalone date picker, mode=\"range\" for booking flows or date-range filters. Wrap in a Popover for inline-trigger UX. Always pass showOutsideDays (defaults true) to keep the grid size stable.",
+    "never": [
+      "Never import react-day-picker styles directly; all styling is handled via classNames prop using semantic tokens",
+      "Never hardcode colour values for selected, today, or outside states; use bg-primary, bg-accent, and muted-foreground",
+      "Never set a fixed width on the Calendar root; let the day grid dictate size",
+      "Never use mode=\"multiple\" for date ranges; use mode=\"range\" instead"
+    ],
+    "tokens": ["--layout-primary", "--layout-primary-fg", "--layout-accent", "--layout-accent-fg", "--layout-muted-fg", "--layout-border", "--layout-ring", "--layout-radius"]
+  }
+}

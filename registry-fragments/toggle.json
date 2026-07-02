@@ -1,0 +1,21 @@
+{
+  "name": "toggle",
+  "type": "registry:ui",
+  "title": "Toggle",
+  "description": "A two-state button that switches between pressed and unpressed. Built on Base UI Toggle with default and outline variants.",
+  "dependencies": ["@base-ui/react", "class-variance-authority"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/toggle/toggle.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for toolbar actions that can be on or off (bold, italic, grid view). Always provide aria-label for icon-only toggles. Use ToggleGroup when multiple toggles are mutually related.",
+    "never": [
+      "Never use Toggle as a navigation link; use Button with variant link instead",
+      "Never hardcode the pressed background; it derives from --layout-accent",
+      "Never mix default and outline variants within the same toolbar",
+      "Never omit aria-label on icon-only toggles"
+    ],
+    "tokens": ["--layout-accent", "--layout-accent-fg", "--layout-muted", "--layout-muted-fg", "--layout-input", "--layout-ring", "--layout-radius", "--layout-duration-base"]
+  }
+}

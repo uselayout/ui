@@ -1,0 +1,28 @@
+{
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "title": "Alert Dialog",
+  "description": "Interruption dialog for irreversible or high-stakes actions. Built on Base UI AlertDialog with ARIA alertdialog role. Action button styled as default, cancel as outline.",
+  "dependencies": ["@base-ui/react", "class-variance-authority"],
+  "registryDependencies": ["utils", "@layout/button"],
+  "files": [{ "path": "registry/layout/alert-dialog/alert-dialog.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use exclusively for destructive or irreversible actions such as deletion, account termination, or data loss. Always name the action button with the exact action (e.g. 'Delete project') not a generic 'OK'. Cancel always goes on the left, action on the right. For non-destructive confirmations use Dialog instead.",
+    "never": [
+      "Never use AlertDialog for non-destructive confirmations — use Dialog",
+      "Never label the action button 'OK' or 'Confirm' — use the specific action verb",
+      "Never omit AlertDialogCancel; the user must always have a safe exit",
+      "Never use AlertDialog for contextual or anchored content — use Popover"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-base",
+      "--layout-danger",
+      "--layout-danger-fg"
+    ]
+  }
+}

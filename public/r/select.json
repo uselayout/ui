@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select",
+  "title": "Select",
+  "description": "Accessible single-value select built on Base UI Select. Trigger styled like Input with chevron icon; popup with group labels, separators, and check indicators.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/select/select.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Select as BaseSelect } from \"@base-ui/react/select\";\nimport { Check, ChevronsUpDown } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Select<Value = string>(\n  props: React.ComponentPropsWithoutRef<typeof BaseSelect.Root<Value>> & {\n    children?: React.ReactNode;\n  }\n) {\n  return <BaseSelect.Root {...props} />;\n}\n\ninterface SelectTriggerProps\n  extends React.ComponentPropsWithoutRef<typeof BaseSelect.Trigger> {\n  placeholder?: string;\n}\n\nfunction SelectTrigger({\n  className,\n  children,\n  placeholder,\n  ...props\n}: SelectTriggerProps) {\n  return (\n    <BaseSelect.Trigger\n      data-slot=\"select-trigger\"\n      className={cn(\n        \"flex h-9 w-full items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs\",\n        \"placeholder:text-muted-foreground\",\n        \"focus-visible:outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        \"data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50\",\n        \"transition-[color,box-shadow] duration-[var(--layout-duration-base)] ease-out\",\n        \"whitespace-nowrap\",\n        className\n      )}\n      {...props}\n    >\n      <SelectValue placeholder={placeholder} />\n      <BaseSelect.Icon className=\"ml-auto shrink-0 text-muted-foreground\">\n        <ChevronsUpDown className=\"size-4\" />\n      </BaseSelect.Icon>\n    </BaseSelect.Trigger>\n  );\n}\n\nfunction SelectValue({\n  className,\n  placeholder,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof BaseSelect.Value> & {\n  placeholder?: string;\n}) {\n  return (\n    <BaseSelect.Value\n      data-slot=\"select-value\"\n      placeholder={placeholder ?? \"Select…\"}\n      className={cn(\"flex-1 truncate text-left data-[placeholder]:text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SelectContent({\n  className,\n  children,\n  sideOffset = 4,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof BaseSelect.Positioner> & {\n  sideOffset?: number;\n}) {\n  return (\n    <BaseSelect.Portal>\n      <BaseSelect.Positioner\n        data-slot=\"select-positioner\"\n        sideOffset={sideOffset}\n        {...props}\n      >\n        <BaseSelect.Popup\n          data-slot=\"select-content\"\n          className={cn(\n            \"relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md\",\n            \"data-[starting-style]:opacity-0 data-[ending-style]:opacity-0\",\n            \"transition-opacity duration-[var(--layout-duration-base)] ease-out\",\n            className\n          )}\n        >\n          <BaseSelect.List className=\"p-1\">\n            {children}\n          </BaseSelect.List>\n        </BaseSelect.Popup>\n      </BaseSelect.Positioner>\n    </BaseSelect.Portal>\n  );\n}\n\nfunction SelectItem({\n  className,\n  children,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof BaseSelect.Item>) {\n  return (\n    <BaseSelect.Item\n      data-slot=\"select-item\"\n      className={cn(\n        \"relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none\",\n        \"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground\",\n        \"data-[disabled]:pointer-events-none data-[disabled]:opacity-50\",\n        \"transition-colors duration-[var(--layout-duration-fast)]\",\n        className\n      )}\n      {...props}\n    >\n      <span className=\"absolute left-2 flex size-4 items-center justify-center\">\n        <BaseSelect.ItemIndicator>\n          <Check className=\"size-4\" />\n        </BaseSelect.ItemIndicator>\n      </span>\n      <BaseSelect.ItemText>{children}</BaseSelect.ItemText>\n    </BaseSelect.Item>\n  );\n}\n\nfunction SelectGroup({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof BaseSelect.Group>) {\n  return (\n    <BaseSelect.Group\n      data-slot=\"select-group\"\n      className={cn(\"p-1\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SelectLabel({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof BaseSelect.GroupLabel>) {\n  return (\n    <BaseSelect.GroupLabel\n      data-slot=\"select-label\"\n      className={cn(\n        \"px-2 py-1.5 text-xs font-semibold text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction SelectSeparator({ className, ...props }: React.ComponentProps<\"hr\">) {\n  return (\n    <hr\n      data-slot=\"select-separator\"\n      className={cn(\"-mx-1 my-1 border-border\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Select,\n  SelectTrigger,\n  SelectContent,\n  SelectItem,\n  SelectGroup,\n  SelectLabel,\n  SelectSeparator,\n  SelectValue,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use Select when the list of options is fixed and known up front, with no need to type-filter. Pass defaultValue or value+onValueChange for controlled use. Group related options with SelectGroup and SelectLabel; divide sections with SelectSeparator. Use Combobox when the list is long and users need to filter by typing. Use a native <select> for forms where browser-native UX is preferred or file-size budget is tight.",
+    "never": [
+      "Never use Select for lists longer than ~50 items where filtering would help; use Combobox instead",
+      "Never use Select for boolean choices; use a Switch or Checkbox which are more semantically appropriate",
+      "Never mix SelectGroup items with un-grouped items in the same popup; all items should be grouped or none should be",
+      "Never place SelectContent outside of a Select.Root; it relies on context provided by the root"
+    ],
+    "tokens": [
+      "--layout-input",
+      "--layout-ring",
+      "--layout-popover",
+      "--layout-popover-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-shadow-md",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "title": "Alert Dialog",
+  "description": "Interruption dialog for irreversible or high-stakes actions. Built on Base UI AlertDialog with ARIA alertdialog role. Action button styled as default, cancel as outline.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@layout/button"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/alert-dialog/alert-dialog.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { AlertDialog as BaseAlertDialog } from \"@base-ui/react/alert-dialog\";\n\nimport { cn } from \"@/lib/utils\";\nimport { Button, buttonVariants } from \"@/registry/layout/button/button\";\n\nfunction AlertDialog(props: BaseAlertDialog.Root.Props) {\n  return <BaseAlertDialog.Root {...props} />;\n}\n\nfunction AlertDialogTrigger(props: BaseAlertDialog.Trigger.Props) {\n  return (\n    <BaseAlertDialog.Trigger data-slot=\"alert-dialog-trigger\" {...props} />\n  );\n}\n\nfunction AlertDialogPortal(props: BaseAlertDialog.Portal.Props) {\n  return <BaseAlertDialog.Portal {...props} />;\n}\n\nfunction AlertDialogContent({\n  className,\n  ...props\n}: BaseAlertDialog.Popup.Props) {\n  return (\n    <BaseAlertDialog.Portal>\n      <BaseAlertDialog.Backdrop\n        data-slot=\"alert-dialog-backdrop\"\n        className=\"fixed inset-0 z-50 bg-black/50 transition-opacity duration-[var(--layout-duration-base)] ease-out data-[ending-style]:opacity-0 data-[starting-style]:opacity-0\"\n      />\n      <BaseAlertDialog.Popup\n        data-slot=\"alert-dialog-content\"\n        className={cn(\n          \"fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2\",\n          \"bg-popover text-popover-foreground\",\n          \"rounded-xl border border-border shadow-lg\",\n          \"p-6 outline-none\",\n          \"transition-all duration-[var(--layout-duration-base)] ease-out\",\n          \"data-[ending-style]:scale-95 data-[ending-style]:opacity-0\",\n          \"data-[starting-style]:scale-95 data-[starting-style]:opacity-0\",\n          className\n        )}\n        {...props}\n      />\n    </BaseAlertDialog.Portal>\n  );\n}\n\nfunction AlertDialogHeader({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-dialog-header\"\n      className={cn(\"flex flex-col gap-2 text-left\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDialogFooter({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-dialog-footer\"\n      className={cn(\n        \"flex flex-col-reverse gap-2 pt-4 sm:flex-row sm:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDialogTitle({ className, ...props }: BaseAlertDialog.Title.Props) {\n  return (\n    <BaseAlertDialog.Title\n      data-slot=\"alert-dialog-title\"\n      className={cn(\n        \"text-lg font-semibold leading-none tracking-tight\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDialogDescription({\n  className,\n  ...props\n}: BaseAlertDialog.Description.Props) {\n  return (\n    <BaseAlertDialog.Description\n      data-slot=\"alert-dialog-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDialogAction({\n  className,\n  ...props\n}: BaseAlertDialog.Close.Props) {\n  return (\n    <BaseAlertDialog.Close\n      data-slot=\"alert-dialog-action\"\n      className={cn(buttonVariants({ variant: \"default\" }), className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDialogCancel({\n  className,\n  ...props\n}: BaseAlertDialog.Close.Props) {\n  return (\n    <BaseAlertDialog.Close\n      data-slot=\"alert-dialog-cancel\"\n      className={cn(buttonVariants({ variant: \"outline\" }), className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogPortal,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogFooter,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogAction,\n  AlertDialogCancel,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use exclusively for destructive or irreversible actions such as deletion, account termination, or data loss. Always name the action button with the exact action (e.g. 'Delete project') not a generic 'OK'. Cancel always goes on the left, action on the right. For non-destructive confirmations use Dialog instead.",
+    "never": [
+      "Never use AlertDialog for non-destructive confirmations — use Dialog",
+      "Never label the action button 'OK' or 'Confirm' — use the specific action verb",
+      "Never omit AlertDialogCancel; the user must always have a safe exit",
+      "Never use AlertDialog for contextual or anchored content — use Popover"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-base",
+      "--layout-danger",
+      "--layout-danger-fg"
+    ]
+  },
+  "type": "registry:ui"
+}

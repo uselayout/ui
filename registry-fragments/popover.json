@@ -1,0 +1,26 @@
+{
+  "name": "popover",
+  "type": "registry:ui",
+  "title": "Popover",
+  "description": "Anchored floating panel for contextual controls and forms. Built on Base UI Popover with automatic collision detection. Accepts side and align props.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/popover/popover.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use for anchored, interactive panels such as filter controls, date pickers, colour swatches, and form fields that appear relative to a trigger element. Dismissed by clicking outside. Use side and align props to control placement. For read-only hover previews use HoverCard; for single-line labels use Tooltip.",
+    "never": [
+      "Never use Popover for read-only hover previews — use HoverCard",
+      "Never use Popover for single-line labels on icon buttons — use Tooltip",
+      "Never put destructive confirmation in a Popover — use AlertDialog",
+      "Never hardcode width; use the default w-72 or override via className only"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-md",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  }
+}

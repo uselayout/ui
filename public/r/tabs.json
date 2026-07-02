@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "description": "Accessible tab interface built on Base UI Tabs. The list has a muted pill background; the active trigger lifts to background with a shadow. Supports controlled and uncontrolled modes.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/tabs/tabs.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Tabs } from \"@base-ui/react/tabs\";\n\nimport { cn } from \"@/lib/utils\";\n\n/* ------------------------------------------------------------------ root */\n\nconst TabsRoot = React.forwardRef<HTMLDivElement, Tabs.Root.Props>(\n  ({ className, ...props }, ref) => (\n    <Tabs.Root\n      ref={ref}\n      data-slot=\"tabs\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  ),\n);\nTabsRoot.displayName = \"Tabs\";\n\n/* ------------------------------------------------------------------ list */\n\nconst TabsList = React.forwardRef<HTMLDivElement, Tabs.List.Props>(\n  ({ className, ...props }, ref) => (\n    <Tabs.List\n      ref={ref}\n      data-slot=\"tabs-list\"\n      className={cn(\n        \"inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTabsList.displayName = \"TabsList\";\n\n/* --------------------------------------------------------------- trigger */\n\nconst TabsTrigger = React.forwardRef<HTMLButtonElement, Tabs.Tab.Props>(\n  ({ className, ...props }, ref) => (\n    <Tabs.Tab\n      ref={ref}\n      data-slot=\"tabs-trigger\"\n      className={cn(\n        \"inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium\",\n        \"ring-offset-background outline-none\",\n        \"transition-all duration-[var(--layout-duration-base)] ease-out\",\n        \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n        \"disabled:pointer-events-none disabled:opacity-50\",\n        \"data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow-xs\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTabsTrigger.displayName = \"TabsTrigger\";\n\n/* --------------------------------------------------------------- content */\n\nconst TabsContent = React.forwardRef<HTMLDivElement, Tabs.Panel.Props>(\n  ({ className, ...props }, ref) => (\n    <Tabs.Panel\n      ref={ref}\n      data-slot=\"tabs-content\"\n      className={cn(\n        \"ring-offset-background outline-none\",\n        \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTabsContent.displayName = \"TabsContent\";\n\nexport {\n  TabsRoot as Tabs,\n  TabsList,\n  TabsTrigger,\n  TabsContent,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Each TabsContent value must match the corresponding TabsTrigger value. Use defaultValue for uncontrolled tabs; pair value and onValueChange for controlled. Grid the TabsList with grid-cols-N to make triggers equal width.",
+    "never": [
+      "Never use tabs for wizard/step flows; use a stepper pattern instead",
+      "Never place tabs inside tabs; flatten the hierarchy",
+      "Never rely on tab order for critical information; the inactive panel is hidden from the DOM by default",
+      "Never hardcode tab indicator colours; the active state resolves through bg-background and shadow-xs"
+    ],
+    "tokens": [
+      "--layout-muted",
+      "--layout-muted-fg",
+      "--layout-bg",
+      "--layout-fg",
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-shadow-xs",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "title": "Breadcrumb",
+  "description": "A server-compatible breadcrumb trail showing the user's location within a hierarchy. BreadcrumbSeparator accepts a custom icon child; BreadcrumbEllipsis collapses long paths.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/breadcrumb/breadcrumb.tsx",
+      "content": "import * as React from \"react\";\nimport { ChevronRight, MoreHorizontal } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/* ------------------------------------------------------------------ root */\n\nfunction Breadcrumb({ ...props }: React.ComponentProps<\"nav\">) {\n  return <nav aria-label=\"breadcrumb\" data-slot=\"breadcrumb\" {...props} />;\n}\n\n/* ------------------------------------------------------------------ list */\n\nfunction BreadcrumbList({ className, ...props }: React.ComponentProps<\"ol\">) {\n  return (\n    <ol\n      data-slot=\"breadcrumb-list\"\n      className={cn(\n        \"flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/* ------------------------------------------------------------------ item */\n\nfunction BreadcrumbItem({ className, ...props }: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      data-slot=\"breadcrumb-item\"\n      className={cn(\"inline-flex items-center gap-1.5\", className)}\n      {...props}\n    />\n  );\n}\n\n/* ------------------------------------------------------------------ link */\n\nfunction BreadcrumbLink({\n  className,\n  ...props\n}: React.ComponentProps<\"a\">) {\n  return (\n    <a\n      data-slot=\"breadcrumb-link\"\n      className={cn(\n        \"transition-colors duration-[var(--layout-duration-base)] ease-out hover:text-foreground\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/* ------------------------------------------------------------------ page */\n\nfunction BreadcrumbPage({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      role=\"link\"\n      aria-disabled=\"true\"\n      aria-current=\"page\"\n      data-slot=\"breadcrumb-page\"\n      className={cn(\"font-medium text-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\n/* --------------------------------------------------------------- separator */\n\nfunction BreadcrumbSeparator({\n  children,\n  className,\n  ...props\n}: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      data-slot=\"breadcrumb-separator\"\n      className={cn(\"[&>svg]:size-3.5\", className)}\n      {...props}\n    >\n      {children ?? <ChevronRight />}\n    </li>\n  );\n}\n\n/* --------------------------------------------------------------- ellipsis */\n\nfunction BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      data-slot=\"breadcrumb-ellipsis\"\n      className={cn(\"flex size-9 items-center justify-center\", className)}\n      {...props}\n    >\n      <MoreHorizontal className=\"size-4\" />\n      <span className=\"sr-only\">More</span>\n    </span>\n  );\n}\n\nexport {\n  Breadcrumb,\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n  BreadcrumbEllipsis,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Place at the top of content areas to help users navigate back. Use BreadcrumbPage (not BreadcrumbLink) for the final segment. Use BreadcrumbEllipsis with a DropdownMenu to reveal hidden intermediate crumbs on mobile.",
+    "never": [
+      "Never mark the current page with BreadcrumbLink; always use BreadcrumbPage",
+      "Never use breadcrumbs for flat or single-level navigation",
+      "Never hardcode colours; text colours resolve through text-foreground and text-muted-foreground",
+      "Never add interactive elements inside BreadcrumbPage; it is aria-disabled"
+    ],
+    "tokens": [
+      "--layout-fg",
+      "--layout-muted-fg",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

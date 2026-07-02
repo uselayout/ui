@@ -1,0 +1,21 @@
+{
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "Accessible checkbox with checked, unchecked and indeterminate states. Built on Base UI Checkbox with a Lucide Check indicator.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/checkbox/checkbox.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Pair with a Label via htmlFor/id. Use inside a form or with Field for validation. The indeterminate prop shows a minus icon for parent checkboxes that represent a partial selection.",
+    "never": [
+      "Never use as a toggle for immediate actions; use Switch instead",
+      "Never omit an associated label — pass aria-label if no visible label is present",
+      "Never override the checked background colour; it derives from --layout-primary",
+      "Never rely on colour alone to convey state"
+    ],
+    "tokens": ["--layout-primary", "--layout-primary-fg", "--layout-input", "--layout-ring", "--layout-radius", "--layout-duration-base"]
+  }
+}

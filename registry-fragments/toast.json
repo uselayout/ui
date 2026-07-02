@@ -1,0 +1,29 @@
+{
+  "name": "toast",
+  "type": "registry:ui",
+  "title": "Toast",
+  "description": "Imperative notification system using Base UI Toast. Exports Toaster (mount once) and toast() (call anywhere). Supports default, success, warning, and destructive variants with optional action buttons.",
+  "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/toast/toast.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Mount <Toaster /> once in your root layout. Then call toast() imperatively from any client component or event handler. Use toast.success / toast.warning / toast.destructive for intent-specific variants. Provide an action for reversible operations (e.g. undo archive). Use toast.dismiss(id) for manual programmatic dismissal. Toasts auto-dismiss after 5 seconds by default; pass duration in ms to override.",
+    "never": [
+      "Never use toast for errors that require user input or decisions — use Dialog or AlertDialog",
+      "Never stack more than 3 toasts; the queue hides older ones automatically",
+      "Never mount Toaster more than once in the same React tree",
+      "Never use toast as the sole feedback for a destructive action; show AlertDialog first, toast after"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-md",
+      "--layout-radius",
+      "--layout-duration-base",
+      "--layout-success",
+      "--layout-warning",
+      "--layout-danger"
+    ]
+  }
+}

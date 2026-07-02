@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker",
+  "title": "Date Picker",
+  "description": "Composed date-picker pattern: a Popover-wrapped Button trigger with a Calendar inside. Exports DatePicker (single) and DateRangePicker (range). Not a primitive — installs Calendar, Popover, and Button as dependencies.",
+  "dependencies": [
+    "date-fns",
+    "react-day-picker"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@layout/button",
+    "@layout/popover",
+    "@layout/calendar"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/date-picker/date-picker.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { format } from \"date-fns\";\nimport { CalendarIcon } from \"lucide-react\";\nimport type { DateRange } from \"react-day-picker\";\n\nimport { cn } from \"@/lib/utils\";\nimport { Button } from \"@/registry/layout/button/button\";\nimport {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n} from \"@/registry/layout/popover/popover\";\nimport { Calendar } from \"@/registry/layout/calendar/calendar\";\n\ninterface DatePickerProps {\n  date?: Date;\n  onDateChange?: (date: Date | undefined) => void;\n  placeholder?: string;\n  className?: string;\n  disabled?: boolean;\n}\n\nfunction DatePicker({\n  date,\n  onDateChange,\n  placeholder = \"Pick a date\",\n  className,\n  disabled,\n}: DatePickerProps) {\n  return (\n    <Popover>\n      <PopoverTrigger\n        render={\n          <Button\n            variant=\"outline\"\n            className={cn(\n              \"w-[240px] justify-start text-left font-normal\",\n              !date && \"text-muted-foreground\",\n              className\n            )}\n            disabled={disabled}\n          >\n            <CalendarIcon className=\"mr-2 size-4\" />\n            {date ? format(date, \"PPP\") : <span>{placeholder}</span>}\n          </Button>\n        }\n      />\n      <PopoverContent className=\"w-auto p-0\" align=\"start\">\n        <Calendar\n          mode=\"single\"\n          selected={date}\n          onSelect={onDateChange}\n        />\n      </PopoverContent>\n    </Popover>\n  );\n}\n\ninterface DateRangePickerProps {\n  dateRange?: DateRange;\n  onDateRangeChange?: (range: DateRange | undefined) => void;\n  placeholder?: string;\n  className?: string;\n  disabled?: boolean;\n  numberOfMonths?: number;\n}\n\nfunction DateRangePicker({\n  dateRange,\n  onDateRangeChange,\n  placeholder = \"Pick a date range\",\n  className,\n  disabled,\n  numberOfMonths = 2,\n}: DateRangePickerProps) {\n  return (\n    <Popover>\n      <PopoverTrigger\n        render={\n          <Button\n            variant=\"outline\"\n            className={cn(\n              \"w-[300px] justify-start text-left font-normal\",\n              !dateRange && \"text-muted-foreground\",\n              className\n            )}\n            disabled={disabled}\n          >\n            <CalendarIcon className=\"mr-2 size-4\" />\n            {dateRange?.from ? (\n              dateRange.to ? (\n                <>\n                  {format(dateRange.from, \"LLL dd, y\")} -{\" \"}\n                  {format(dateRange.to, \"LLL dd, y\")}\n                </>\n              ) : (\n                format(dateRange.from, \"LLL dd, y\")\n              )\n            ) : (\n              <span>{placeholder}</span>\n            )}\n          </Button>\n        }\n      />\n      <PopoverContent className=\"w-auto p-0\" align=\"start\">\n        <Calendar\n          mode=\"range\"\n          defaultMonth={dateRange?.from}\n          selected={dateRange}\n          onSelect={onDateRangeChange}\n          numberOfMonths={numberOfMonths}\n        />\n      </PopoverContent>\n    </Popover>\n  );\n}\n\nexport { DatePicker, DateRangePicker, type DatePickerProps, type DateRangePickerProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use DatePicker for single date inputs (booking, scheduling). Use DateRangePicker for filtering or reporting windows. Control state externally via date/onDateChange or dateRange/onDateRangeChange props. Set numberOfMonths={2} on DateRangePicker for wide viewports.",
+    "never": [
+      "Never import date-fns format separately when the component already formats the label",
+      "Never fix the popover width with w-* on PopoverContent; use w-auto so the calendar dictates size",
+      "Never use this pattern as an uncontrolled component; always lift date state up"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-muted-fg",
+      "--layout-border",
+      "--layout-ring",
+      "--layout-radius"
+    ]
+  },
+  "type": "registry:ui"
+}

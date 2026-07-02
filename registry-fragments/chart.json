@@ -1,0 +1,33 @@
+{
+  "name": "chart",
+  "type": "registry:ui",
+  "title": "Chart",
+  "description": "shadcn-style chart kit built on Recharts. ChartContainer scopes series colours as --color-<key> CSS custom properties. ChartTooltip and ChartTooltipContent render token-styled tooltips. ChartLegend and ChartLegendContent render colour-dotted legend rows. Pair with any Recharts chart type.",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/chart/chart.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Wrap any Recharts chart in ChartContainer with a config map (keys match Recharts dataKey values, each entry has label and color). Reference colours in Recharts props as var(--color-<key>). Pass ChartTooltipContent to Recharts Tooltip's content prop and ChartLegendContent to Legend's content prop, passing the same config to both so labels and colours stay consistent.",
+    "never": [
+      "Never hardcode hex or rgb colours in config entries; always use a var(--layout-*) token reference",
+      "Never use the same --color-<key> name across two ChartContainers on the same page unless the colours are intentionally identical",
+      "Never pass config keys that do not match the Recharts dataKey values; colours will not resolve",
+      "Never render ChartContainer without a ResponsiveContainer child; without it the chart will not adapt to its parent width"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-success",
+      "--layout-warning",
+      "--layout-danger",
+      "--layout-muted-fg",
+      "--layout-border",
+      "--layout-surface",
+      "--layout-overlay",
+      "--layout-fg",
+      "--layout-radius",
+      "--layout-shadow-md"
+    ]
+  }
+}

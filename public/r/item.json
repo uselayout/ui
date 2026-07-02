@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item",
+  "title": "Item",
+  "description": "Flexible list item family with media, content, and actions slots. Three variants: default, outline, and muted. Server-compatible plain markup.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/item/item.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst itemVariants = cva(\n  \"flex items-center gap-3 rounded-lg p-3 text-sm transition-colors duration-[var(--layout-duration-base)]\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent hover:bg-accent hover:text-accent-foreground\",\n        outline:\n          \"border border-border bg-transparent hover:bg-accent hover:text-accent-foreground\",\n        muted: \"bg-muted text-muted-foreground hover:bg-muted/70\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\ninterface ItemProps\n  extends React.ComponentProps<\"div\">,\n    VariantProps<typeof itemVariants> {}\n\nfunction Item({ className, variant, ...props }: ItemProps) {\n  return (\n    <div\n      data-slot=\"item\"\n      className={cn(itemVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nfunction ItemMedia({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"item-media\"\n      className={cn(\n        \"flex size-9 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction ItemContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"item-content\"\n      className={cn(\"flex min-w-0 flex-1 flex-col gap-0.5\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction ItemTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"item-title\"\n      className={cn(\n        \"truncate font-medium leading-none text-foreground\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction ItemDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"item-description\"\n      className={cn(\"truncate text-xs text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction ItemActions({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"item-actions\"\n      className={cn(\"ml-auto flex shrink-0 items-center gap-1\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction ItemGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"item-group\"\n      className={cn(\"flex flex-col\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction ItemSeparator({ className, ...props }: React.ComponentProps<\"hr\">) {\n  return (\n    <hr\n      data-slot=\"item-separator\"\n      className={cn(\"my-1 border-border\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Item,\n  ItemMedia,\n  ItemContent,\n  ItemTitle,\n  ItemDescription,\n  ItemActions,\n  ItemGroup,\n  ItemSeparator,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Compose Item with ItemMedia (icon container), ItemContent wrapping ItemTitle and ItemDescription, and ItemActions for trailing buttons or badges. Group related items inside ItemGroup and divide sections with ItemSeparator. Use the outline variant for standalone items that need visible containment, muted for secondary items in a dense list.",
+    "never": [
+      "Never use Item as an interactive element without wrapping it in a button or anchor; it is a display primitive",
+      "Never nest ItemGroup inside ItemGroup; use ItemSeparator to separate sections within a single group",
+      "Never place more than one ItemActions child that triggers navigation; keep trailing actions supplementary",
+      "Never hardcode padding inside Item children; the component's gap and padding tokens already space them correctly"
+    ],
+    "tokens": [
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-muted",
+      "--layout-muted-fg",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

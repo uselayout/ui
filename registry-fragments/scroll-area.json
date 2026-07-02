@@ -1,0 +1,19 @@
+{
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "title": "Scroll Area",
+  "description": "Custom-styled scrollable container with thin border-coloured scrollbar. Built on Base UI Scroll Area.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/scroll-area/scroll-area.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Set a fixed height (e.g. h-64) on ScrollArea so the viewport can overflow. Use orientation=\"horizontal\" or \"both\" for horizontal or bidirectional scrolling. ScrollBar is exported separately so you can control its placement precisely when the orientation is set on ScrollArea.",
+    "never": [
+      "Never use ScrollArea without a constrained height on the root; it will not scroll if the parent grows unbounded",
+      "Never apply overflow-* on the ScrollArea root or viewport; Base UI manages overflow internally",
+      "Never style the scrollbar thumb with a specific colour; use bg-border so it stays consistent with the token contract",
+      "Never nest ScrollArea inside another ScrollArea on the same axis; competing scroll contexts confuse pointer events"
+    ],
+    "tokens": ["--layout-border", "--layout-radius", "--layout-duration-base"]
+  }
+}

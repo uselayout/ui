@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "title": "Dialog",
+  "description": "Modal dialog with backdrop, centred popup, header, footer, and close button. Built on Base UI Dialog.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/dialog/dialog.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Dialog as BaseDialog } from \"@base-ui/react/dialog\";\nimport { X } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Dialog(props: BaseDialog.Root.Props) {\n  return <BaseDialog.Root {...props} />;\n}\n\nfunction DialogTrigger(props: BaseDialog.Trigger.Props) {\n  return <BaseDialog.Trigger data-slot=\"dialog-trigger\" {...props} />;\n}\n\nfunction DialogPortal(props: BaseDialog.Portal.Props) {\n  return <BaseDialog.Portal {...props} />;\n}\n\ninterface DialogContentProps extends BaseDialog.Popup.Props {\n  showClose?: boolean;\n}\n\nfunction DialogContent({\n  className,\n  children,\n  showClose = true,\n  ...props\n}: DialogContentProps) {\n  return (\n    <BaseDialog.Portal>\n      <BaseDialog.Backdrop\n        data-slot=\"dialog-backdrop\"\n        className=\"fixed inset-0 z-50 bg-black/50 transition-opacity duration-[var(--layout-duration-base)] ease-out data-[ending-style]:opacity-0 data-[starting-style]:opacity-0\"\n      />\n      <BaseDialog.Popup\n        data-slot=\"dialog-content\"\n        className={cn(\n          \"fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2\",\n          \"bg-popover text-popover-foreground\",\n          \"rounded-xl border border-border shadow-lg\",\n          \"p-6 outline-none\",\n          \"transition-all duration-[var(--layout-duration-base)] ease-out\",\n          \"data-[ending-style]:scale-95 data-[ending-style]:opacity-0\",\n          \"data-[starting-style]:scale-95 data-[starting-style]:opacity-0\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        {showClose && (\n          <BaseDialog.Close\n            data-slot=\"dialog-close-x\"\n            className=\"absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:pointer-events-none\"\n            aria-label=\"Close\"\n          >\n            <X className=\"size-4\" />\n          </BaseDialog.Close>\n        )}\n      </BaseDialog.Popup>\n    </BaseDialog.Portal>\n  );\n}\n\nfunction DialogHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"dialog-header\"\n      className={cn(\"flex flex-col gap-2 text-left\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction DialogFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"dialog-footer\"\n      className={cn(\n        \"flex flex-col-reverse gap-2 pt-4 sm:flex-row sm:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DialogTitle({ className, ...props }: BaseDialog.Title.Props) {\n  return (\n    <BaseDialog.Title\n      data-slot=\"dialog-title\"\n      className={cn(\n        \"text-lg font-semibold leading-none tracking-tight\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DialogDescription({\n  className,\n  ...props\n}: BaseDialog.Description.Props) {\n  return (\n    <BaseDialog.Description\n      data-slot=\"dialog-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction DialogClose({ className, ...props }: BaseDialog.Close.Props) {\n  return (\n    <BaseDialog.Close\n      data-slot=\"dialog-close\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Dialog,\n  DialogTrigger,\n  DialogPortal,\n  DialogContent,\n  DialogHeader,\n  DialogFooter,\n  DialogTitle,\n  DialogDescription,\n  DialogClose,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use for tasks that require focused user attention and cannot be performed inline — forms, confirmations needing context, and detail views. Trigger with DialogTrigger using the render prop pattern. Always include a DialogTitle for accessibility. Use DialogClose inside DialogFooter for explicit dismiss actions.",
+    "never": [
+      "Never use Dialog for destructive confirmations — use AlertDialog instead so screen readers announce the alert role",
+      "Never use Dialog for contextual information anchored to a trigger — use Popover or HoverCard instead",
+      "Never use Dialog for mobile-first slide-up panels — use Sheet (side bottom) or Drawer instead",
+      "Never nest interactive dialogs; open a second dialog only after the first is closed"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-base",
+      "--layout-ring"
+    ]
+  },
+  "type": "registry:ui"
+}

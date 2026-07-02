@@ -1,0 +1,17 @@
+{
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "title": "Aspect Ratio",
+  "description": "Pure CSS aspect-ratio wrapper. Server-compatible with no client JavaScript required.",
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/aspect-ratio/aspect-ratio.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Pass a ratio prop (e.g. 16/9, 4/3, 1) and place content inside that fills size-full. Wrap in a container with overflow-hidden and a border-radius to clip the content to the box. Suitable for images, iframes, and video embeds.",
+    "never": [
+      "Never set an explicit height on AspectRatio; the aspect-ratio CSS property derives height from width automatically",
+      "Never use AspectRatio for non-media content that has a natural height; it is for enforcing visual proportions only",
+      "Never rely on padding-top percentage hacks; this component uses the native CSS aspect-ratio property supported in all modern browsers"
+    ],
+    "tokens": []
+  }
+}

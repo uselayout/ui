@@ -1,0 +1,27 @@
+{
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Vertically stacked collapsible sections built on Base UI Accordion. The chevron rotates on open via data-[panel-open]. Supports single or multiple open items via the openMultiple prop.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/accordion/accordion.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for FAQ sections, settings groups, or sidebar navigation trees. Use openMultiple on the root to allow several panels open simultaneously. Each AccordionItem must have a unique value prop.",
+    "never": [
+      "Never use accordion for tab-like switching between mutually exclusive views; use Tabs",
+      "Never put accordions inside accordions more than two levels deep",
+      "Never hardcode the chevron rotation angle; rely on the data-[panel-open] selector in AccordionTrigger",
+      "Never remove AccordionHeader; it is required for the correct heading hierarchy and accessibility tree"
+    ],
+    "tokens": [
+      "--layout-border",
+      "--layout-fg",
+      "--layout-muted-fg",
+      "--layout-ring",
+      "--layout-duration-base"
+    ]
+  }
+}

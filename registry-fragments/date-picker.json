@@ -1,0 +1,18 @@
+{
+  "name": "date-picker",
+  "type": "registry:ui",
+  "title": "Date Picker",
+  "description": "Composed date-picker pattern: a Popover-wrapped Button trigger with a Calendar inside. Exports DatePicker (single) and DateRangePicker (range). Not a primitive — installs Calendar, Popover, and Button as dependencies.",
+  "dependencies": ["date-fns", "react-day-picker"],
+  "registryDependencies": ["utils", "@layout/button", "@layout/popover", "@layout/calendar"],
+  "files": [{ "path": "registry/layout/date-picker/date-picker.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use DatePicker for single date inputs (booking, scheduling). Use DateRangePicker for filtering or reporting windows. Control state externally via date/onDateChange or dateRange/onDateRangeChange props. Set numberOfMonths={2} on DateRangePicker for wide viewports.",
+    "never": [
+      "Never import date-fns format separately when the component already formats the label",
+      "Never fix the popover width with w-* on PopoverContent; use w-auto so the calendar dictates size",
+      "Never use this pattern as an uncontrolled component; always lift date state up"
+    ],
+    "tokens": ["--layout-primary", "--layout-muted-fg", "--layout-border", "--layout-ring", "--layout-radius"]
+  }
+}

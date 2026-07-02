@@ -1,0 +1,18 @@
+{
+  "name": "empty",
+  "type": "registry:ui",
+  "title": "Empty",
+  "description": "Empty state component family with icon media, title, description, and CTA slot. Server-compatible plain markup.",
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/empty/empty.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use Empty as the outer wrapper. EmptyHeader groups the media, title, and description. EmptyMedia wraps a lucide icon (size-6) in a square bg-muted rounded container. EmptyContent holds action buttons below the header. Always include EmptyDescription to explain the empty state and guide the user's next action.",
+    "never": [
+      "Never show Empty during initial loading; use Skeleton instead and only render Empty once the data fetch confirms zero results",
+      "Never place EmptyContent outside of Empty; it relies on the parent's flex-col layout",
+      "Never use EmptyMedia for decorative images that do not represent the missing entity type",
+      "Never omit EmptyTitle; a blank media icon alone does not convey enough information"
+    ],
+    "tokens": ["--layout-muted", "--layout-muted-fg", "--layout-radius"]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "title": "Slider",
+  "description": "A draggable range slider. Supports single values and multi-thumb ranges. Built on Base UI Slider.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/slider/slider.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Slider as BaseSlider } from \"@base-ui/react/slider\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface SliderProps\n  extends React.ComponentPropsWithoutRef<typeof BaseSlider.Root> {\n  className?: string;\n}\n\nfunction Slider({ className, ...props }: SliderProps) {\n  return (\n    <BaseSlider.Root\n      data-slot=\"slider\"\n      className={cn(\"relative flex w-full touch-none select-none items-center\", className)}\n      {...props}\n    >\n      <BaseSlider.Control\n        data-slot=\"slider-control\"\n        className=\"relative flex w-full cursor-pointer items-center\"\n      >\n        <BaseSlider.Track\n          data-slot=\"slider-track\"\n          className=\"relative h-1.5 w-full grow overflow-hidden rounded-full bg-muted\"\n        >\n          <BaseSlider.Indicator\n            data-slot=\"slider-indicator\"\n            className=\"absolute h-full bg-primary\"\n          />\n        </BaseSlider.Track>\n        <BaseSlider.Thumb\n          data-slot=\"slider-thumb\"\n          className={cn(\n            \"block size-4 rounded-full border-2 border-primary bg-background shadow-sm\",\n            \"transition-[box-shadow,color] duration-[var(--layout-duration-fast)] ease-out\",\n            \"outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n            \"disabled:pointer-events-none disabled:opacity-50\"\n          )}\n        />\n      </BaseSlider.Control>\n    </BaseSlider.Root>\n  );\n}\n\nexport { Slider, type SliderProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Pass a single number for a single thumb or a readonly array for a range. Always set min and max explicitly. Provide an aria-label or associate with a visible label for accessibility. Show the current value nearby for precision inputs.",
+    "never": [
+      "Never set step to 0",
+      "Never hardcode the track or range colour; they derive from --layout-muted and --layout-primary",
+      "Never place a Slider in a narrow container without setting a sensible max-w",
+      "Never omit aria-label on the thumb for screen readers"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-muted",
+      "--layout-bg",
+      "--layout-ring",
+      "--layout-duration-fast",
+      "--layout-shadow-sm"
+    ]
+  },
+  "type": "registry:ui"
+}

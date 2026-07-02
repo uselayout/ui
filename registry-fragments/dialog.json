@@ -1,0 +1,27 @@
+{
+  "name": "dialog",
+  "type": "registry:ui",
+  "title": "Dialog",
+  "description": "Modal dialog with backdrop, centred popup, header, footer, and close button. Built on Base UI Dialog.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/dialog/dialog.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use for tasks that require focused user attention and cannot be performed inline — forms, confirmations needing context, and detail views. Trigger with DialogTrigger using the render prop pattern. Always include a DialogTitle for accessibility. Use DialogClose inside DialogFooter for explicit dismiss actions.",
+    "never": [
+      "Never use Dialog for destructive confirmations — use AlertDialog instead so screen readers announce the alert role",
+      "Never use Dialog for contextual information anchored to a trigger — use Popover or HoverCard instead",
+      "Never use Dialog for mobile-first slide-up panels — use Sheet (side bottom) or Drawer instead",
+      "Never nest interactive dialogs; open a second dialog only after the first is closed"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-base",
+      "--layout-ring"
+    ]
+  }
+}

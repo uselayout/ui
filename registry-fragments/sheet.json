@@ -1,0 +1,27 @@
+{
+  "name": "sheet",
+  "type": "registry:ui",
+  "title": "Sheet",
+  "description": "Slide-in panel from any screen edge. Built on Base UI Dialog with directional slide animations. Supports top, right, bottom, and left sides.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/sheet/sheet.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use for secondary panels, settings, navigation drawers, and filter sidebars that extend or supplement the main view without interrupting the full workflow. Right is the default side for settings and detail panels; left for navigation; bottom for mobile-optimised action lists (prefer Drawer for touch swipe-to-dismiss); top is rarely used.",
+    "never": [
+      "Never use Sheet for critical confirmations — use AlertDialog",
+      "Never use Sheet for focused task flows requiring full attention — use Dialog",
+      "Never render a Sheet wider than half the viewport on desktop; content should remain scannable",
+      "Never omit SheetTitle; it is the accessible name of the dialog region"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-slow",
+      "--layout-ring"
+    ]
+  }
+}

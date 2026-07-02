@@ -1,0 +1,21 @@
+{
+  "name": "native-select",
+  "type": "registry:ui",
+  "title": "Native Select",
+  "description": "A styled native <select> with a Chevron indicator. Same field chrome as Input. Use when a custom dropdown is unnecessary.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/native-select/native-select.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for simple option lists where the native select UX is acceptable — particularly on mobile, where native pickers have better ergonomics. Pair with Label via htmlFor/id. For searchable or complex option lists, use the Combobox or Select component instead.",
+    "never": [
+      "Never hardcode the chevron colour; it derives from --layout-muted-fg",
+      "Never attempt to style the option elements — they are rendered by the OS",
+      "Never use for more than ~15 options without a search; switch to Combobox",
+      "Never remove appearance-none — it hides the OS chevron so the custom one shows"
+    ],
+    "tokens": ["--layout-input", "--layout-ring", "--layout-fg", "--layout-muted-fg", "--layout-danger", "--layout-radius", "--layout-shadow-xs", "--layout-duration-base"]
+  }
+}

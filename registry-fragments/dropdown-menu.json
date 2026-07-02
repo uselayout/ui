@@ -1,0 +1,31 @@
+{
+  "name": "dropdown-menu",
+  "type": "registry:ui",
+  "title": "Dropdown Menu",
+  "description": "A menu anchored to a trigger button, built on Base UI Menu. Supports groups, labels, separators, keyboard shortcuts, checkboxes, radio groups, sub-menus, and a destructive item variant.",
+  "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/dropdown-menu/dropdown-menu.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for actions triggered by a single button (e.g. account menu, row actions, sort options). Wrap items in DropdownMenuGroup and add DropdownMenuLabel for semantic sections. Apply variant=\"destructive\" on irreversible items like sign out or delete.",
+    "never": [
+      "Never use DropdownMenu for navigation between pages; use NavigationMenu or plain links instead",
+      "Never open a dropdown on right-click; use ContextMenu for that pattern",
+      "Never put more than two levels of sub-menus; flatten or move to a dedicated page",
+      "Never hardcode colours on items; use the variant prop and token utilities only"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-danger",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-shadow-md",
+      "--layout-duration-base"
+    ]
+  }
+}

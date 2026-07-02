@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./themes.css";
+@import "./kit-themes.css"; /* generated: npm run sync:kits */
 
 /*
  * Layout UI — token contract

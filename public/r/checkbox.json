@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "Accessible checkbox with checked, unchecked and indeterminate states. Built on Base UI Checkbox with a Lucide Check indicator.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/checkbox/checkbox.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Checkbox as BaseCheckbox } from \"@base-ui/react/checkbox\";\nimport { Check, Minus } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface CheckboxProps\n  extends React.ComponentPropsWithoutRef<typeof BaseCheckbox.Root> {\n  className?: string;\n}\n\nfunction Checkbox({ className, ...props }: CheckboxProps) {\n  return (\n    <BaseCheckbox.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer size-4 shrink-0 rounded-sm border border-input bg-transparent\",\n        \"transition-[color,background-color,border-color,box-shadow] duration-[var(--layout-duration-base)] ease-out\",\n        \"outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:border-ring\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground\",\n        \"data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground\",\n        className\n      )}\n      {...props}\n    >\n      <BaseCheckbox.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"flex items-center justify-center text-current\"\n      >\n        {props.indeterminate ? (\n          <Minus className=\"size-3\" strokeWidth={2.5} />\n        ) : (\n          <Check className=\"size-3\" strokeWidth={2.5} />\n        )}\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n\nexport { Checkbox, type CheckboxProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Pair with a Label via htmlFor/id. Use inside a form or with Field for validation. The indeterminate prop shows a minus icon for parent checkboxes that represent a partial selection.",
+    "never": [
+      "Never use as a toggle for immediate actions; use Switch instead",
+      "Never omit an associated label — pass aria-label if no visible label is present",
+      "Never override the checked background colour; it derives from --layout-primary",
+      "Never rely on colour alone to convey state"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-primary-fg",
+      "--layout-input",
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

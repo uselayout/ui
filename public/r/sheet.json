@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "title": "Sheet",
+  "description": "Slide-in panel from any screen edge. Built on Base UI Dialog with directional slide animations. Supports top, right, bottom, and left sides.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/sheet/sheet.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Dialog as BaseDialog } from \"@base-ui/react/dialog\";\nimport { X } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\ntype SheetSide = \"top\" | \"right\" | \"bottom\" | \"left\";\n\nconst sheetSideStyles: Record<SheetSide, string> = {\n  top: [\n    \"inset-x-0 top-0 rounded-b-xl\",\n    \"data-[starting-style]:-translate-y-full data-[starting-style]:opacity-0\",\n    \"data-[ending-style]:-translate-y-full data-[ending-style]:opacity-0\",\n  ].join(\" \"),\n  right: [\n    \"inset-y-0 right-0 h-full w-3/4 max-w-sm rounded-l-xl\",\n    \"data-[starting-style]:translate-x-full data-[starting-style]:opacity-0\",\n    \"data-[ending-style]:translate-x-full data-[ending-style]:opacity-0\",\n  ].join(\" \"),\n  bottom: [\n    \"inset-x-0 bottom-0 rounded-t-xl\",\n    \"data-[starting-style]:translate-y-full data-[starting-style]:opacity-0\",\n    \"data-[ending-style]:translate-y-full data-[ending-style]:opacity-0\",\n  ].join(\" \"),\n  left: [\n    \"inset-y-0 left-0 h-full w-3/4 max-w-sm rounded-r-xl\",\n    \"data-[starting-style]:-translate-x-full data-[starting-style]:opacity-0\",\n    \"data-[ending-style]:-translate-x-full data-[ending-style]:opacity-0\",\n  ].join(\" \"),\n};\n\nfunction Sheet(props: BaseDialog.Root.Props) {\n  return <BaseDialog.Root {...props} />;\n}\n\nfunction SheetTrigger(props: BaseDialog.Trigger.Props) {\n  return <BaseDialog.Trigger data-slot=\"sheet-trigger\" {...props} />;\n}\n\ninterface SheetContentProps extends BaseDialog.Popup.Props {\n  side?: SheetSide;\n  showClose?: boolean;\n}\n\nfunction SheetContent({\n  className,\n  children,\n  side = \"right\",\n  showClose = true,\n  ...props\n}: SheetContentProps) {\n  return (\n    <BaseDialog.Portal>\n      <BaseDialog.Backdrop\n        data-slot=\"sheet-backdrop\"\n        className=\"fixed inset-0 z-50 bg-black/50 transition-opacity duration-[var(--layout-duration-base)] ease-out data-[ending-style]:opacity-0 data-[starting-style]:opacity-0\"\n      />\n      <BaseDialog.Popup\n        data-slot=\"sheet-content\"\n        className={cn(\n          \"fixed z-50 flex flex-col\",\n          \"bg-popover text-popover-foreground\",\n          \"border-border shadow-lg\",\n          \"transition-all duration-[var(--layout-duration-slow)] ease-out\",\n          \"outline-none p-6\",\n          sheetSideStyles[side],\n          className\n        )}\n        {...props}\n      >\n        {children}\n        {showClose && (\n          <BaseDialog.Close\n            data-slot=\"sheet-close-x\"\n            className=\"absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:pointer-events-none\"\n            aria-label=\"Close\"\n          >\n            <X className=\"size-4\" />\n          </BaseDialog.Close>\n        )}\n      </BaseDialog.Popup>\n    </BaseDialog.Portal>\n  );\n}\n\nfunction SheetHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-header\"\n      className={cn(\"flex flex-col gap-2 pb-4\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SheetFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-footer\"\n      className={cn(\n        \"mt-auto flex flex-col-reverse gap-2 pt-4 sm:flex-row sm:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction SheetTitle({ className, ...props }: BaseDialog.Title.Props) {\n  return (\n    <BaseDialog.Title\n      data-slot=\"sheet-title\"\n      className={cn(\n        \"text-lg font-semibold leading-none tracking-tight\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction SheetDescription({ className, ...props }: BaseDialog.Description.Props) {\n  return (\n    <BaseDialog.Description\n      data-slot=\"sheet-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SheetClose({ className, ...props }: BaseDialog.Close.Props) {\n  return (\n    <BaseDialog.Close\n      data-slot=\"sheet-close\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Sheet,\n  SheetTrigger,\n  SheetContent,\n  SheetHeader,\n  SheetFooter,\n  SheetTitle,\n  SheetDescription,\n  SheetClose,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use for secondary panels, settings, navigation drawers, and filter sidebars that extend or supplement the main view without interrupting the full workflow. Right is the default side for settings and detail panels; left for navigation; bottom for mobile-optimised action lists (prefer Drawer for touch swipe-to-dismiss); top is rarely used.",
+    "never": [
+      "Never use Sheet for critical confirmations — use AlertDialog",
+      "Never use Sheet for focused task flows requiring full attention — use Dialog",
+      "Never render a Sheet wider than half the viewport on desktop; content should remain scannable",
+      "Never omit SheetTitle; it is the accessible name of the dialog region"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-lg",
+      "--layout-radius",
+      "--layout-duration-slow",
+      "--layout-ring"
+    ]
+  },
+  "type": "registry:ui"
+}

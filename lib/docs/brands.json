@@ -1,0 +1,292 @@
+[
+  {
+    "slug": "airbnb",
+    "name": "Airbnb",
+    "mode": "light"
+  },
+  {
+    "slug": "airtable",
+    "name": "Airtable",
+    "mode": "light"
+  },
+  {
+    "slug": "apple",
+    "name": "Apple",
+    "mode": "light"
+  },
+  {
+    "slug": "asana",
+    "name": "Asana",
+    "mode": "dark"
+  },
+  {
+    "slug": "atlassian-com",
+    "name": "atlassian.com",
+    "mode": "light"
+  },
+  {
+    "slug": "attio",
+    "name": "Attio",
+    "mode": "dark"
+  },
+  {
+    "slug": "bonsai",
+    "name": "Bonsai",
+    "mode": "light"
+  },
+  {
+    "slug": "cash-app",
+    "name": "Cash App",
+    "mode": "dark"
+  },
+  {
+    "slug": "claude",
+    "name": "Claude",
+    "mode": "light"
+  },
+  {
+    "slug": "clay",
+    "name": "Clay",
+    "mode": "light"
+  },
+  {
+    "slug": "clickup",
+    "name": "ClickUp",
+    "mode": "light"
+  },
+  {
+    "slug": "coinbase",
+    "name": "Coinbase",
+    "mode": "light"
+  },
+  {
+    "slug": "contra",
+    "name": "Contra",
+    "mode": "light"
+  },
+  {
+    "slug": "cursor",
+    "name": "Cursor",
+    "mode": "light"
+  },
+  {
+    "slug": "customer-io",
+    "name": "Customer.io",
+    "mode": "dark"
+  },
+  {
+    "slug": "doordash",
+    "name": "DoorDash",
+    "mode": "light"
+  },
+  {
+    "slug": "dovetail",
+    "name": "Dovetail",
+    "mode": "dark"
+  },
+  {
+    "slug": "dovetail-2",
+    "name": "Dovetail",
+    "mode": "light"
+  },
+  {
+    "slug": "dropbox",
+    "name": "Dropbox",
+    "mode": "light"
+  },
+  {
+    "slug": "duolingo",
+    "name": "Duolingo",
+    "mode": "light"
+  },
+  {
+    "slug": "elevenlabs",
+    "name": "ElevenLabs",
+    "mode": "light"
+  },
+  {
+    "slug": "fey",
+    "name": "Fey",
+    "mode": "dark"
+  },
+  {
+    "slug": "figma",
+    "name": "Figma",
+    "mode": "light"
+  },
+  {
+    "slug": "folk",
+    "name": "Folk",
+    "mode": "light"
+  },
+  {
+    "slug": "github-com",
+    "name": "github.com",
+    "mode": "dark"
+  },
+  {
+    "slug": "google",
+    "name": "Google",
+    "mode": "light"
+  },
+  {
+    "slug": "headspace",
+    "name": "Headspace",
+    "mode": "light"
+  },
+  {
+    "slug": "ibm",
+    "name": "IBM",
+    "mode": "light"
+  },
+  {
+    "slug": "intercom",
+    "name": "Intercom",
+    "mode": "dark"
+  },
+  {
+    "slug": "klarna",
+    "name": "Klarna",
+    "mode": "light"
+  },
+  {
+    "slug": "linear",
+    "name": "Linear",
+    "mode": "dark"
+  },
+  {
+    "slug": "mercedes-benz",
+    "name": "Mercedes-Benz",
+    "mode": "light"
+  },
+  {
+    "slug": "microsoft",
+    "name": "Microsoft",
+    "mode": "light"
+  },
+  {
+    "slug": "mixpanel",
+    "name": "Mixpanel",
+    "mode": "dark"
+  },
+  {
+    "slug": "monzo",
+    "name": "Monzo",
+    "mode": "dark"
+  },
+  {
+    "slug": "netflix",
+    "name": "Netflix",
+    "mode": "dark"
+  },
+  {
+    "slug": "nike",
+    "name": "Nike",
+    "mode": "light"
+  },
+  {
+    "slug": "notion",
+    "name": "Notion",
+    "mode": "light"
+  },
+  {
+    "slug": "openai",
+    "name": "OpenAI",
+    "mode": "light"
+  },
+  {
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "mode": "light"
+  },
+  {
+    "slug": "pinterest",
+    "name": "Pinterest",
+    "mode": "light"
+  },
+  {
+    "slug": "posthog",
+    "name": "PostHog",
+    "mode": "light"
+  },
+  {
+    "slug": "ramp-com-opus4-7",
+    "name": "Ramp",
+    "mode": "light"
+  },
+  {
+    "slug": "revolut",
+    "name": "Revolut",
+    "mode": "light"
+  },
+  {
+    "slug": "runway",
+    "name": "Runway",
+    "mode": "light"
+  },
+  {
+    "slug": "salesforce",
+    "name": "Salesforce",
+    "mode": "light"
+  },
+  {
+    "slug": "sentry",
+    "name": "Sentry",
+    "mode": "dark"
+  },
+  {
+    "slug": "shopify",
+    "name": "Shopify",
+    "mode": "dark"
+  },
+  {
+    "slug": "spotify",
+    "name": "Spotify",
+    "mode": "dark"
+  },
+  {
+    "slug": "stripe",
+    "name": "Stripe",
+    "mode": "light"
+  },
+  {
+    "slug": "supabase",
+    "name": "Supabase",
+    "mode": "dark"
+  },
+  {
+    "slug": "uber",
+    "name": "Uber",
+    "mode": "light"
+  },
+  {
+    "slug": "vercel",
+    "name": "Vercel",
+    "mode": "light"
+  },
+  {
+    "slug": "webflow",
+    "name": "Webflow",
+    "mode": "light"
+  },
+  {
+    "slug": "whatsapp",
+    "name": "WhatsApp",
+    "mode": "light"
+  },
+  {
+    "slug": "wise",
+    "name": "Wise",
+    "mode": "light"
+  },
+  {
+    "slug": "xero",
+    "name": "Xero",
+    "mode": "light"
+  },
+  {
+    "slug": "zendesk",
+    "name": "Zendesk",
+    "mode": "light"
+  }
+]

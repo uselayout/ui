@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "title": "Scroll Area",
+  "description": "Custom-styled scrollable container with thin border-coloured scrollbar. Built on Base UI Scroll Area.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/scroll-area/scroll-area.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ScrollArea as BaseScrollArea } from \"@base-ui/react/scroll-area\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface ScrollAreaProps\n  extends React.ComponentPropsWithoutRef<typeof BaseScrollArea.Root> {\n  orientation?: \"vertical\" | \"horizontal\" | \"both\";\n}\n\nfunction ScrollArea({\n  className,\n  children,\n  orientation = \"vertical\",\n  ...props\n}: ScrollAreaProps) {\n  return (\n    <BaseScrollArea.Root\n      data-slot=\"scroll-area\"\n      className={cn(\"relative overflow-hidden\", className)}\n      {...props}\n    >\n      <BaseScrollArea.Viewport\n        data-slot=\"scroll-area-viewport\"\n        className=\"size-full rounded-[inherit]\"\n      >\n        {children}\n      </BaseScrollArea.Viewport>\n      {(orientation === \"vertical\" || orientation === \"both\") && (\n        <ScrollBar orientation=\"vertical\" />\n      )}\n      {(orientation === \"horizontal\" || orientation === \"both\") && (\n        <ScrollBar orientation=\"horizontal\" />\n      )}\n      <BaseScrollArea.Corner />\n    </BaseScrollArea.Root>\n  );\n}\n\ninterface ScrollBarProps\n  extends React.ComponentPropsWithoutRef<typeof BaseScrollArea.Scrollbar> {}\n\nfunction ScrollBar({ className, orientation = \"vertical\", ...props }: ScrollBarProps) {\n  return (\n    <BaseScrollArea.Scrollbar\n      data-slot=\"scroll-area-scrollbar\"\n      orientation={orientation}\n      className={cn(\n        \"flex touch-none select-none transition-colors duration-[var(--layout-duration-base)]\",\n        orientation === \"vertical\" &&\n          \"h-full w-2 border-l border-l-transparent p-px\",\n        orientation === \"horizontal\" &&\n          \"h-2 flex-col border-t border-t-transparent p-px\",\n        className\n      )}\n      {...props}\n    >\n      <BaseScrollArea.Thumb\n        data-slot=\"scroll-area-thumb\"\n        className=\"relative flex-1 rounded-full bg-border\"\n      />\n    </BaseScrollArea.Scrollbar>\n  );\n}\n\nexport { ScrollArea, ScrollBar };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Set a fixed height (e.g. h-64) on ScrollArea so the viewport can overflow. Use orientation=\"horizontal\" or \"both\" for horizontal or bidirectional scrolling. ScrollBar is exported separately so you can control its placement precisely when the orientation is set on ScrollArea.",
+    "never": [
+      "Never use ScrollArea without a constrained height on the root; it will not scroll if the parent grows unbounded",
+      "Never apply overflow-* on the ScrollArea root or viewport; Base UI manages overflow internally",
+      "Never style the scrollbar thumb with a specific colour; use bg-border so it stays consistent with the token contract",
+      "Never nest ScrollArea inside another ScrollArea on the same axis; competing scroll contexts confuse pointer events"
+    ],
+    "tokens": [
+      "--layout-border",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

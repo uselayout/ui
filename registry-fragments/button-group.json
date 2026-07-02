@@ -1,0 +1,18 @@
+{
+  "name": "button-group",
+  "type": "registry:ui",
+  "title": "Button Group",
+  "description": "Wrapper that visually fuses adjacent Button children into a single segmented control, collapsing inner borders and radii. Server-compatible.",
+  "registryDependencies": ["utils", "@layout/button"],
+  "files": [{ "path": "registry/layout/button-group/button-group.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Place two or more Button components as direct children. Orientation defaults to horizontal; pass orientation=\"vertical\" for a stacked group. All buttons in the group should share the same variant so the fused appearance is consistent. ButtonGroup only adjusts radius and border-margin; all other button styling comes from the Button component itself.",
+    "never": [
+      "Never mix Button variants within the same ButtonGroup; use a single variant across all children",
+      "Never use ButtonGroup for navigation tabs; use a Tabs component instead",
+      "Never place non-Button elements as direct children; the [&>*] selectors target sibling elements and may break non-button markup",
+      "Never add margin between buttons manually; ButtonGroup handles negative margin to collapse borders"
+    ],
+    "tokens": ["--layout-radius", "--layout-duration-base"]
+  }
+}

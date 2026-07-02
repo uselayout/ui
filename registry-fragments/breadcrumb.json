@@ -1,0 +1,25 @@
+{
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "title": "Breadcrumb",
+  "description": "A server-compatible breadcrumb trail showing the user's location within a hierarchy. BreadcrumbSeparator accepts a custom icon child; BreadcrumbEllipsis collapses long paths.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/breadcrumb/breadcrumb.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Place at the top of content areas to help users navigate back. Use BreadcrumbPage (not BreadcrumbLink) for the final segment. Use BreadcrumbEllipsis with a DropdownMenu to reveal hidden intermediate crumbs on mobile.",
+    "never": [
+      "Never mark the current page with BreadcrumbLink; always use BreadcrumbPage",
+      "Never use breadcrumbs for flat or single-level navigation",
+      "Never hardcode colours; text colours resolve through text-foreground and text-muted-foreground",
+      "Never add interactive elements inside BreadcrumbPage; it is aria-disabled"
+    ],
+    "tokens": [
+      "--layout-fg",
+      "--layout-muted-fg",
+      "--layout-duration-base"
+    ]
+  }
+}

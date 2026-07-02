@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "title": "Native Select",
+  "description": "A styled native <select> with a Chevron indicator. Same field chrome as Input. Use when a custom dropdown is unnecessary.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/native-select/native-select.tsx",
+      "content": "import * as React from \"react\";\nimport { ChevronDown } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface NativeSelectProps\n  extends React.ComponentPropsWithoutRef<\"select\"> {\n  className?: string;\n}\n\nfunction NativeSelect({ className, children, ...props }: NativeSelectProps) {\n  return (\n    <div className=\"relative w-full\" data-slot=\"native-select-wrapper\">\n      <select\n        data-slot=\"native-select\"\n        className={cn(\n          \"flex h-9 w-full appearance-none rounded-md border border-input bg-transparent px-3 py-1 pr-8 text-sm text-foreground shadow-xs\",\n          \"transition-[color,box-shadow] duration-[var(--layout-duration-base)] ease-out outline-none\",\n          \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n          \"disabled:cursor-not-allowed disabled:opacity-50\",\n          \"aria-invalid:border-destructive aria-invalid:ring-destructive/20\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </select>\n      <ChevronDown\n        className=\"pointer-events-none absolute right-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground\"\n        aria-hidden=\"true\"\n      />\n    </div>\n  );\n}\n\nexport { NativeSelect, type NativeSelectProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use for simple option lists where the native select UX is acceptable — particularly on mobile, where native pickers have better ergonomics. Pair with Label via htmlFor/id. For searchable or complex option lists, use the Combobox or Select component instead.",
+    "never": [
+      "Never hardcode the chevron colour; it derives from --layout-muted-fg",
+      "Never attempt to style the option elements — they are rendered by the OS",
+      "Never use for more than ~15 options without a search; switch to Combobox",
+      "Never remove appearance-none — it hides the OS chevron so the custom one shows"
+    ],
+    "tokens": [
+      "--layout-input",
+      "--layout-ring",
+      "--layout-fg",
+      "--layout-muted-fg",
+      "--layout-danger",
+      "--layout-radius",
+      "--layout-shadow-xs",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "Accessible tab interface built on Base UI Tabs. The list has a muted pill background; the active trigger lifts to background with a shadow. Supports controlled and uncontrolled modes.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/tabs/tabs.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Each TabsContent value must match the corresponding TabsTrigger value. Use defaultValue for uncontrolled tabs; pair value and onValueChange for controlled. Grid the TabsList with grid-cols-N to make triggers equal width.",
+    "never": [
+      "Never use tabs for wizard/step flows; use a stepper pattern instead",
+      "Never place tabs inside tabs; flatten the hierarchy",
+      "Never rely on tab order for critical information; the inactive panel is hidden from the DOM by default",
+      "Never hardcode tab indicator colours; the active state resolves through bg-background and shadow-xs"
+    ],
+    "tokens": [
+      "--layout-muted",
+      "--layout-muted-fg",
+      "--layout-bg",
+      "--layout-fg",
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-shadow-xs",
+      "--layout-duration-base"
+    ]
+  }
+}

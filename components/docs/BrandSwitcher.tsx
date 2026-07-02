@@ -1,21 +1,21 @@
 "use client";
 
 import * as React from "react";
+import { ChevronDown, Palette } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import brandsManifest from "@/lib/docs/brands.json";
 
-type Brand = "default" | "stripe" | "linear" | "notion";
+interface BrandEntry {
+  slug: string;
+  name: string;
+  mode: string;
+}
 
-const BRANDS: { value: Brand; label: string }[] = [
-  { value: "default", label: "Default" },
-  { value: "stripe", label: "Stripe" },
-  { value: "linear", label: "Linear" },
-  { value: "notion", label: "Notion" },
-];
-
+const BRANDS = brandsManifest as BrandEntry[];
 const STORAGE_KEY = "layout-ui-brand";
 
-function applyBrand(brand: Brand) {
+function applyBrand(brand: string) {
   if (brand === "default") {
     document.documentElement.removeAttribute("data-brand");
   } else {
@@ -24,44 +24,53 @@ function applyBrand(brand: Brand) {
 }
 
 export function BrandSwitcher() {
-  const [active, setActive] = React.useState<Brand>("default");
+  const [active, setActive] = React.useState("default");
 
   React.useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Brand | null;
-    if (stored && BRANDS.some((b) => b.value === stored)) {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && (stored === "default" || BRANDS.some((b) => b.slug === stored))) {
       setActive(stored);
       applyBrand(stored);
     }
   }, []);
 
-  function handleSelect(brand: Brand) {
+  function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    const brand = event.target.value;
     setActive(brand);
     applyBrand(brand);
     localStorage.setItem(STORAGE_KEY, brand);
   }
 
+  const activeName =
+    active === "default"
+      ? "Default"
+      : BRANDS.find((b) => b.slug === active)?.name ?? active;
+
   return (
-    <div
-      role="group"
-      aria-label="Brand theme"
-      className="inline-flex items-center rounded-md border border-border bg-muted p-0.5 gap-0.5"
+    <label
+      className={cn(
+        "relative inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-md border border-border bg-muted",
+        "pl-2.5 pr-2 text-xs font-medium text-foreground",
+        "transition-colors duration-[var(--layout-duration-base)] ease-out hover:bg-accent"
+      )}
     >
-      {BRANDS.map(({ value, label }) => (
-        <button
-          key={value}
-          type="button"
-          onClick={() => handleSelect(value)}
-          aria-pressed={active === value}
-          className={cn(
-            "rounded px-2.5 py-1 text-xs font-medium transition-all duration-[var(--layout-duration-base)] ease-out cursor-pointer",
-            active === value
-              ? "bg-background text-foreground shadow-xs"
-              : "text-muted-foreground hover:text-foreground"
-          )}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
+      <Palette aria-hidden="true" className="size-3.5 text-muted-foreground" />
+      <span className="max-w-24 truncate">{activeName}</span>
+      <ChevronDown aria-hidden="true" className="size-3 text-muted-foreground" />
+      <select
+        aria-label="Brand theme (compiled from layout.design gallery kits)"
+        value={active}
+        onChange={handleSelect}
+        className="absolute inset-0 cursor-pointer opacity-0"
+      >
+        <option value="default">Default</option>
+        {BRANDS.map((brand) => (
+          <option key={brand.slug} value={brand.slug}>
+            {brand.name}
+            {brand.mode === "dark" ? " (dark)" : ""}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }

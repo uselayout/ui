@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "Wrapper that visually fuses adjacent Button children into a single segmented control, collapsing inner borders and radii. Server-compatible.",
+  "registryDependencies": [
+    "utils",
+    "@layout/button"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/button-group/button-group.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface ButtonGroupProps extends React.ComponentProps<\"div\"> {\n  orientation?: \"horizontal\" | \"vertical\";\n}\n\nfunction ButtonGroup({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: ButtonGroupProps) {\n  return (\n    <div\n      data-slot=\"button-group\"\n      data-orientation={orientation}\n      className={cn(\n        \"inline-flex\",\n        orientation === \"horizontal\" && [\n          \"flex-row\",\n          // Remove inner horizontal radii so buttons appear fused\n          \"[&>*:not(:first-child)]:rounded-l-none\",\n          \"[&>*:not(:last-child)]:rounded-r-none\",\n          // Collapse adjacent left borders to avoid doubled borders\n          \"[&>*:not(:first-child)]:-ml-px\",\n          // Raise z-index on focus/hover so the ring shows above neighbours\n          \"[&>*]:relative [&>*:hover]:z-10 [&>*:focus-visible]:z-10\",\n        ],\n        orientation === \"vertical\" && [\n          \"flex-col\",\n          \"[&>*:not(:first-child)]:rounded-t-none\",\n          \"[&>*:not(:last-child)]:rounded-b-none\",\n          \"[&>*:not(:first-child)]:-mt-px\",\n          \"[&>*]:relative [&>*:hover]:z-10 [&>*:focus-visible]:z-10\",\n        ],\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { ButtonGroup };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Place two or more Button components as direct children. Orientation defaults to horizontal; pass orientation=\"vertical\" for a stacked group. All buttons in the group should share the same variant so the fused appearance is consistent. ButtonGroup only adjusts radius and border-margin; all other button styling comes from the Button component itself.",
+    "never": [
+      "Never mix Button variants within the same ButtonGroup; use a single variant across all children",
+      "Never use ButtonGroup for navigation tabs; use a Tabs component instead",
+      "Never place non-Button elements as direct children; the [&>*] selectors target sibling elements and may break non-button markup",
+      "Never add margin between buttons manually; ButtonGroup handles negative margin to collapse borders"
+    ],
+    "tokens": [
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

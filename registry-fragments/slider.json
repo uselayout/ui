@@ -1,0 +1,21 @@
+{
+  "name": "slider",
+  "type": "registry:ui",
+  "title": "Slider",
+  "description": "A draggable range slider. Supports single values and multi-thumb ranges. Built on Base UI Slider.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/slider/slider.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Pass a single number for a single thumb or a readonly array for a range. Always set min and max explicitly. Provide an aria-label or associate with a visible label for accessibility. Show the current value nearby for precision inputs.",
+    "never": [
+      "Never set step to 0",
+      "Never hardcode the track or range colour; they derive from --layout-muted and --layout-primary",
+      "Never place a Slider in a narrow container without setting a sensible max-w",
+      "Never omit aria-label on the thumb for screen readers"
+    ],
+    "tokens": ["--layout-primary", "--layout-muted", "--layout-bg", "--layout-ring", "--layout-duration-fast", "--layout-shadow-sm"]
+  }
+}

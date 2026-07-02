@@ -1,0 +1,21 @@
+{
+  "name": "switch",
+  "type": "registry:ui",
+  "title": "Switch",
+  "description": "A pill-shaped toggle for binary on/off settings. Built on Base UI Switch with a sliding thumb.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/switch/switch.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for settings that take immediate effect without a save action. Pair with a Label for accessibility. Prefer Switch over Checkbox when the outcome is immediate; prefer Checkbox for form submissions.",
+    "never": [
+      "Never use Switch for form checkboxes that need a submit action; use Checkbox instead",
+      "Never omit a label — associate via htmlFor or pass aria-label",
+      "Never override the track or thumb colours directly; they derive from --layout-input and --layout-primary",
+      "Never use inside a RadioGroup or CheckboxGroup"
+    ],
+    "tokens": ["--layout-primary", "--layout-input", "--layout-bg", "--layout-ring", "--layout-duration-base", "--layout-shadow-xs"]
+  }
+}

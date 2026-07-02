@@ -1,0 +1,19 @@
+{
+  "name": "resizable",
+  "type": "registry:ui",
+  "title": "Resizable",
+  "description": "Drag-to-resize panels built on react-resizable-panels. Exports ResizablePanelGroup (orientation, layout), ResizablePanel (defaultSize, minSize, collapsible), and ResizableHandle (optional withHandle grip icon).",
+  "dependencies": ["react-resizable-panels"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/resizable/resizable.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Set orientation on ResizablePanelGroup (horizontal or vertical). Each ResizablePanel takes a defaultSize as a percentage (0-100); all panels in a group must sum to 100. Add withHandle to ResizableHandle to show the grip icon. Nest ResizablePanelGroups inside ResizablePanel for complex layouts.",
+    "never": [
+      "Never set flex or width directly on ResizablePanel; sizing is controlled by defaultSize percentage",
+      "Never omit defaultSize on panels; the group will not know how to distribute space",
+      "Never use ResizableHandle outside ResizablePanelGroup; it requires the panel group context",
+      "Never hardcode the grip colour; it derives from bg-border and border-border tokens"
+    ],
+    "tokens": ["--layout-border", "--layout-ring", "--layout-radius"]
+  }
+}

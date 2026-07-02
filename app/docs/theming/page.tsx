@@ -274,6 +274,21 @@ export default function ThemingPage() {
           are compiled from design tokens and style profiles extracted from real products.
           Install a kit and apply its brand attribute to instantly reskin your project.
         </p>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Every kit in the gallery is available in the brand switcher in the top bar:
+          the entire gallery compiles into theme blocks automatically. In this repo,{" "}
+          <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
+            npm run sync:kits
+          </code>{" "}
+          fetches all published kits from the layout.design API, maps each kit&apos;s style
+          profile (16 brand colours, radii, shadows, density, mode) onto the token
+          contract, and regenerates{" "}
+          <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
+            kit-themes.css
+          </code>{" "}
+          plus the brand manifest. A new kit published to the gallery becomes a theme by
+          re-running the sync; no component work, ever.
+        </p>
       </DocsSection>
 
       <DocsSection title="Density">

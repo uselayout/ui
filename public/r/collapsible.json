@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "A single show/hide panel built on Base UI Collapsible. Lower-level than Accordion; use when you need one independent collapsible section without the header/item structure.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/collapsible/collapsible.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Collapsible } from \"@base-ui/react/collapsible\";\n\nimport { cn } from \"@/lib/utils\";\n\n/* ------------------------------------------------------------------ root */\n\nconst CollapsibleRoot = React.forwardRef<HTMLDivElement, Collapsible.Root.Props>(\n  ({ className, ...props }, ref) => (\n    <Collapsible.Root\n      ref={ref}\n      data-slot=\"collapsible\"\n      className={cn(\"w-full\", className)}\n      {...props}\n    />\n  ),\n);\nCollapsibleRoot.displayName = \"Collapsible\";\n\n/* --------------------------------------------------------------- trigger */\n\nconst CollapsibleTrigger = React.forwardRef<\n  HTMLButtonElement,\n  Collapsible.Trigger.Props\n>(({ className, ...props }, ref) => (\n  <Collapsible.Trigger\n    ref={ref}\n    data-slot=\"collapsible-trigger\"\n    className={cn(\n      \"outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xs\",\n      className,\n    )}\n    {...props}\n  />\n));\nCollapsibleTrigger.displayName = \"CollapsibleTrigger\";\n\n/* --------------------------------------------------------------- content */\n\nconst CollapsibleContent = React.forwardRef<\n  HTMLDivElement,\n  Collapsible.Panel.Props\n>(({ className, ...props }, ref) => (\n  <Collapsible.Panel\n    ref={ref}\n    data-slot=\"collapsible-content\"\n    className={cn(\n      \"overflow-hidden\",\n      \"h-[var(--collapsible-panel-height,0)] data-[open]:h-[var(--collapsible-panel-height)]\",\n      \"transition-[height] duration-[var(--layout-duration-base)] ease-out\",\n      className,\n    )}\n    {...props}\n  />\n));\nCollapsibleContent.displayName = \"CollapsibleContent\";\n\nexport {\n  CollapsibleRoot as Collapsible,\n  CollapsibleTrigger,\n  CollapsibleContent,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use for sidebar nav sections, advanced filter panels, or repo-style expandable lists. Pair CollapsibleTrigger with asChild to use a Button or custom element as the toggle. Use open and onOpenChange for controlled mode.",
+    "never": [
+      "Never use Collapsible when you need multiple accordion-style sections; use Accordion",
+      "Never render CollapsibleContent without CollapsibleTrigger in the same Collapsible root",
+      "Never hardcode the open/close animation; rely on data-[starting-style] and data-[ending-style] selectors"
+    ],
+    "tokens": [
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

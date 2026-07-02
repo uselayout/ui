@@ -1,0 +1,21 @@
+{
+  "name": "field",
+  "type": "registry:ui",
+  "title": "Field",
+  "description": "Form field wrapper with automatic label association, description, and validation error display. Built on Base UI Field. Works without react-hook-form.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/field/field.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Wrap any field control in Field. FieldLabel auto-associates with the control via Field.Root context — no htmlFor needed unless the control is outside Field. FieldError renders only when the field is invalid. Pass a validate function to Field for custom rules.",
+    "never": [
+      "Never use plain <label> inside Field — always use FieldLabel for correct association",
+      "Never hardcode error colours; they derive from --layout-danger",
+      "Never skip FieldError when using the validate prop",
+      "Never nest Field components"
+    ],
+    "tokens": ["--layout-fg", "--layout-muted-fg", "--layout-danger", "--layout-duration-base"]
+  }
+}

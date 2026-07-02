@@ -1,0 +1,21 @@
+{
+  "name": "input-otp",
+  "type": "registry:ui",
+  "title": "Input OTP",
+  "description": "One-time password input with individual character slots, grouping, and separator support. Built on Base UI OTPField.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/input-otp/input-otp.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Always set length on InputOTP equal to the total number of InputOTPSlot elements. Pass index (0-based) to each slot so Base UI knows which character to render. Wrap related slots in InputOTPGroup for connected borders. Use InputOTPSeparator between groups.",
+    "never": [
+      "Never render more InputOTPSlot elements than the length prop on InputOTP",
+      "Never omit the index prop on InputOTPSlot",
+      "Never use for general text input — use Input instead",
+      "Never hardcode slot border colour; it derives from --layout-input"
+    ],
+    "tokens": ["--layout-input", "--layout-ring", "--layout-fg", "--layout-muted-fg", "--layout-duration-base"]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu",
+  "title": "Navigation Menu",
+  "description": "A horizontal navigation bar with hover-triggered popover panels for rich content areas, built on Base UI NavigationMenu. Exports navigationMenuTriggerStyle for styling standalone link items consistently.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/navigation-menu/navigation-menu.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { NavigationMenu } from \"@base-ui/react/navigation-menu\";\nimport { ChevronDown } from \"lucide-react\";\nimport { cva } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n/* ------------------------------------------------------------------ root */\n\nconst NavigationMenuRoot = React.forwardRef<\n  HTMLElement,\n  NavigationMenu.Root.Props\n>(({ className, ...props }, ref) => (\n  <NavigationMenu.Root\n    ref={ref}\n    data-slot=\"navigation-menu\"\n    className={cn(\n      \"relative flex items-center justify-center\",\n      className,\n    )}\n    {...props}\n  >\n    {props.children}\n    <NavigationMenuViewport />\n  </NavigationMenu.Root>\n));\nNavigationMenuRoot.displayName = \"NavigationMenu\";\n\n/* ------------------------------------------------------------------ list */\n\nconst NavigationMenuList = React.forwardRef<\n  HTMLUListElement,\n  NavigationMenu.List.Props\n>(({ className, ...props }, ref) => (\n  <NavigationMenu.List\n    ref={ref}\n    data-slot=\"navigation-menu-list\"\n    className={cn(\n      \"group flex flex-1 list-none items-center justify-center gap-1\",\n      className,\n    )}\n    {...props}\n  />\n));\nNavigationMenuList.displayName = \"NavigationMenuList\";\n\n/* ------------------------------------------------------------------ item */\n\nconst NavigationMenuItem = React.forwardRef<\n  HTMLLIElement,\n  NavigationMenu.Item.Props\n>(({ className, ...props }, ref) => (\n  <NavigationMenu.Item\n    ref={ref}\n    data-slot=\"navigation-menu-item\"\n    className={cn(\"relative\", className)}\n    {...props}\n  />\n));\nNavigationMenuItem.displayName = \"NavigationMenuItem\";\n\n/* -------------------------------------------------------------- trigger style */\n\nconst navigationMenuTriggerStyle = cva(\n  \"group inline-flex h-9 w-max items-center justify-center gap-1 rounded-md px-4 py-2 text-sm font-medium outline-none transition-colors duration-[var(--layout-duration-base)] ease-out hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[popup-open]:bg-accent/50 disabled:pointer-events-none disabled:opacity-50\",\n);\n\n/* --------------------------------------------------------------- trigger */\n\nconst NavigationMenuTrigger = React.forwardRef<\n  HTMLButtonElement,\n  NavigationMenu.Trigger.Props\n>(({ className, children, ...props }, ref) => (\n  <NavigationMenu.Trigger\n    ref={ref}\n    data-slot=\"navigation-menu-trigger\"\n    className={cn(navigationMenuTriggerStyle(), className)}\n    {...props}\n  >\n    {children}\n    <ChevronDown\n      className=\"relative top-[1px] ml-1 size-3 transition-transform duration-[var(--layout-duration-base)] ease-out group-data-[popup-open]:rotate-180\"\n      aria-hidden=\"true\"\n    />\n  </NavigationMenu.Trigger>\n));\nNavigationMenuTrigger.displayName = \"NavigationMenuTrigger\";\n\n/* --------------------------------------------------------------- content */\n\nconst NavigationMenuContent = React.forwardRef<\n  HTMLDivElement,\n  NavigationMenu.Content.Props\n>(({ className, ...props }, ref) => (\n  <NavigationMenu.Content\n    ref={ref}\n    data-slot=\"navigation-menu-content\"\n    className={cn(\n      \"top-0 left-0 w-full md:absolute md:w-auto\",\n      \"data-[starting-style]:opacity-0 data-[ending-style]:opacity-0\",\n      \"transition-opacity duration-[var(--layout-duration-base)] ease-out\",\n      className,\n    )}\n    {...props}\n  />\n));\nNavigationMenuContent.displayName = \"NavigationMenuContent\";\n\n/* --------------------------------------------------------------- viewport */\n\nconst NavigationMenuViewport = React.forwardRef<\n  HTMLDivElement,\n  NavigationMenu.Viewport.Props\n>(({ className, ...props }, ref) => (\n  <NavigationMenu.Portal>\n    <NavigationMenu.Positioner className=\"absolute top-full left-0 flex justify-center\">\n      <NavigationMenu.Popup>\n        <NavigationMenu.Viewport\n          ref={ref}\n          data-slot=\"navigation-menu-viewport\"\n          className={cn(\n            \"bg-popover text-popover-foreground relative mt-1.5 h-[var(--available-height)] w-full overflow-hidden rounded-md border shadow-md\",\n            \"md:w-[var(--available-width)]\",\n            \"data-[starting-style]:opacity-0 data-[ending-style]:opacity-0\",\n            \"transition-[opacity,width,height] duration-[var(--layout-duration-base)] ease-out\",\n            className,\n          )}\n          {...props}\n        />\n      </NavigationMenu.Popup>\n    </NavigationMenu.Positioner>\n  </NavigationMenu.Portal>\n));\nNavigationMenuViewport.displayName = \"NavigationMenuViewport\";\n\n/* ------------------------------------------------------------------ link */\n\nconst NavigationMenuLink = React.forwardRef<\n  HTMLAnchorElement,\n  NavigationMenu.Link.Props\n>(({ className, ...props }, ref) => (\n  <NavigationMenu.Link\n    ref={ref}\n    data-slot=\"navigation-menu-link\"\n    className={cn(\n      \"block select-none rounded-md p-3 leading-none no-underline outline-none\",\n      \"transition-colors duration-[var(--layout-duration-base)] ease-out\",\n      \"hover:bg-accent hover:text-accent-foreground\",\n      \"focus:bg-accent focus:text-accent-foreground\",\n      \"data-[active]:font-medium\",\n      className,\n    )}\n    {...props}\n  />\n));\nNavigationMenuLink.displayName = \"NavigationMenuLink\";\n\nexport {\n  NavigationMenuRoot as NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuTrigger,\n  NavigationMenuContent,\n  NavigationMenuViewport,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use for top-level site navigation with rich content panels (feature grids, doc links, hero cards). Use NavigationMenuLink with navigationMenuTriggerStyle() for simple link items without a dropdown. NavigationMenuContent is placed inside NavigationMenuItem alongside the trigger.",
+    "never": [
+      "Never use NavigationMenu for application toolbar actions; use Menubar instead",
+      "Never use NavigationMenu for a context or row action; use ContextMenu or DropdownMenu",
+      "Never omit the NavigationMenuViewport; it is required for the panel animation container",
+      "Never hardcode colours; all surfaces must resolve through token utilities"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-shadow-md",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

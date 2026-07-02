@@ -1,0 +1,31 @@
+{
+  "name": "data-table",
+  "type": "registry:ui",
+  "title": "Data Table",
+  "description": "Full-featured data table built on TanStack Table v8: sortable columns, column filter input, row selection with checkboxes, and Previous/Next pagination. Composed from the Table family, Input, Button, and Checkbox primitives.",
+  "dependencies": ["@tanstack/react-table"],
+  "registryDependencies": ["utils", "@layout/table", "@layout/button", "@layout/input", "@layout/checkbox"],
+  "files": [
+    { "path": "registry/layout/data-table/data-table.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Define columns with ColumnDef<TData> and pass them with your data array. Use createSelectColumn<TData>() as the first column to get a select-all header checkbox and per-row checkboxes. Set filterColumn to the accessorKey you want the filter input to search. For static read-only tables use the Table family directly instead.",
+    "never": [
+      "Never use DataTable for read-only presentational tables; use the Table primitive instead",
+      "Never hardcode colours in cell renderers; use token-backed Badge or text-muted-foreground",
+      "Never pass an unsorted data array and expect stable row order under selection; TanStack Table reorders under sorting",
+      "Never use filterColumn with a column that has no string or number values; filtering only works on primitive cell values"
+    ],
+    "tokens": [
+      "--layout-border",
+      "--layout-muted",
+      "--layout-muted-fg",
+      "--layout-primary",
+      "--layout-primary-fg",
+      "--layout-input",
+      "--layout-ring",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  }
+}

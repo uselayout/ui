@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "title": "Field",
+  "description": "Form field wrapper with automatic label association, description, and validation error display. Built on Base UI Field. Works without react-hook-form.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/field/field.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Field as BaseField } from \"@base-ui/react/field\";\n\nimport { cn } from \"@/lib/utils\";\n\ninterface FieldProps\n  extends React.ComponentPropsWithoutRef<typeof BaseField.Root> {\n  className?: string;\n}\n\nfunction Field({ className, ...props }: FieldProps) {\n  return (\n    <BaseField.Root\n      data-slot=\"field\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  );\n}\n\ninterface FieldLabelProps\n  extends React.ComponentPropsWithoutRef<typeof BaseField.Label> {\n  className?: string;\n}\n\nfunction FieldLabel({ className, ...props }: FieldLabelProps) {\n  return (\n    <BaseField.Label\n      data-slot=\"field-label\"\n      className={cn(\n        \"text-sm font-medium leading-none text-foreground\",\n        \"peer-disabled:cursor-not-allowed peer-disabled:opacity-70\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\ninterface FieldDescriptionProps\n  extends React.ComponentPropsWithoutRef<typeof BaseField.Description> {\n  className?: string;\n}\n\nfunction FieldDescription({ className, ...props }: FieldDescriptionProps) {\n  return (\n    <BaseField.Description\n      data-slot=\"field-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\ninterface FieldErrorProps\n  extends React.ComponentPropsWithoutRef<typeof BaseField.Error> {\n  className?: string;\n}\n\nfunction FieldError({ className, ...props }: FieldErrorProps) {\n  return (\n    <BaseField.Error\n      data-slot=\"field-error\"\n      className={cn(\"text-sm text-destructive\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Field,\n  FieldLabel,\n  FieldDescription,\n  FieldError,\n  type FieldProps,\n  type FieldLabelProps,\n  type FieldDescriptionProps,\n  type FieldErrorProps,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Wrap any field control in Field. FieldLabel auto-associates with the control via Field.Root context — no htmlFor needed unless the control is outside Field. FieldError renders only when the field is invalid. Pass a validate function to Field for custom rules.",
+    "never": [
+      "Never use plain <label> inside Field — always use FieldLabel for correct association",
+      "Never hardcode error colours; they derive from --layout-danger",
+      "Never skip FieldError when using the validate prop",
+      "Never nest Field components"
+    ],
+    "tokens": [
+      "--layout-fg",
+      "--layout-muted-fg",
+      "--layout-danger",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}

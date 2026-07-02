@@ -1,0 +1,19 @@
+{
+  "name": "avatar",
+  "type": "registry:ui",
+  "title": "Avatar",
+  "description": "User avatar with image, fallback initials, and graceful error handling. Built on Base UI Avatar.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/avatar/avatar.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Wrap AvatarImage and AvatarFallback inside Avatar. AvatarFallback renders automatically when the image fails to load or no src is provided. Use initials (one or two characters) as the fallback child. Stack avatars with -space-x-* and ring-background to create groups.",
+    "never": [
+      "Never display an avatar without AvatarFallback; image loading failures must not produce a blank circle",
+      "Never hardcode background colours on AvatarFallback; it inherits bg-muted from the token contract",
+      "Never scale Avatar below size-6; initials become illegible at smaller sizes",
+      "Never use Avatar to display generic icons that are not user identity; use a Badge or Icon component instead"
+    ],
+    "tokens": ["--layout-muted", "--layout-muted-fg", "--layout-radius"]
+  }
+}

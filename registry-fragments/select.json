@@ -1,0 +1,19 @@
+{
+  "name": "select",
+  "type": "registry:ui",
+  "title": "Select",
+  "description": "Accessible single-value select built on Base UI Select. Trigger styled like Input with chevron icon; popup with group labels, separators, and check indicators.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/select/select.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use Select when the list of options is fixed and known up front, with no need to type-filter. Pass defaultValue or value+onValueChange for controlled use. Group related options with SelectGroup and SelectLabel; divide sections with SelectSeparator. Use Combobox when the list is long and users need to filter by typing. Use a native <select> for forms where browser-native UX is preferred or file-size budget is tight.",
+    "never": [
+      "Never use Select for lists longer than ~50 items where filtering would help; use Combobox instead",
+      "Never use Select for boolean choices; use a Switch or Checkbox which are more semantically appropriate",
+      "Never mix SelectGroup items with un-grouped items in the same popup; all items should be grouped or none should be",
+      "Never place SelectContent outside of a Select.Root; it relies on context provided by the root"
+    ],
+    "tokens": ["--layout-input", "--layout-ring", "--layout-popover", "--layout-popover-fg", "--layout-accent", "--layout-accent-fg", "--layout-border", "--layout-radius", "--layout-shadow-md", "--layout-duration-base"]
+  }
+}

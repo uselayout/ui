@@ -1,0 +1,19 @@
+{
+  "name": "carousel",
+  "type": "registry:ui",
+  "title": "Carousel",
+  "description": "Accessible carousel built on Embla Carousel with keyboard arrow-key navigation. Exports Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, and the useCarousel context hook.",
+  "dependencies": ["embla-carousel-react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/carousel/carousel.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Wrap slides in CarouselItem inside CarouselContent. Set orientation=\"vertical\" and a fixed height on CarouselContent for vertical layouts. Pass opts to forwarded Embla options (loop, align, slidesToScroll). Use useCarousel() inside a child component to access the Embla API imperatively.",
+    "never": [
+      "Never place CarouselPrevious or CarouselNext outside a Carousel; they depend on context",
+      "Never set overflow-hidden on CarouselItem; that breaks the slide reveal animation",
+      "Never hardcode button colours on CarouselPrevious/CarouselNext; they inherit from buttonVariants outline",
+      "Never use CarouselContent without its parent Carousel; the embla ref will be undefined"
+    ],
+    "tokens": ["--layout-border", "--layout-ring", "--layout-radius"]
+  }
+}

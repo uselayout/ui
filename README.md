@@ -32,6 +32,17 @@ npx shadcn add @layout/button
 
 Works with Next.js, Vite, Laravel (Inertia), React Router, Astro and TanStack Start. See the docs site (`npm run dev`, then `/docs`) for per-framework guides.
 
+## Gallery kit themes
+
+Every kit in the [layout.design gallery](https://layout.design/gallery) compiles into a `[data-brand="<slug>"]` theme block automatically:
+
+```bash
+npm run sync:kits    # fetches all gallery kits, compiles style profiles
+                     # → app/kit-themes.css + lib/docs/brands.json
+```
+
+New kit in the gallery? Re-run the sync and it appears in the brand switcher. Kits without a style profile are skipped and listed; generate one in the Layout admin (Kits → Regen style profile) and sync again.
+
 ## Development
 
 ```bash

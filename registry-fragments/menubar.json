@@ -1,0 +1,32 @@
+{
+  "name": "menubar",
+  "type": "registry:ui",
+  "title": "Menubar",
+  "description": "A horizontal bar of menus typical of desktop-style application toolbars, built on Base UI Menubar and Menu. Supports multiple top-level menus each with full dropdown content including checkboxes, radio groups, and sub-menus.",
+  "dependencies": ["@base-ui/react", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "files": [
+    { "path": "registry/layout/menubar/menubar.tsx", "type": "registry:ui" }
+  ],
+  "meta": {
+    "usage": "Use for application-level navigation in text editors, IDEs, or admin tools where File / Edit / View menus are a familiar convention. Each MenubarMenu is a separate root; wrap them all in a single Menubar.",
+    "never": [
+      "Never use Menubar for site navigation; use NavigationMenu for marketing or app-shell nav",
+      "Never use Menubar for a single menu; DropdownMenu is simpler and more appropriate",
+      "Never mix Menubar triggers with DropdownMenu triggers in the same toolbar",
+      "Never hardcode colours; use the variant prop on MenubarItem for destructive actions"
+    ],
+    "tokens": [
+      "--layout-bg",
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-accent",
+      "--layout-accent-fg",
+      "--layout-border",
+      "--layout-radius",
+      "--layout-shadow-xs",
+      "--layout-shadow-md",
+      "--layout-duration-base"
+    ]
+  }
+}

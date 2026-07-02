@@ -1,0 +1,24 @@
+{
+  "name": "tooltip",
+  "type": "registry:ui",
+  "title": "Tooltip",
+  "description": "Short label that appears on hover or focus. Built on Base UI Tooltip. Styled with bg-primary/text-primary-foreground for high contrast. Wrap usage in TooltipProvider.",
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
+  "files": [{ "path": "registry/layout/tooltip/tooltip.tsx", "type": "registry:ui" }],
+  "meta": {
+    "usage": "Use for brief, supplementary labels on icon buttons, truncated text, and keyboard shortcut hints. Wrap all Tooltip instances in a single TooltipProvider at the layout level (or per section) to share delay settings. TooltipTrigger uses the render prop — pass the trigger element via render={}.",
+    "never": [
+      "Never put interactive content (buttons, links) inside TooltipContent — use Popover instead",
+      "Never use Tooltip as the sole label for an icon button; always include aria-label on the trigger",
+      "Never use Tooltip for rich content or multi-line descriptions — use HoverCard or Popover",
+      "Never render Tooltip without TooltipProvider; the delay behaviour will be undefined"
+    ],
+    "tokens": [
+      "--layout-primary",
+      "--layout-primary-fg",
+      "--layout-radius",
+      "--layout-duration-fast"
+    ]
+  }
+}

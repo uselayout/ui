@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "title": "Hover Card",
+  "description": "Rich preview card that appears on hover. Built on Base UI PreviewCard. Use for user profiles, repository previews, and link context. Dismissed when the pointer leaves.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/layout/hover-card/hover-card.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { PreviewCard as BasePreviewCard } from \"@base-ui/react/preview-card\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction HoverCard(props: BasePreviewCard.Root.Props) {\n  return <BasePreviewCard.Root {...props} />;\n}\n\nfunction HoverCardTrigger(props: BasePreviewCard.Trigger.Props) {\n  return (\n    <BasePreviewCard.Trigger data-slot=\"hover-card-trigger\" {...props} />\n  );\n}\n\ninterface HoverCardContentProps extends BasePreviewCard.Popup.Props {\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align?: \"start\" | \"center\" | \"end\";\n  sideOffset?: number;\n}\n\nfunction HoverCardContent({\n  className,\n  side = \"bottom\",\n  align = \"center\",\n  sideOffset = 8,\n  ...props\n}: HoverCardContentProps) {\n  return (\n    <BasePreviewCard.Portal>\n      <BasePreviewCard.Positioner\n        data-slot=\"hover-card-positioner\"\n        side={side}\n        align={align}\n        sideOffset={sideOffset}\n      >\n        <BasePreviewCard.Popup\n          data-slot=\"hover-card-content\"\n          className={cn(\n            \"z-50 w-64 rounded-md border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none\",\n            \"transition-all duration-[var(--layout-duration-base)] ease-out\",\n            \"data-[ending-style]:scale-95 data-[ending-style]:opacity-0\",\n            \"data-[starting-style]:scale-95 data-[starting-style]:opacity-0\",\n            className\n          )}\n          {...props}\n        />\n      </BasePreviewCard.Positioner>\n    </BasePreviewCard.Portal>\n  );\n}\n\nexport { HoverCard, HoverCardTrigger, HoverCardContent };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "usage": "Use to show a rich preview of a linked resource — user profile, repository, document, or URL — when the pointer rests on a trigger link. Content is read-only; for interactive controls use Popover. Trigger should be a link or button with meaningful text so the hover card supplements rather than replaces accessible copy.",
+    "never": [
+      "Never put interactive controls (forms, buttons) inside HoverCardContent — use Popover",
+      "Never use HoverCard for single-line labels — use Tooltip",
+      "Never rely on HoverCard for touch-only users; it requires hover; pair with an accessible tap alternative",
+      "Never use HoverCard for confirmation or blocking UI — use Dialog or AlertDialog"
+    ],
+    "tokens": [
+      "--layout-overlay",
+      "--layout-overlay-fg",
+      "--layout-border",
+      "--layout-shadow-md",
+      "--layout-radius",
+      "--layout-duration-base"
+    ]
+  },
+  "type": "registry:ui"
+}
