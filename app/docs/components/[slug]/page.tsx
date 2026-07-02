@@ -11,45 +11,18 @@ import {
   getComponentDoc,
 } from "@/lib/docs/components-meta";
 
-import * as buttonDemos from "@/lib/docs/demos/button";
-import * as badgeDemos from "@/lib/docs/demos/badge";
-import * as cardDemos from "@/lib/docs/demos/card";
-import * as inputDemos from "@/lib/docs/demos/input";
-import * as textareaDemos from "@/lib/docs/demos/textarea";
-import * as labelDemos from "@/lib/docs/demos/label";
-import * as separatorDemos from "@/lib/docs/demos/separator";
-import * as skeletonDemos from "@/lib/docs/demos/skeleton";
-import * as alertDemos from "@/lib/docs/demos/alert";
-import * as tableDemos from "@/lib/docs/demos/table";
-import * as spinnerDemos from "@/lib/docs/demos/spinner";
-import * as kbdDemos from "@/lib/docs/demos/kbd";
-
-// ---------------------------------------------------------------------------
-// Static demo registry: maps slug to demo module
-// ---------------------------------------------------------------------------
-
-type DemoModule = { demos: Array<{ title: string; component: React.ReactNode; code: string }> };
-
-const demoRegistry: Record<string, DemoModule> = {
-  button: buttonDemos,
-  badge: badgeDemos,
-  card: cardDemos,
-  input: inputDemos,
-  textarea: textareaDemos,
-  label: labelDemos,
-  separator: separatorDemos,
-  skeleton: skeletonDemos,
-  alert: alertDemos,
-  table: tableDemos,
-  spinner: spinnerDemos,
-  kbd: kbdDemos,
-};
+import {
+  demoRegistry,
+  importLines as generatedImportLines,
+} from "@/lib/docs/demos";
 
 // ---------------------------------------------------------------------------
 // Per-component import strings (usage section)
+// Newer demo modules export their own `importLine`; this record covers the
+// original set and acts as a fallback.
 // ---------------------------------------------------------------------------
 
-const importLines: Record<string, string> = {
+const baseImportLines: Record<string, string> = {
   button: `import { Button } from "@/components/ui/button"`,
   badge: `import { Badge } from "@/components/ui/badge"`,
   card: `import {
@@ -121,7 +94,10 @@ export default async function ComponentDocPage({
 
   const { demos } = module;
   const [hero, ...rest] = demos;
-  const importLine = importLines[slug] ?? `import { ${doc.title} } from "@/components/ui/${slug}"`;
+  const importLine =
+    generatedImportLines[slug] ??
+    baseImportLines[slug] ??
+    `import { ${doc.title} } from "@/components/ui/${slug}"`;
 
   return (
     <DocsPage title={doc.title} description={doc.description}>

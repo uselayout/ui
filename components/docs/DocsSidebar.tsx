@@ -5,6 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import {
+  getAllComponentSlugs,
+  getComponentDoc,
+} from "@/lib/docs/components-meta";
 
 // ---------------------------------------------------------------------------
 // Sidebar nav data
@@ -20,20 +24,13 @@ interface NavGroup {
   items: NavItem[];
 }
 
-const COMPONENTS: NavItem[] = [
-  { label: "Alert", href: "/docs/components/alert" },
-  { label: "Badge", href: "/docs/components/badge" },
-  { label: "Button", href: "/docs/components/button" },
-  { label: "Card", href: "/docs/components/card" },
-  { label: "Input", href: "/docs/components/input" },
-  { label: "Kbd", href: "/docs/components/kbd" },
-  { label: "Label", href: "/docs/components/label" },
-  { label: "Separator", href: "/docs/components/separator" },
-  { label: "Skeleton", href: "/docs/components/skeleton" },
-  { label: "Spinner", href: "/docs/components/spinner" },
-  { label: "Table", href: "/docs/components/table" },
-  { label: "Textarea", href: "/docs/components/textarea" },
-];
+// Derived from registry.json so new components appear automatically.
+const COMPONENTS: NavItem[] = getAllComponentSlugs()
+  .map((slug) => {
+    const doc = getComponentDoc(slug);
+    return { label: doc?.title ?? slug, href: `/docs/components/${slug}` };
+  })
+  .sort((a, b) => a.label.localeCompare(b.label));
 
 const NAV_GROUPS: NavGroup[] = [
   {
