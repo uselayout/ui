@@ -41,7 +41,15 @@ npm run sync:kits    # fetches all gallery kits, compiles style profiles
                      # → app/kit-themes.css + lib/docs/brands.json
 ```
 
-New kit in the gallery? Re-run the sync and it appears in the brand switcher. Kits without a style profile are skipped and listed; generate one in the Layout admin (Kits → Regen style profile) and sync again.
+The sync also runs automatically before every `npm run build`, so a deploy always reflects the current gallery. It targets the production gallery by default; kits are published via the staging admin first, so to pick those up point the sync at staging:
+
+```bash
+LAYOUT_API=https://staging.layout.design npm run sync:kits
+```
+
+Set `LAYOUT_API` as an environment variable on the deployment (e.g. in Coolify) to bind a docs-site environment to its matching gallery: staging docs → staging gallery, production docs → production gallery. If the API is unreachable at build time the previous themes are kept rather than failing the build.
+
+New kit in the gallery? Redeploy (or re-run the sync) and it appears in the brand switcher. Kits without a style profile are skipped and listed in the sync output; generate one in the Layout admin (Kits → Regen style profile) and sync again.
 
 ## Development
 
