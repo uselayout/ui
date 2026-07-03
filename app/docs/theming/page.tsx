@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import { DocsPage, DocsSection } from "@/components/docs/DocsPage";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Theming",
+  description:
+    "Understand the Layout UI token contract, dark mode, brand reskinning via data-brand, density variants, and shadcn theme compatibility.",
+  alternates: {
+    canonical: `${SITE_URL}/docs/theming`,
+  },
+};
 import { Button } from "@/registry/layout/button/button";
 import { Badge } from "@/registry/layout/badge/badge";
 import {

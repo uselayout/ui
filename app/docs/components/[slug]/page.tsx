@@ -4,6 +4,7 @@ import {
   getAllComponentSlugs,
   getComponentDoc,
 } from "@/lib/docs/components-meta";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { ComponentDocContent } from "./content";
 
 export function generateStaticParams() {
@@ -18,9 +19,19 @@ export async function generateMetadata({
   const { slug } = await params;
   const doc = getComponentDoc(slug);
   if (!doc) return {};
+  const pageTitle = `${doc.title} · ${SITE_NAME}`;
+  const canonicalUrl = `${SITE_URL}/docs/components/${slug}`;
   return {
-    title: `${doc.title} · Layout UI`,
+    title: pageTitle,
     description: doc.description,
+    openGraph: {
+      title: pageTitle,
+      description: doc.description,
+      url: canonicalUrl,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
   };
 }
 

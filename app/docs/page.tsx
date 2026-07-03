@@ -1,7 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { DocsPage, DocsSection } from "@/components/docs/DocsPage";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Introduction",
+  description:
+    "Layout UI is a token-contracted, reskinnable component system built for the AI agent era. One base system, any brand.",
+  alternates: {
+    canonical: `${SITE_URL}/docs`,
+  },
+};
 
 // ---------------------------------------------------------------------------
 // Quick-link card

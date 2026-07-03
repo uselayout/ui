@@ -5,6 +5,7 @@ import { BrandSwitcher } from "@/components/docs/BrandSwitcher";
 import { ThemeToggle } from "@/components/docs/ThemeToggle";
 import { DensityToggle } from "@/components/docs/DensityToggle";
 import { DocsSidebar, MobileNav } from "@/components/docs/DocsSidebar";
+import { SITE_URL } from "@/lib/site";
 
 // ---------------------------------------------------------------------------
 // Docs top bar
@@ -95,6 +96,41 @@ export default function DocsLayout({
           {children}
         </main>
       </div>
+
+      {/* Crawler-discoverable footer with key resource links */}
+      <footer className="border-t border-border mt-8 py-6">
+        <nav
+          aria-label="Resource links"
+          className="mx-auto flex max-w-screen-xl flex-wrap gap-x-6 gap-y-2 px-4 lg:px-6 text-xs text-muted-foreground"
+        >
+          <Link href="/llms.txt" className="hover:text-foreground transition-colors duration-[var(--layout-duration-base)]">
+            llms.txt
+          </Link>
+          <Link href="/llms-full.txt" className="hover:text-foreground transition-colors duration-[var(--layout-duration-base)]">
+            llms-full.txt
+          </Link>
+          <a
+            href={`${SITE_URL}/r/registry.json`}
+            className="hover:text-foreground transition-colors duration-[var(--layout-duration-base)]"
+          >
+            registry.json
+          </a>
+          <a
+            href="https://github.com/uselayout/ui"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors duration-[var(--layout-duration-base)]"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://layout.design"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors duration-[var(--layout-duration-base)]"
+          >
+            layout.design
+          </a>
+        </nav>
+      </footer>
     </>
   );
 }

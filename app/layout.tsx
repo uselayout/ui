@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,45 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Layout UI · the reskinnable component system",
-  description:
-    "Token-contracted components for the AI agent era. One base system, any brand. From layout.design",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} · the reskinnable component system`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "react components",
+    "design system",
+    "shadcn alternative",
+    "AI agents",
+    "design tokens",
+    "reskinnable UI",
+    "Base UI",
+    "Tailwind v4",
+    "token contracted",
+    "component library",
+    "TypeScript",
+    "layout.design",
+    "MCP server",
+    "theme system",
+    "accessible components",
+  ],
+  openGraph: {
+    siteName: SITE_NAME,
+    type: "website",
+    locale: "en_GB",
+    url: SITE_URL,
+    title: `${SITE_NAME} · the reskinnable component system`,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} · the reskinnable component system`,
+    description: SITE_DESCRIPTION,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({

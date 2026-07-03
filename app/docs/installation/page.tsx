@@ -1,7 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { DocsPage, DocsSection } from "@/components/docs/DocsPage";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Installation",
+  description:
+    "Add Layout UI components to your project via the shadcn registry CLI. Choose your framework: Next.js, Vite, Astro, React Router, TanStack Start, or Laravel.",
+  alternates: {
+    canonical: `${SITE_URL}/docs/installation`,
+  },
+};
 
 // ---------------------------------------------------------------------------
 // Inline code block for terminal / JSON snippets

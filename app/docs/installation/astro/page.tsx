@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { DocsPage, DocsSection } from "@/components/docs/DocsPage";
 import { Steps, Step } from "@/components/docs/Steps";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Install Layout UI in Astro",
+  description: "Step-by-step guide to adding Layout UI components to an Astro project using the shadcn registry CLI.",
+  alternates: { canonical: `${SITE_URL}/docs/installation/astro` },
+};
 
 function Code({ children }: { children: string }) {
   return (

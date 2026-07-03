@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import { DocsPage, DocsSection } from "@/components/docs/DocsPage";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "For AI agents",
+  description:
+    "How Layout UI's registry meta, layout.md context files, and the Layout MCP server give AI coding agents (Claude Code, Cursor, Copilot, Windsurf) verified, up-to-date design system context.",
+  alternates: {
+    canonical: `${SITE_URL}/docs/ai-agents`,
+  },
+};
 
 function Code({ children }: { children: string }) {
   return (

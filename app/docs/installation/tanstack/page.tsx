@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { DocsPage, DocsSection } from "@/components/docs/DocsPage";
 import { Steps, Step } from "@/components/docs/Steps";
+import { SITE_URL } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Install Layout UI in TanStack Start",
+  description: "Step-by-step guide to adding Layout UI components to a TanStack Start project using the shadcn registry CLI.",
+  alternates: { canonical: `${SITE_URL}/docs/installation/tanstack` },
+};
 
 function Code({ children }: { children: string }) {
   return (

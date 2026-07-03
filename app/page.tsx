@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -6,6 +7,37 @@ import {
   Cpu,
   Layers,
 } from "lucide-react";
+
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: SITE_URL,
+  },
+};
+
+// JSON-LD structured data for generative search and AI agents
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+  license: "https://opensource.org/licenses/MIT",
+  programmingLanguage: "TypeScript",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "GBP",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Layout",
+    url: "https://layout.design",
+  },
+};
 
 import { BrandScope } from "@/components/docs/BrandScope";
 import { Button } from "@/registry/layout/button/button";
@@ -108,7 +140,7 @@ function Hero() {
         <Button size="lg" variant="ghost" render={<Link href="/docs/components/button" />}>
           Browse components
         </Button>
-        <Button size="lg" variant="ghost" render={<a href="https://github.com/uselayout/app" target="_blank" rel="noopener noreferrer" />}>
+        <Button size="lg" variant="ghost" render={<a href="https://github.com/uselayout/ui" target="_blank" rel="noopener noreferrer" />}>
           <GitFork />
           GitHub
         </Button>
@@ -216,8 +248,11 @@ function Features() {
 // ---------------------------------------------------------------------------
 
 export default function HomePage() {
+  // jsonLd is a static constant object with no user-supplied data — safe to inline.
+  const jsonLdString = JSON.stringify(jsonLd);
   return (
     <>
+      <script type="application/ld+json" suppressHydrationWarning>{jsonLdString}</script>
       <TopBar />
       <main className="flex-1">
         <Hero />
