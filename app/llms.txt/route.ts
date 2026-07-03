@@ -43,7 +43,7 @@ ${componentLines}
 ## Registry
 
 - [Registry index](${SITE_URL}/r/registry.json): Full shadcn-compatible registry manifest for all ${slugs.length} components.
-- [Default theme](${SITE_URL}/r/theme-layout.json): Layout UI default theme — warm neutrals, near-black primary, 10 px radius, plus extended --layout-* tokens (success, warning, shadows, motion).
+- [Default theme](${SITE_URL}/r/theme-layout.json): Layout UI default theme: warm neutrals, near-black primary, 10 px radius, plus extended --layout-* tokens (success, warning, shadows, motion).
 
 ## Optional
 

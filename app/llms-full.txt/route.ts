@@ -47,9 +47,9 @@ Layout UI components reference only --layout-* semantic intent tokens. Changing 
 | --layout-shadow-sm | Low elevation (cards) |
 | --layout-shadow-md | Medium elevation (popovers, dropdowns) |
 | --layout-shadow-lg | High elevation (modals, sheets) |
-| --layout-duration-fast | 100 ms — micro-interactions |
-| --layout-duration-base | 150 ms — standard transitions |
-| --layout-duration-slow | 250 ms — entry/exit animations |
+| --layout-duration-fast | 100 ms, micro-interactions |
+| --layout-duration-base | 150 ms, standard transitions |
+| --layout-duration-slow | 250 ms, panel transitions/exit animations |
 | --layout-font-mono | Monospace font stack (kbd, code) |
 
 ### Theming model
@@ -81,7 +81,7 @@ Install the default theme: \`npx shadcn add ${SITE_URL}/r/theme-layout.json\`
       const tokensList =
         doc.meta.tokens.length > 0
           ? doc.meta.tokens.map((t) => `  - ${t}`).join("\n")
-          : "  (no specific tokens — inherits from parent)";
+          : "  (no specific tokens; inherits from parent)";
 
       return `### ${doc.title} (\`${slug}\`)
 
@@ -103,7 +103,7 @@ ${tokensList}
     })
     .join("\n---\n\n");
 
-  const body = `# ${SITE_NAME} — Full Machine-Readable Reference
+  const body = `# ${SITE_NAME}: Full Machine-Readable Reference
 
 ${SITE_DESCRIPTION}
 
