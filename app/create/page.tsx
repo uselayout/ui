@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
@@ -11,7 +12,7 @@ import { ThemeBuilder } from "./ThemeBuilder";
 export const metadata: Metadata = {
   title: "Create your theme · Layout UI",
   description:
-    "Start from any layout.design gallery kit and customise the primary colour, radius, and density. Copy the CSS overrides and install commands to use in your own project.",
+    "Start from any layout.design gallery kit and customise the primary colour, radius, density, fonts, and shadows. Copy the CSS overrides and install commands to use in your own project.",
 };
 
 // ---------------------------------------------------------------------------
@@ -58,6 +59,18 @@ function CreateTopBar() {
 }
 
 // ---------------------------------------------------------------------------
+// Client wrapper that reads search params
+// ---------------------------------------------------------------------------
+
+// ThemeBuilder is already a client component ("use client" at the top of
+// ThemeBuilder.tsx). We pass nothing here and let it read window.location
+// on mount — that avoids needing useSearchParams in a Server Component tree
+// and keeps the Suspense boundary simple.
+//
+// If Next.js opts this page out of static rendering due to dynamic params
+// that is fine: it's an interactive builder, not a cacheable page.
+
+// ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
 
@@ -66,7 +79,9 @@ export default function CreatePage() {
     <div className="flex h-svh flex-col overflow-hidden bg-background text-foreground">
       <CreateTopBar />
       <main className="flex-1 min-h-0 overflow-hidden">
-        <ThemeBuilder />
+        <Suspense fallback={<div className="flex h-full items-center justify-center text-sm text-muted-foreground">Loading theme builder…</div>}>
+          <ThemeBuilder />
+        </Suspense>
       </main>
     </div>
   );
