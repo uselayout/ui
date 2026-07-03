@@ -72,12 +72,14 @@ function ComboboxContent({
       <BaseCombobox.Positioner
         data-slot="combobox-positioner"
         sideOffset={sideOffset}
+        align="start"
+        className="z-50"
         {...props}
       >
         <BaseCombobox.Popup
           data-slot="combobox-content"
           className={cn(
-            "relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
+            "relative z-50 w-[var(--anchor-width)] min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
             "data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
             "transition-opacity duration-[var(--layout-duration-base)] ease-out",
             className

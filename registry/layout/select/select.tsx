@@ -77,12 +77,17 @@ function SelectContent({
       <BaseSelect.Positioner
         data-slot="select-positioner"
         sideOffset={sideOffset}
+        align="start"
+        // Regular dropdown below the trigger, not the macOS-style overlay
+        // where the selected item is aligned over the trigger.
+        alignItemWithTrigger={false}
+        className="z-50"
         {...props}
       >
         <BaseSelect.Popup
           data-slot="select-content"
           className={cn(
-            "relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
+            "relative z-50 max-h-[var(--available-height)] w-[var(--anchor-width)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
             "data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
             "transition-opacity duration-[var(--layout-duration-base)] ease-out",
             className

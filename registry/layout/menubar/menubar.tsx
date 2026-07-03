@@ -173,11 +173,13 @@ MenubarRadioItem.displayName = "MenubarRadioItem";
 
 /* --------------------------------------------------------- menubar label */
 
+// Plain div, not Menu.GroupLabel: Base UI's GroupLabel throws when used
+// outside <Menu.Group>, but the shadcn-familiar API allows a bare Label.
 const MenubarLabel = React.forwardRef<
   HTMLDivElement,
-  Menu.GroupLabel.Props & { inset?: boolean }
+  React.HTMLAttributes<HTMLDivElement> & { inset?: boolean }
 >(({ className, inset, ...props }, ref) => (
-  <Menu.GroupLabel
+  <div
     ref={ref}
     data-slot="menubar-label"
     className={cn(
