@@ -23,15 +23,15 @@ function ControlledDemo() {
     <RadioGroup value={plan} onValueChange={(v) => setPlan(v as string)}>
       <div className="flex items-center gap-2">
         <RadioGroupItem value="starter" id="starter" />
-        <Label htmlFor="starter">Starter — free forever</Label>
+        <Label htmlFor="starter">Starter · free forever</Label>
       </div>
       <div className="flex items-center gap-2">
         <RadioGroupItem value="pro" id="pro" />
-        <Label htmlFor="pro">Pro — £12/month</Label>
+        <Label htmlFor="pro">Pro · £12/month</Label>
       </div>
       <div className="flex items-center gap-2">
         <RadioGroupItem value="team" id="team" />
-        <Label htmlFor="team">Team — £49/month</Label>
+        <Label htmlFor="team">Team · £49/month</Label>
       </div>
     </RadioGroup>
   );
@@ -79,15 +79,15 @@ export const demos: Demo[] = [
 <RadioGroup value={plan} onValueChange={setPlan}>
   <div className="flex items-center gap-2">
     <RadioGroupItem value="starter" id="starter" />
-    <Label htmlFor="starter">Starter — free forever</Label>
+    <Label htmlFor="starter">Starter · free forever</Label>
   </div>
   <div className="flex items-center gap-2">
     <RadioGroupItem value="pro" id="pro" />
-    <Label htmlFor="pro">Pro - £12/month</Label>
+    <Label htmlFor="pro">Pro · £12/month</Label>
   </div>
   <div className="flex items-center gap-2">
     <RadioGroupItem value="team" id="team" />
-    <Label htmlFor="team">Team - £49/month</Label>
+    <Label htmlFor="team">Team · £49/month</Label>
   </div>
 </RadioGroup>`,
   },

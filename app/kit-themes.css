@@ -245,7 +245,7 @@
   --layout-border: #b0aea5;
   --layout-input: #b0aea5;
   --layout-ring: #3d3d3a;
-  --layout-radius: 1rem;
+  --layout-radius: 16px;
 }
 
 [data-brand="clay"] {
@@ -299,7 +299,7 @@
   --layout-border: #e8e8e8;
   --layout-input: #e8e8e8;
   --layout-ring: #6647f0;
-  --layout-radius: 20px;
+  --layout-radius: 16px;
   --layout-space-unit: 0.215rem;
 }
 
@@ -354,7 +354,7 @@
   --layout-border: rgb(229, 231, 235);
   --layout-input: rgb(229, 231, 235);
   --layout-ring: rgb(106, 87, 227);
-  --layout-radius: 24px;
+  --layout-radius: 16px;
 }
 
 [data-brand="cursor"] {
@@ -569,7 +569,7 @@
   --layout-border: hsl(0 0% 89.8%);
   --layout-input: hsl(0 0% 89.8%);
   --layout-ring: #3D3D3D;
-  --layout-radius: 18px;
+  --layout-radius: 16px;
 }
 
 [data-brand="fey"] {
@@ -731,7 +731,7 @@
   --layout-border: #e2ded9;
   --layout-input: #e2ded9;
   --layout-ring: #0040ea;
-  --layout-radius: 24px;
+  --layout-radius: 16px;
   --layout-space-unit: 0.27rem;
 }
 
@@ -1193,7 +1193,7 @@
   --layout-border: #e3dfd5;
   --layout-input: #e3dfd5;
   --layout-ring: #493f2f;
-  --layout-radius: 0.75rem;
+  --layout-radius: 12px;
 }
 
 [data-brand="salesforce"] {
@@ -1465,7 +1465,7 @@
   --layout-border: rgb(255, 255, 255);
   --layout-input: rgb(255, 255, 255);
   --layout-ring: rgb(37, 211, 102);
-  --layout-radius: 50px;
+  --layout-radius: 16px;
 }
 
 [data-brand="wise"] {

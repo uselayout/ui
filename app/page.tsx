@@ -7,6 +7,7 @@ import {
   Layers,
 } from "lucide-react";
 
+import { BrandScope } from "@/components/docs/BrandScope";
 import { Button } from "@/registry/layout/button/button";
 import { Badge } from "@/registry/layout/badge/badge";
 import {
@@ -101,7 +102,10 @@ function Hero() {
           Read the docs
           <ArrowRight />
         </Button>
-        <Button size="lg" variant="outline" render={<Link href="/docs/components/button" />}>
+        <Button size="lg" variant="outline" render={<Link href="/create" />}>
+          Create your theme
+        </Button>
+        <Button size="lg" variant="ghost" render={<Link href="/docs/components/button" />}>
           Browse components
         </Button>
         <Button size="lg" variant="ghost" render={<a href="https://github.com/uselayout/app" target="_blank" rel="noopener noreferrer" />}>
@@ -120,7 +124,8 @@ function Hero() {
 function DemoStrip() {
   return (
     <section aria-label="Live component preview" className="mx-auto max-w-screen-xl px-4 lg:px-6">
-      <Card className="max-w-lg">
+      <BrandScope className="max-w-lg rounded-2xl bg-transparent">
+      <Card>
         <CardHeader>
           <CardTitle>Create account</CardTitle>
           <CardDescription>
@@ -151,6 +156,7 @@ function DemoStrip() {
           </div>
         </CardContent>
       </Card>
+      </BrandScope>
     </section>
   );
 }

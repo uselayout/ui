@@ -76,7 +76,7 @@ const toastIconMap: Record<string, React.ReactNode> = {
   ),
 };
 
-// ─── Inner toasts list — must be inside Provider context ──────────────────
+// ─── Inner toasts list (must be inside Provider context) ──────────────────
 
 function ToastList() {
   const { toasts } = BaseToast.useToastManager();
@@ -133,7 +133,7 @@ function ToastList() {
   );
 }
 
-// ─── Toaster — mount once in root layout ──────────────────────────────────
+// ─── Toaster (mount once in root layout) ──────────────────────────────────
 
 function Toaster() {
   return (

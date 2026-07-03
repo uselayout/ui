@@ -82,7 +82,7 @@ export default defineConfig({
           </Step>
 
           <Step title="Initialise shadcn">
-            <Code>{`npx shadcn@latest init`}</Code>
+            <Code>{`npx shadcn@latest init -y -b base -p nova`}</Code>
             <p>
               When prompted for the components path, use{" "}
               <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">

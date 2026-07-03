@@ -7,7 +7,7 @@ import { Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
-// InputOTP — root wrapper
+// InputOTP: root wrapper
 // ---------------------------------------------------------------------------
 
 interface InputOTPProps
@@ -34,7 +34,7 @@ function InputOTP({
 }
 
 // ---------------------------------------------------------------------------
-// InputOTPGroup — groups a set of slots visually
+// InputOTPGroup: groups a set of slots visually
 // ---------------------------------------------------------------------------
 
 interface InputOTPGroupProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -52,7 +52,7 @@ function InputOTPGroup({ className, ...props }: InputOTPGroupProps) {
 }
 
 // ---------------------------------------------------------------------------
-// InputOTPSlot — a single character input rendered by Base UI
+// InputOTPSlot: a single character input rendered by Base UI
 // ---------------------------------------------------------------------------
 
 interface InputOTPSlotProps
@@ -86,7 +86,7 @@ function InputOTPSlot({ className, ...props }: InputOTPSlotProps) {
 }
 
 // ---------------------------------------------------------------------------
-// InputOTPSeparator — visual divider between groups
+// InputOTPSeparator: visual divider between groups
 // ---------------------------------------------------------------------------
 
 interface InputOTPSeparatorProps extends React.HTMLAttributes<HTMLDivElement> {

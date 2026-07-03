@@ -1,4 +1,4 @@
-// GENERATED FILE — do not edit. Regenerate with: node scripts/gen-demo-index.mjs
+// GENERATED FILE, do not edit. Regenerate with: node scripts/gen-demo-index.mjs
 import type * as React from "react";
 
 import * as accordionDemos from "./accordion";

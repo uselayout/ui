@@ -44,13 +44,13 @@ export default function RootLayout({
  * Content is a static string constant: no user-supplied data, no XSS risk.
  */
 function PrePaintScript() {
-  // Static IIFE that reads localStorage and applies data-brand / data-theme /
-  // data-density before the browser paints, avoiding a flash of unstyled state.
+  // Static IIFE that reads localStorage and applies data-theme / data-density
+  // before the browser paints, avoiding a flash of unstyled state. Brand is
+  // NOT applied globally: it scopes to preview surfaces via BrandScope.
   const html = [
     "(function(){",
     "try{",
-    "var b=localStorage.getItem('layout-ui-brand');",
-    "if(b&&b!=='default')document.documentElement.setAttribute('data-brand',b);",
+    "document.documentElement.removeAttribute('data-brand');",
     "var t=localStorage.getItem('layout-ui-theme');",
     "if(t==='dark')document.documentElement.setAttribute('data-theme','dark');",
     "var d=localStorage.getItem('layout-ui-density');",

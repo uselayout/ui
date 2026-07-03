@@ -31,7 +31,7 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
     <BaseRadio.Root
       data-slot="radio-group-item"
       className={cn(
-        "aspect-square size-4 rounded-full border border-input bg-transparent",
+        "inline-flex aspect-square size-4 shrink-0 items-center justify-center rounded-full border border-input bg-transparent",
         "transition-[color,background-color,border-color,box-shadow] duration-[var(--layout-duration-base)] ease-out",
         "outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:border-ring",
         "disabled:cursor-not-allowed disabled:opacity-50",

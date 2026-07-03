@@ -174,7 +174,7 @@ export const importLine =
 
 export const demos: Demo[] = [
   {
-    title: "Bar chart — revenue vs expenses",
+    title: "Bar chart: revenue vs expenses",
     component: <RevenueBarChart />,
     code: `const revenueConfig: ChartConfig = {
   revenue:  { label: "Revenue",  color: "var(--layout-primary)" },
@@ -196,7 +196,7 @@ export const demos: Demo[] = [
 </ChartContainer>`,
   },
   {
-    title: "Area chart — traffic channels",
+    title: "Area chart: traffic channels",
     component: <TrafficAreaChart />,
     code: `const trafficConfig: ChartConfig = {
   organic: { label: "Organic", color: "var(--layout-success)" },

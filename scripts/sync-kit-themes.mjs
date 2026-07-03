@@ -99,8 +99,13 @@ function normaliseRadius(value) {
   if (typeof value !== "string" || !value.trim()) return null;
   const v = value.trim();
   // Reject var() and other non-literal values; the compiler needs a literal.
-  if (!/^[\d.]+(px|rem|em)$/.test(v)) return null;
-  return v;
+  const m = v.match(/^([\d.]+)(px|rem|em)$/);
+  if (!m) return null;
+  // Cap the base radius at 16px: some kits report pill-button radii (50px+)
+  // which, applied as the system base, wreck menus, inputs and cards.
+  const px = m[2] === "px" ? parseFloat(m[1]) : parseFloat(m[1]) * 16;
+  if (Number.isNaN(px)) return null;
+  return `${Math.min(Math.round(px), 16)}px`;
 }
 
 const DENSITY_UNIT = { compact: "0.215rem", comfortable: "0.25rem", airy: "0.27rem" };

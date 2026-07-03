@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { CodeBlock } from "@/components/docs/CodeBlock";
+import { BrandScope } from "@/components/docs/BrandScope";
 
 interface ComponentPreviewProps {
   children: React.ReactNode;
@@ -45,11 +46,12 @@ export function ComponentPreview({
         ))}
       </div>
 
-      {/* Content */}
+      {/* Content: the preview surface is brand-scoped so the switcher
+          reskins components without affecting the docs chrome. */}
       {active === "preview" ? (
-        <div className="min-h-[180px] rounded-b-xl bg-background p-8 flex items-center justify-center">
+        <BrandScope className="min-h-[180px] rounded-b-xl p-8 flex items-center justify-center">
           {children}
-        </div>
+        </BrandScope>
       ) : (
         <div className="rounded-b-xl overflow-hidden">
           <CodeBlock

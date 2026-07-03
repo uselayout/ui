@@ -4,6 +4,7 @@ import * as React from "react";
 import { ChevronDown, Palette } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useBrand, setBrand } from "@/lib/docs/brand-store";
 import brandsManifest from "@/lib/docs/brands.json";
 
 interface BrandEntry {
@@ -13,33 +14,9 @@ interface BrandEntry {
 }
 
 const BRANDS = brandsManifest as BrandEntry[];
-const STORAGE_KEY = "layout-ui-brand";
-
-function applyBrand(brand: string) {
-  if (brand === "default") {
-    document.documentElement.removeAttribute("data-brand");
-  } else {
-    document.documentElement.setAttribute("data-brand", brand);
-  }
-}
 
 export function BrandSwitcher() {
-  const [active, setActive] = React.useState("default");
-
-  React.useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && (stored === "default" || BRANDS.some((b) => b.slug === stored))) {
-      setActive(stored);
-      applyBrand(stored);
-    }
-  }, []);
-
-  function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
-    const brand = event.target.value;
-    setActive(brand);
-    applyBrand(brand);
-    localStorage.setItem(STORAGE_KEY, brand);
-  }
+  const active = useBrand();
 
   const activeName =
     active === "default"
@@ -58,9 +35,9 @@ export function BrandSwitcher() {
       <span className="max-w-24 truncate">{activeName}</span>
       <ChevronDown aria-hidden="true" className="size-3 text-muted-foreground" />
       <select
-        aria-label="Brand theme (compiled from layout.design gallery kits)"
+        aria-label="Preview brand (compiled from layout.design gallery kits)"
         value={active}
-        onChange={handleSelect}
+        onChange={(event) => setBrand(event.target.value)}
         className="absolute inset-0 cursor-pointer opacity-0"
       >
         <option value="default">Default</option>

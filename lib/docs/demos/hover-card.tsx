@@ -100,7 +100,7 @@ export const demos = [
     title: "User profile",
     component: (
       <p className="text-sm text-muted-foreground">
-        Design system by <UserHoverCard /> — hover to see profile.
+        Design system by <UserHoverCard />. Hover to see profile.
       </p>
     ),
     code: `<HoverCard>

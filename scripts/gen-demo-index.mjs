@@ -15,7 +15,7 @@ const slugs = readdirSync(demosDir)
 const ident = (slug) => slug.replace(/-([a-z])/g, (_, c) => c.toUpperCase()) + "Demos";
 
 const lines = [
-  "// GENERATED FILE — do not edit. Regenerate with: node scripts/gen-demo-index.mjs",
+  "// GENERATED FILE, do not edit. Regenerate with: node scripts/gen-demo-index.mjs",
   "import type * as React from \"react\";",
   "",
   ...slugs.map((s) => `import * as ${ident(s)} from "./${s}";`),

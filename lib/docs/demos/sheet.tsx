@@ -100,7 +100,7 @@ function SideVariantsDemo() {
           <SheetTrigger render={<Button variant="outline" size="sm">{side}</Button>} />
           <SheetContent side={side}>
             <SheetHeader>
-              <SheetTitle>Sheet — {side}</SheetTitle>
+              <SheetTitle>Sheet: {side}</SheetTitle>
               <SheetDescription>Slides in from the {side}.</SheetDescription>
             </SheetHeader>
             <SheetFooter>
@@ -153,7 +153,7 @@ export const demos = [
     <SheetTrigger render={<Button variant="outline" size="sm">{side}</Button>} />
     <SheetContent side={side}>
       <SheetHeader>
-        <SheetTitle>Sheet — {side}</SheetTitle>
+        <SheetTitle>Sheet: {side}</SheetTitle>
         <SheetDescription>Slides in from the {side}.</SheetDescription>
       </SheetHeader>
     </SheetContent>

@@ -69,7 +69,7 @@ function InlineTooltip() {
             }
           />
           <TooltipContent>
-            W3C Design Token Community Group — the emerging standard for sharing
+            W3C Design Token Community Group, the emerging standard for sharing
             design tokens across tools.
           </TooltipContent>
         </Tooltip>
@@ -109,7 +109,7 @@ export const demos = [
   <Tooltip>
     <TooltipTrigger render={<span className="cursor-help underline decoration-dashed">W3C DTCG format</span>} />
     <TooltipContent>
-      W3C Design Token Community Group — the emerging standard for sharing
+      W3C Design Token Community Group, the emerging standard for sharing
       design tokens across tools.
     </TooltipContent>
   </Tooltip>

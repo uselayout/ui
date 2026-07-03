@@ -68,7 +68,7 @@ function ChartContainer({
 }
 
 // ---------------------------------------------------------------------------
-// ChartTooltip — thin re-export of Recharts Tooltip with sensible defaults
+// ChartTooltip: thin re-export of Recharts Tooltip with sensible defaults
 // ---------------------------------------------------------------------------
 
 const ChartTooltip = Tooltip;
@@ -146,7 +146,7 @@ function ChartTooltipContent({
 }
 
 // ---------------------------------------------------------------------------
-// ChartLegend — thin re-export of Recharts Legend with sensible defaults
+// ChartLegend: thin re-export of Recharts Legend with sensible defaults
 // ---------------------------------------------------------------------------
 
 const ChartLegend = Legend;

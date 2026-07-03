@@ -88,7 +88,7 @@ export default defineConfig({
           </Step>
 
           <Step title="Initialise shadcn">
-            <Code>{`npx shadcn@latest init`}</Code>
+            <Code>{`npx shadcn@latest init -y -b base -p nova`}</Code>
           </Step>
 
           <Step title="Add the Layout registry and install components">

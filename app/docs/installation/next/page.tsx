@@ -67,8 +67,8 @@ cd my-app`}</Code>
           </Step>
 
           <Step title="Initialise shadcn">
-            <p>Run the shadcn init command and follow the prompts to create a components.json:</p>
-            <Code>{`npx shadcn@latest init`}</Code>
+            <p>Run the shadcn init command to create a components.json. The -b flag picks the primitives library and -p picks a starting preset; any preset works because Layout UI themes replace it:</p>
+            <Code>{`npx shadcn@latest init -y -b base -p nova`}</Code>
           </Step>
 
           <Step title="Add the Layout registry">

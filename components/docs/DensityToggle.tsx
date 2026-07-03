@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Rows2, Rows4 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -14,6 +15,11 @@ function applyDensity(compact: boolean) {
   }
 }
 
+const OPTIONS = [
+  { compact: false, label: "Comfortable density", Icon: Rows2 },
+  { compact: true, label: "Compact density", Icon: Rows4 },
+] as const;
+
 export function DensityToggle() {
   const [compact, setCompact] = React.useState(false);
 
@@ -24,8 +30,8 @@ export function DensityToggle() {
     applyDensity(isCompact);
   }, []);
 
-  function toggle() {
-    const next = !compact;
+  function select(next: boolean) {
+    if (next === compact) return;
     setCompact(next);
     applyDensity(next);
     localStorage.setItem(STORAGE_KEY, next ? "compact" : "comfortable");
@@ -37,32 +43,24 @@ export function DensityToggle() {
       aria-label="Density"
       className="inline-flex items-center rounded-md border border-border bg-muted p-0.5 gap-0.5"
     >
-      <button
-        type="button"
-        onClick={() => !compact || toggle()}
-        aria-pressed={!compact}
-        className={cn(
-          "rounded px-2.5 py-1 text-xs font-medium transition-all duration-[var(--layout-duration-base)] ease-out cursor-pointer",
-          !compact
-            ? "bg-background text-foreground shadow-xs"
-            : "text-muted-foreground hover:text-foreground"
-        )}
-      >
-        Comfortable
-      </button>
-      <button
-        type="button"
-        onClick={() => compact || toggle()}
-        aria-pressed={compact}
-        className={cn(
-          "rounded px-2.5 py-1 text-xs font-medium transition-all duration-[var(--layout-duration-base)] ease-out cursor-pointer",
-          compact
-            ? "bg-background text-foreground shadow-xs"
-            : "text-muted-foreground hover:text-foreground"
-        )}
-      >
-        Compact
-      </button>
+      {OPTIONS.map(({ compact: value, label, Icon }) => (
+        <button
+          key={label}
+          type="button"
+          onClick={() => select(value)}
+          aria-pressed={compact === value}
+          aria-label={label}
+          title={label}
+          className={cn(
+            "rounded p-1.5 transition-all duration-[var(--layout-duration-base)] ease-out cursor-pointer",
+            compact === value
+              ? "bg-background text-foreground shadow-xs"
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          <Icon aria-hidden="true" className="size-3.5" />
+        </button>
+      ))}
     </div>
   );
 }
