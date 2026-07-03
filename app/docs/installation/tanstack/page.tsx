@@ -103,7 +103,7 @@ export default defineConfig({
             <Code>{`// components.json
 {
   "registries": {
-    "@layout": "https://layout.design/r/{name}.json"
+    "@layout": "${SITE_URL}/r/{name}.json"
   }
 }`}</Code>
             <Code>{`npx shadcn add @layout/theme-layout

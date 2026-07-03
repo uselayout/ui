@@ -73,7 +73,7 @@ export default function InstallationPage() {
         </p>
         <Code language="json">{`{
   "registries": {
-    "@layout": "https://layout.design/r/{name}.json"
+    "@layout": "${SITE_URL}/r/{name}.json"
   }
 }`}</Code>
       </DocsSection>
@@ -94,7 +94,7 @@ export default function InstallationPage() {
           </code>{" "}
           first:
         </p>
-        <Code language="bash">{`npx shadcn add https://layout.design/r/button.json`}</Code>
+        <Code language="bash">{`npx shadcn add ${SITE_URL}/r/button.json`}</Code>
         <p className="text-sm text-muted-foreground leading-relaxed">
           Install the theme alongside your first component to get the full token contract,
           including success, warning, shadow, and motion tokens that the shadcn default theme
@@ -103,17 +103,34 @@ export default function InstallationPage() {
         <Code language="bash">{`npx shadcn add @layout/theme-layout`}</Code>
       </DocsSection>
 
-      <DocsSection title="Layout CLI (coming soon)">
+      <DocsSection title="Layout CLI">
         <p className="text-sm text-muted-foreground leading-relaxed">
           The Layout CLI (
           <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
             @layoutdesign/context
           </code>
-          ) will add components, apply layout.md kits, and connect the MCP server in a single
-          command:
+          ) installs components with zero configuration: no components.json needed. It
+          resolves component dependencies, installs npm packages with your package manager,
+          and injects the theme variables. If your project has no Layout theme yet, the
+          default theme is included automatically on first use.
         </p>
-        <Code language="bash">{`# Coming soon, not yet available
-npx @layoutdesign/context add button`}</Code>
+        <Code language="bash">{`npx @layoutdesign/context add button`}</Code>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Useful flags:{" "}
+          <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
+            --dry-run
+          </code>{" "}
+          to preview,{" "}
+          <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
+            --overwrite
+          </code>{" "}
+          to replace existing files, and{" "}
+          <code className="font-mono text-xs bg-muted px-1.5 py-0.5 rounded text-foreground">
+            --css
+          </code>{" "}
+          to point at a specific stylesheet. The same package provides the MCP server that
+          gives AI agents the design system context and compliance checks.
+        </p>
       </DocsSection>
 
       <DocsSection title="Framework guides">

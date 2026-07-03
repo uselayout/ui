@@ -89,7 +89,7 @@ cd my-app`}</Code>
             </p>
             <Code>{`{
   "registries": {
-    "@layout": "https://layout.design/r/{name}.json"
+    "@layout": "${SITE_URL}/r/{name}.json"
   }
 }`}</Code>
           </Step>
