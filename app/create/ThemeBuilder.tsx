@@ -703,7 +703,7 @@ function ControlPanel({ state, onUpdate, onShuffle, loadGoogleFont }: ControlPan
   }
 
   return (
-    <aside className="flex flex-col gap-6 w-72 shrink-0 border-r border-border bg-card p-6 overflow-y-auto">
+    <aside className="flex w-full shrink-0 flex-col gap-6 border-b border-border bg-card p-6 lg:w-72 lg:overflow-y-auto lg:border-b-0 lg:border-r">
       {/* Header */}
       <div>
         <h2 className="text-sm font-semibold text-foreground">Theme settings</h2>
@@ -991,7 +991,7 @@ function PreviewCanvas({
       data-theme={state.darkPreview ? "dark" : undefined}
       data-density={state.density === "compact" ? "compact" : undefined}
       style={inlineTokens}
-      className="flex-1 overflow-y-auto p-6 bg-background text-foreground min-h-0"
+      className="min-h-0 flex-1 bg-background p-6 text-foreground lg:overflow-y-auto"
     >
       <div className="max-w-2xl mx-auto flex flex-col gap-6">
         {/* Stats row */}
@@ -1613,7 +1613,7 @@ function OutputPanel({
   let stepIdx = 1;
 
   return (
-    <aside className="w-96 shrink-0 border-l border-border bg-card overflow-y-auto flex flex-col">
+    <aside className="flex w-full shrink-0 flex-col border-t border-border bg-card lg:w-96 lg:overflow-y-auto lg:border-t-0 lg:border-l">
       <div className="flex items-center justify-between border-b border-border px-6 py-4">
         <h2 className="text-sm font-semibold text-foreground">Get this theme</h2>
         <div className="flex items-center gap-2">
@@ -1808,7 +1808,7 @@ function ThemeBuilderInner({ initialParams }: ThemeBuilderInnerProps) {
   );
 
   return (
-    <div className="flex h-full min-h-0 overflow-hidden">
+    <div className="flex min-h-0 flex-col overflow-y-auto lg:h-full lg:flex-row lg:overflow-hidden">
       <ControlPanel
         state={state}
         onUpdate={handleUpdate}

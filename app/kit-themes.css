@@ -199,13 +199,13 @@
   --layout-fg: rgb(255, 255, 255);
   --layout-surface: rgb(0, 0, 0);
   --layout-surface-fg: rgb(255, 255, 255);
-  --layout-overlay: rgb(255, 255, 255);
+  --layout-overlay: #1f1f25;
   --layout-overlay-fg: rgb(255, 255, 255);
   --layout-primary: rgb(0, 224, 19);
   --layout-primary-fg: rgb(0, 0, 0);
   --layout-secondary: rgba(0, 224, 19, 0.12);
   --layout-secondary-fg: rgb(0, 224, 19);
-  --layout-muted: rgb(255, 255, 255);
+  --layout-muted: #1f1f25;
   --layout-muted-fg: rgb(102, 102, 102);
   --layout-accent: rgba(0, 224, 19, 0.12);
   --layout-accent-fg: rgb(255, 255, 255);
@@ -351,8 +351,8 @@
   --layout-success-fg: #ffffff;
   --layout-warning: rgb(240, 251, 150);
   --layout-warning-fg: #111111;
-  --layout-border: rgb(229, 231, 235);
-  --layout-input: rgb(229, 231, 235);
+  --layout-border: rgba(0, 0, 0, 0.10);
+  --layout-input: rgba(0, 0, 0, 0.10);
   --layout-ring: rgb(106, 87, 227);
   --layout-radius: 16px;
 }
@@ -912,7 +912,7 @@
   --layout-secondary: rgba(255, 79, 64, 0.15);
   --layout-secondary-fg: rgb(255, 79, 64);
   --layout-muted: #1e3241;
-  --layout-muted-fg: rgba(255, 255, 255, 0.65);
+  --layout-muted-fg: rgba(255, 255, 255, 0.55);
   --layout-accent: rgba(255, 79, 64, 0.15);
   --layout-accent-fg: #ffffff;
   --layout-danger: rgb(255, 79, 64);
@@ -1245,8 +1245,8 @@
   --layout-success-fg: #ffffff;
   --layout-warning: rgb(252, 139, 97);
   --layout-warning-fg: #ffffff;
-  --layout-border: #362d59;
-  --layout-input: #362d59;
+  --layout-border: rgba(255, 255, 255, 0.10);
+  --layout-input: rgba(255, 255, 255, 0.10);
   --layout-ring: rgb(106, 95, 193);
   --layout-radius: 12px;
 }
@@ -1354,9 +1354,9 @@
   --layout-success-fg: #ffffff;
   --layout-warning: hsl(31, 92%, 45%);
   --layout-warning-fg: #ffffff;
-  --layout-border: rgb(46, 46, 46);
-  --layout-input: rgb(46, 46, 46);
-  --layout-ring: rgb(57, 57, 57);
+  --layout-border: rgba(255, 255, 255, 0.10);
+  --layout-input: rgba(255, 255, 255, 0.10);
+  --layout-ring: rgba(255, 255, 255, 0.22);
   --layout-radius: 6px;
 }
 
@@ -1462,8 +1462,8 @@
   --layout-success-fg: #111111;
   --layout-warning: rgb(255, 153, 0);
   --layout-warning-fg: #ffffff;
-  --layout-border: rgb(255, 255, 255);
-  --layout-input: rgb(255, 255, 255);
+  --layout-border: rgba(0, 0, 0, 0.10);
+  --layout-input: rgba(0, 0, 0, 0.10);
   --layout-ring: rgb(37, 211, 102);
   --layout-radius: 16px;
 }

@@ -9,6 +9,9 @@ import {
   getAllComponentSlugs,
   getComponentDoc,
 } from "@/lib/docs/components-meta";
+import { BrandSwitcher } from "@/components/docs/BrandSwitcher";
+import { DensityToggle } from "@/components/docs/DensityToggle";
+import { ThemeToggle } from "@/components/docs/ThemeToggle";
 
 // ---------------------------------------------------------------------------
 // Sidebar nav data
@@ -156,9 +159,18 @@ export function MobileNav() {
           id="mobile-nav"
           className={cn(
             "absolute left-0 right-0 z-50 border-b border-border bg-background",
-            "px-4 py-6 shadow-md"
+            "px-4 py-6 shadow-md",
+            // The nav is long; keep the panel within the viewport and scroll it.
+            "max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain"
           )}
         >
+          {/* Brand/theme/density controls are hidden in the top bar on small
+              screens; surface them here so mobile users can switch styles. */}
+          <div className="mb-5 flex flex-wrap items-center gap-2 border-b border-border pb-5 sm:hidden">
+            <BrandSwitcher />
+            <DensityToggle />
+            <ThemeToggle />
+          </div>
           <DocsSidebar />
         </div>
       )}

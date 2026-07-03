@@ -76,9 +76,11 @@ function CreateTopBar() {
 
 export default function CreatePage() {
   return (
-    <div className="flex h-svh flex-col overflow-hidden bg-background text-foreground">
+    // Desktop: fixed viewport, three independently scrolling columns.
+    // Mobile: normal page flow so the stacked columns scroll together.
+    <div className="flex min-h-svh flex-col bg-background text-foreground lg:h-svh lg:overflow-hidden">
       <CreateTopBar />
-      <main className="flex-1 min-h-0 overflow-hidden">
+      <main className="min-h-0 flex-1 lg:overflow-hidden">
         <Suspense fallback={<div className="flex h-full items-center justify-center text-sm text-muted-foreground">Loading theme builder…</div>}>
           <ThemeBuilder />
         </Suspense>
